@@ -6,14 +6,17 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct EventoriasApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    init() {
+        FirebaseApp.configure()
+    }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SignInView()
         }
     }
 }
