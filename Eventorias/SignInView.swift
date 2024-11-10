@@ -12,6 +12,9 @@ struct SignInView: View {
     @State private var mail: String = ""
     @State private var password: String = ""
     @State private var showPopover = false
+    @State private var isLoading: Bool = false
+    @ObservedObject var viewModel: SignInViewModel
+    
     
     var body: some View {
         ZStack {
@@ -26,17 +29,16 @@ struct SignInView: View {
                     .keyboardType(.emailAddress)
                 PasswordEntryFieldView(password: $password, placeHolder: "Password")
                 
-                Button {
-                    
-                } label: {
-                    Image(systemName: "envelope")
-                    Text("Sign in with email")
-                        .frame(maxWidth: .infinity)
-                }
-                .fontWeight(.bold)
-                .padding()
-                .background(Color(.customRed))
-                .cornerRadius(5)
+                RedButton(
+                    title: "Sign in with email",
+                    action: {
+                        viewModel.onLoginAction(mail: mail, password: password, onLoading: { isLoading -> Void in
+                            self.isLoading = isLoading
+                        })
+                    },
+                    image: "envelope",
+                    isLoading: $isLoading
+                )
                 
                 Button("Don't have an account? Sign up!") {
                     showPopover = true
@@ -52,5 +54,5 @@ struct SignInView: View {
 }
 
 #Preview {
-    SignInView()
+    SignInView(viewModel: SignInViewModel(authenticationService: AuthenticationService()))
 }

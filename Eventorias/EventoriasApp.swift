@@ -10,13 +10,19 @@ import Firebase
 
 @main
 struct EventoriasApp: App {
+    @ObservedObject var authenticationService: AuthenticationService = AuthenticationService.shared
+    
     init() {
         FirebaseApp.configure()
     }
     
     var body: some Scene {
         WindowGroup {
-            SignInView()
+            if authenticationService.isAuthenticated {
+                EventListView()
+            } else {
+                SignInView(viewModel: SignInViewModel())
+            }
         }
     }
 }
