@@ -39,7 +39,7 @@ struct RegistrationView: View {
                     PasswordEntryFieldView(password: $password, placeHolder: "Password")
                     PasswordEntryFieldView(password: $confirmPassword, placeHolder: "Confirm password")
                     Button {
-                        viewModel.onSignUpAction(email: email, password: password, confirmPassword: confirmPassword, onLoading: { isLoading -> Void in
+                        viewModel.onSignUpAction(firstName: firstName, lastName: lastName, email: email, password: password, confirmPassword: confirmPassword, onLoading: { isLoading -> Void in
                             self.isLoading = isLoading
                         })
                     } label: {
