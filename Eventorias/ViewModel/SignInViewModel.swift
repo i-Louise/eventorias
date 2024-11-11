@@ -12,38 +12,38 @@ import FirebaseAuth
 class SignInViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var alertMessage: String? = nil
-    private var authenticationService: AuthenticationServiceProtocol
+    private let authenticationService: AuthenticationServiceProtocol
     
 
     init(
-         authenticationService: AuthenticationServiceProtocol = AuthenticationService.shared
+         authenticationService: AuthenticationServiceProtocol = AuthenticationService()
     ) {
         self.authenticationService = authenticationService
     }
     
-    func onLoginAction(mail: String, password: String, onLoading: @escaping (Bool) -> Void) {
+    func onLoginAction(email: String, password: String, onLoading: @escaping (Bool) -> Void) {
         alertMessage = nil
         onLoading(true)
-        if !isEmailValid(mail: mail) {
-            alertMessage = "Incorrect mail format, please try again."
+        if !isEmailValid(email: email) {
+            alertMessage = "Incorrect email format, please try again."
             onLoading(false)
         } else if password.isEmpty {
             alertMessage = "Please enter your password."
             onLoading(false)
         } else {
-            login(mail: mail, password: password) {
+            login(email: email, password: password) {
                 onLoading(false)
             }
         }
     }
     
-    private func isEmailValid(mail: String) -> Bool {
+    private func isEmailValid(email: String) -> Bool {
         let usernameTest = NSPredicate(format: "SELF MATCHES %@", "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
-        return usernameTest.evaluate(with: mail)
+        return usernameTest.evaluate(with: email)
     }
     
-    func login(mail: String, password: String, onCompletion: @escaping () -> Void) {
-        authenticationService.login(email: mail, password: password) { success, error in
+    func login(email: String, password: String, onCompletion: @escaping () -> Void) {
+        authenticationService.login(email: email, password: password) { success, error in
             if success {
                 print("Login succeed")
             } else if let error = error {

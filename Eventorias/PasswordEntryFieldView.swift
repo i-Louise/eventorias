@@ -16,9 +16,9 @@ struct PasswordEntryFieldView: View {
         HStack {
             Image(systemName: "lock.fill")
             if hidePassword {
-                SecureField("Password", text: $password)
+                SecureField(placeHolder, text: $password)
             } else {
-                TextField("Password", text: $password)
+                TextField(placeHolder, text: $password)
             }
             Button(action: {
                 self.hidePassword.toggle()

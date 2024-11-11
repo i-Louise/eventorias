@@ -26,6 +26,7 @@
 		73D1C5942CE1649D00A87D65 /* AuthenticationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5932CE1649D00A87D65 /* AuthenticationServiceProtocol.swift */; };
 		73D1C5962CE1650500A87D65 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5952CE1650500A87D65 /* AuthenticationService.swift */; };
 		73D1C5982CE16AF400A87D65 /* RedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5972CE16AF300A87D65 /* RedButton.swift */; };
+		73D1C59A2CE225F000A87D65 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5992CE225F000A87D65 /* RegistrationViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		73D1C5932CE1649D00A87D65 /* AuthenticationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceProtocol.swift; sourceTree = "<group>"; };
 		73D1C5952CE1650500A87D65 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		73D1C5972CE16AF300A87D65 /* RedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedButton.swift; sourceTree = "<group>"; };
+		73D1C5992CE225F000A87D65 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				73D1C58F2CE159D700A87D65 /* SignInViewModel.swift */,
+				73D1C5992CE225F000A87D65 /* RegistrationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73D1C5862CE11A5000A87D65 /* EntryFieldView.swift in Sources */,
+				73D1C59A2CE225F000A87D65 /* RegistrationViewModel.swift in Sources */,
 				73D1C5942CE1649D00A87D65 /* AuthenticationServiceProtocol.swift in Sources */,
 				731F03602CDF695100D72C42 /* AppDelegateAdaptator.swift in Sources */,
 				73D1C5962CE1650500A87D65 /* AuthenticationService.swift in Sources */,

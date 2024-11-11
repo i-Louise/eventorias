@@ -45,5 +45,5 @@ struct EntryFieldView: View {
     @Previewable @State var email: String = ""
     @Previewable @State var imageName: String = ""
 
-    EntryFieldView(placeHolder: "Mail adress", field: $email, imageName: imageName)
+    EntryFieldView(placeHolder: "Email adress", field: $email, imageName: imageName)
 }

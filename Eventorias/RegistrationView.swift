@@ -11,9 +11,11 @@ struct RegistrationView: View {
     @Binding var showPopover: Bool
     @State private var firstName: String = ""
     @State private var lastName: String = ""
-    @State private var mailAdress: String = ""
+    @State private var email: String = ""
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
+    @State private var isLoading: Bool = false
+    @ObservedObject var viewModel: RegistrationViewModel
 
     
     var body: some View {
@@ -33,11 +35,13 @@ struct RegistrationView: View {
                     }
                     EntryFieldView(placeHolder: "First Name", field: $firstName, imageName: "person.fill")
                     EntryFieldView(placeHolder: "Last Name", field: $lastName, imageName: "person.fill")
-                    EntryFieldView(placeHolder: "Mail adress", field: $mailAdress, imageName: "mail.fill")
+                    EntryFieldView(placeHolder: "Mail adress", field: $email, imageName: "mail.fill")
                     PasswordEntryFieldView(password: $password, placeHolder: "Password")
                     PasswordEntryFieldView(password: $confirmPassword, placeHolder: "Confirm password")
                     Button {
-                        
+                        viewModel.onSignUpAction(email: email, password: password, confirmPassword: confirmPassword, onLoading: { isLoading -> Void in
+                            self.isLoading = isLoading
+                        })
                     } label: {
                         Text("Create")
                             .frame(maxWidth: .infinity)
@@ -55,5 +59,5 @@ struct RegistrationView: View {
 
 #Preview {
     @Previewable @State var showPopover = true
-    RegistrationView(showPopover: $showPopover)
+    RegistrationView(showPopover: $showPopover, viewModel: RegistrationViewModel())
 }

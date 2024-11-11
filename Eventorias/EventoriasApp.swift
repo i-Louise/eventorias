@@ -10,7 +10,7 @@ import Firebase
 
 @main
 struct EventoriasApp: App {
-    @ObservedObject var authenticationService: AuthenticationService = AuthenticationService.shared
+    @ObservedObject var authenticationService: AuthenticationService = AuthenticationService()
     
     init() {
         FirebaseApp.configure()

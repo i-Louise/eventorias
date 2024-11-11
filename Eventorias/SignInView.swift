@@ -9,12 +9,11 @@ import SwiftUI
 
 struct SignInView: View {
     let background = Color(.background)
-    @State private var mail: String = ""
+    @State private var email: String = ""
     @State private var password: String = ""
     @State private var showPopover = false
     @State private var isLoading: Bool = false
     @ObservedObject var viewModel: SignInViewModel
-    
     
     var body: some View {
         ZStack {
@@ -25,14 +24,14 @@ struct SignInView: View {
                     Image("Logo")
                         .padding()
                 }
-                EntryFieldView(placeHolder: "Mail adress", field: $mail, imageName: "person.fill")
+                EntryFieldView(placeHolder: "Email adress", field: $email, imageName: "person.fill")
                     .keyboardType(.emailAddress)
                 PasswordEntryFieldView(password: $password, placeHolder: "Password")
                 
                 RedButton(
                     title: "Sign in with email",
                     action: {
-                        viewModel.onLoginAction(mail: mail, password: password, onLoading: { isLoading -> Void in
+                        viewModel.onLoginAction(email: email, password: password, onLoading: { isLoading -> Void in
                             self.isLoading = isLoading
                         })
                     },
@@ -45,7 +44,7 @@ struct SignInView: View {
                 }
                 .fontWeight(.bold)
                 .popover(isPresented: $showPopover) {
-                    RegistrationView(showPopover: $showPopover)
+                    RegistrationView(showPopover: $showPopover, viewModel: RegistrationViewModel())
                 }
             }
             .padding(.horizontal, 40)
@@ -54,5 +53,5 @@ struct SignInView: View {
 }
 
 #Preview {
-    SignInView(viewModel: SignInViewModel(authenticationService: AuthenticationService()))
+    SignInView(viewModel: SignInViewModel())
 }
