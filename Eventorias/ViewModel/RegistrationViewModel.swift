@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class RegistrationViewModel: ObservableObject {
     @Published var alertMessage: String? = nil
@@ -18,17 +19,27 @@ class RegistrationViewModel: ObservableObject {
         self.authenticationService = authenticationService
     }
     
-    func onSignUpAction(email: String, password: String, confirmPassword: String, onLoading: @escaping (Bool) -> Void) {
+    func onSignUpAction(firstName: String, lastName: String, email: String, password: String, confirmPassword: String, profileImage: UIImage, onLoading: @escaping (Bool) -> Void) {
         alertMessage = nil
         onLoading(true)
-        if !isEmailValid(email: email) {
-            alertMessage = "Incorrect email format"
+        
+        if firstName == "" {
+            alertMessage = "Please enter your first name."
+            onLoading(false)
+        } else if lastName == "" {
+            alertMessage = "Please enter your last name."
+            onLoading(false)
+        } else if !isEmailValid(email: email) {
+            alertMessage = "Incorrect email format."
+            onLoading(false)
+        } else if !isPasswordValid(password: password) {
+            alertMessage = "Password must be more than 6 characters, with at least one capital, numeric or special character."
             onLoading(false)
         } else if password != confirmPassword {
-            alertMessage = "Passwords are not matching"
+            alertMessage = "Passwords are not matching."
             onLoading(false)
         } else {
-            signUp(email: email, password: password) {
+            signUp(credentials: AuthCredentials(email: email, password: password, firstName: firstName, lastName: lastName, profileImage: profileImage)) {
                 onLoading(false)
             }
         }
@@ -44,12 +55,11 @@ class RegistrationViewModel: ObservableObject {
         return passwordTest.evaluate(with: password)
     }
     
-    func signUp(email: String, password: String, onCompletion: @escaping () -> Void) {
-        authenticationService.registration(email: email, password: password) { success, error in
-            if success {
-                print("Successfully registered")
-            } else if let error = error {
-                print("Error message: \(error.localizedDescription)")
+    func signUp(credentials: AuthCredentials, onCompletion: @escaping () -> Void) {
+        authenticationService.registration(credentials: credentials) { error in
+            if let error = error {
+                print("Error registering user: \(error.localizedDescription)")
+                return
             }
             onCompletion()
         }
