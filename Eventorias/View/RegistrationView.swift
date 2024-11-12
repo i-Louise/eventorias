@@ -15,7 +15,7 @@ struct RegistrationView: View {
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
     @State private var isLoading: Bool = false
-    @State private var image = UIImage()
+    @State private var image: UIImage?
     @State private var showSheet = false
     @ObservedObject var viewModel: RegistrationViewModel
     
@@ -34,15 +34,27 @@ struct RegistrationView: View {
                             .font(.headline)
                             .foregroundColor(.white)
                     }
-                    Image(uiImage: self.image)
+                    if let image = image {
+                        Image(uiImage: image) 
                             .resizable()
                             .cornerRadius(50)
                             .padding(.all, 4)
                             .frame(width: 100, height: 100)
-                            .background(Color.gray)
+                            .background(Color.white)
                             .aspectRatio(contentMode: .fill)
                             .clipShape(Circle())
                             .padding(8)
+                    } else {
+                        Image(systemName: "person.fill")
+                            .resizable()
+                            .cornerRadius(50)
+                            .padding(.all, 4)
+                            .frame(width: 100, height: 100)
+                            .background(Color.white)
+                            .aspectRatio(contentMode: .fill)
+                            .clipShape(Circle())
+                            .padding(8)
+                    }
                     Text("Upload a profile picture")
                         .foregroundColor(.white)
                     HStack(spacing: -10) {
@@ -78,7 +90,7 @@ struct RegistrationView: View {
                     PasswordEntryFieldView(password: $password, placeHolder: "Password")
                     PasswordEntryFieldView(password: $confirmPassword, placeHolder: "Confirm password")
                     Button {
-                        viewModel.onSignUpAction(firstName: firstName, lastName: lastName, email: email, password: password, confirmPassword: confirmPassword, profileImage: image, onLoading: { isLoading -> Void in
+                        viewModel.onSignUpAction(firstName: firstName, lastName: lastName, email: email, password: password, confirmPassword: confirmPassword, profileImage: (image ?? UIImage(systemName: "person.fill"))!, onLoading: { isLoading -> Void in
                             self.isLoading = isLoading
                         })
                     } label: {
