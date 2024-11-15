@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct SignInView: View {
-    let background = Color(.background)
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var showPopover = false
     @State private var isLoading: Bool = false
-    @ObservedObject var viewModel: SignInViewModel
+    @ObservedObject var viewModel: AuthenticationViewModel
     
     var body: some View {
         ZStack {
@@ -53,5 +52,5 @@ struct SignInView: View {
 }
 
 #Preview {
-    SignInView(viewModel: SignInViewModel())
+    SignInView(viewModel: AuthenticationViewModel())
 }

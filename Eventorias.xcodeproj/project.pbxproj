@@ -16,13 +16,12 @@
 		731F03582CDF5F1600D72C42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 731F03572CDF5F1600D72C42 /* GoogleService-Info.plist */; };
 		731F035C2CDF65DD00D72C42 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 731F035B2CDF65DD00D72C42 /* FirebaseAuth */; };
 		731F035E2CDF65DD00D72C42 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 731F035D2CDF65DD00D72C42 /* FirebaseDatabase */; };
-		731F03602CDF695100D72C42 /* AppDelegateAdaptator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F035F2CDF695100D72C42 /* AppDelegateAdaptator.swift */; };
 		731F03622CDF6B4800D72C42 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F03612CDF6B4800D72C42 /* SignInView.swift */; };
 		73D1C5862CE11A5000A87D65 /* EntryFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5852CE11A5000A87D65 /* EntryFieldView.swift */; };
 		73D1C5882CE11B0500A87D65 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5872CE11B0500A87D65 /* RegistrationView.swift */; };
 		73D1C58A2CE12A1900A87D65 /* PasswordEntryFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5892CE12A1900A87D65 /* PasswordEntryFieldView.swift */; };
 		73D1C58C2CE1421200A87D65 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C58B2CE1421200A87D65 /* EventListView.swift */; };
-		73D1C5902CE159D700A87D65 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C58F2CE159D700A87D65 /* SignInViewModel.swift */; };
+		73D1C5902CE159D700A87D65 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C58F2CE159D700A87D65 /* AuthenticationViewModel.swift */; };
 		73D1C5942CE1649D00A87D65 /* AuthenticationServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5932CE1649D00A87D65 /* AuthenticationServiceProtocol.swift */; };
 		73D1C5962CE1650500A87D65 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5952CE1650500A87D65 /* AuthenticationService.swift */; };
 		73D1C5982CE16AF400A87D65 /* RedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5972CE16AF300A87D65 /* RedButton.swift */; };
@@ -32,6 +31,8 @@
 		73D1C5A12CE25D1600A87D65 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 73D1C5A02CE25D1600A87D65 /* FirebaseStorage */; };
 		73D1C5A32CE25F4700A87D65 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 73D1C5A22CE25F4700A87D65 /* FirebaseFirestore */; };
 		73D1C5A52CE28D3700A87D65 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5A42CE28D3700A87D65 /* ImagePicker.swift */; };
+		73D1C5A72CE3D83200A87D65 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5A62CE3D83200A87D65 /* EventModel.swift */; };
+		73D1C5A92CE4DFCD00A87D65 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5A82CE4DFCD00A87D65 /* EventListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,7 +60,6 @@
 		731F03482CDEEAC300D72C42 /* EventoriasUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasUITests.swift; sourceTree = "<group>"; };
 		731F034A2CDEEAC300D72C42 /* EventoriasUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		731F03572CDF5F1600D72C42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		731F035F2CDF695100D72C42 /* AppDelegateAdaptator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegateAdaptator.swift; sourceTree = "<group>"; };
 		731F03612CDF6B4800D72C42 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		73D1C5802CE0FDCD00A87D65 /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventorias.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73D1C5812CE0FDCD00A87D65 /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventoriasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,7 +68,7 @@
 		73D1C5872CE11B0500A87D65 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		73D1C5892CE12A1900A87D65 /* PasswordEntryFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEntryFieldView.swift; sourceTree = "<group>"; };
 		73D1C58B2CE1421200A87D65 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
-		73D1C58F2CE159D700A87D65 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		73D1C58F2CE159D700A87D65 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		73D1C5932CE1649D00A87D65 /* AuthenticationServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationServiceProtocol.swift; sourceTree = "<group>"; };
 		73D1C5952CE1650500A87D65 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		73D1C5972CE16AF300A87D65 /* RedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedButton.swift; sourceTree = "<group>"; };
@@ -76,6 +76,8 @@
 		73D1C59C2CE258BB00A87D65 /* AuthCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCredentials.swift; sourceTree = "<group>"; };
 		73D1C59E2CE25CC300A87D65 /* ImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploader.swift; sourceTree = "<group>"; };
 		73D1C5A42CE28D3700A87D65 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		73D1C5A62CE3D83200A87D65 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		73D1C5A82CE4DFCD00A87D65 /* EventListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +136,6 @@
 				73D1C59E2CE25CC300A87D65 /* ImageUploader.swift */,
 				731F03312CDEEAC300D72C42 /* Assets.xcassets */,
 				731F03332CDEEAC300D72C42 /* Preview Content */,
-				731F035F2CDF695100D72C42 /* AppDelegateAdaptator.swift */,
 			);
 			path = Eventorias;
 			sourceTree = "<group>";
@@ -187,8 +188,9 @@
 		73D1C58E2CE159C600A87D65 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				73D1C58F2CE159D700A87D65 /* SignInViewModel.swift */,
+				73D1C58F2CE159D700A87D65 /* AuthenticationViewModel.swift */,
 				73D1C5992CE225F000A87D65 /* RegistrationViewModel.swift */,
+				73D1C5A82CE4DFCD00A87D65 /* EventListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				73D1C59C2CE258BB00A87D65 /* AuthCredentials.swift */,
+				73D1C5A62CE3D83200A87D65 /* EventModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -344,17 +347,18 @@
 				73D1C5862CE11A5000A87D65 /* EntryFieldView.swift in Sources */,
 				73D1C59A2CE225F000A87D65 /* RegistrationViewModel.swift in Sources */,
 				73D1C5942CE1649D00A87D65 /* AuthenticationServiceProtocol.swift in Sources */,
-				731F03602CDF695100D72C42 /* AppDelegateAdaptator.swift in Sources */,
 				73D1C5962CE1650500A87D65 /* AuthenticationService.swift in Sources */,
 				73D1C59D2CE258BB00A87D65 /* AuthCredentials.swift in Sources */,
 				731F03622CDF6B4800D72C42 /* SignInView.swift in Sources */,
 				73D1C59F2CE25CC300A87D65 /* ImageUploader.swift in Sources */,
 				73D1C58C2CE1421200A87D65 /* EventListView.swift in Sources */,
-				73D1C5902CE159D700A87D65 /* SignInViewModel.swift in Sources */,
+				73D1C5902CE159D700A87D65 /* AuthenticationViewModel.swift in Sources */,
 				73D1C58A2CE12A1900A87D65 /* PasswordEntryFieldView.swift in Sources */,
 				73D1C5982CE16AF400A87D65 /* RedButton.swift in Sources */,
+				73D1C5A92CE4DFCD00A87D65 /* EventListViewModel.swift in Sources */,
 				73D1C5A52CE28D3700A87D65 /* ImagePicker.swift in Sources */,
 				73D1C5882CE11B0500A87D65 /* RegistrationView.swift in Sources */,
+				73D1C5A72CE3D83200A87D65 /* EventModel.swift in Sources */,
 				731F032E2CDEEAC100D72C42 /* EventoriasApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

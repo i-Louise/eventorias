@@ -9,14 +9,14 @@ import Foundation
 import Firebase
 import FirebaseAuth
 
-class SignInViewModel: ObservableObject {
+class AuthenticationViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var alertMessage: String? = nil
     private let authenticationService: AuthenticationServiceProtocol
     
-
+    
     init(
-         authenticationService: AuthenticationServiceProtocol = AuthenticationService()
+        authenticationService: AuthenticationServiceProtocol = AuthenticationService()
     ) {
         self.authenticationService = authenticationService
     }
