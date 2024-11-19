@@ -18,6 +18,7 @@
 		731F035E2CDF65DD00D72C42 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 731F035D2CDF65DD00D72C42 /* FirebaseDatabase */; };
 		731F03622CDF6B4800D72C42 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F03612CDF6B4800D72C42 /* SignInView.swift */; };
 		73C853752CEB760600E1FA41 /* EventoriasAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */; };
+		73C853822CED485600E1FA41 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C853812CED485600E1FA41 /* UserProfileView.swift */; };
 		73D1C5862CE11A5000A87D65 /* EntryFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5852CE11A5000A87D65 /* EntryFieldView.swift */; };
 		73D1C5882CE11B0500A87D65 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5872CE11B0500A87D65 /* RegistrationView.swift */; };
 		73D1C58A2CE12A1900A87D65 /* PasswordEntryFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5892CE12A1900A87D65 /* PasswordEntryFieldView.swift */; };
@@ -63,6 +64,7 @@
 		731F03572CDF5F1600D72C42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		731F03612CDF6B4800D72C42 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasAppViewModel.swift; sourceTree = "<group>"; };
+		73C853812CED485600E1FA41 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		73D1C5802CE0FDCD00A87D65 /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventorias.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		73D1C5812CE0FDCD00A87D65 /* EventoriasTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventoriasTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		73D1C5822CE0FDCD00A87D65 /* EventoriasUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventoriasUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,6 +186,7 @@
 				73D1C5892CE12A1900A87D65 /* PasswordEntryFieldView.swift */,
 				73D1C5872CE11B0500A87D65 /* RegistrationView.swift */,
 				73D1C5852CE11A5000A87D65 /* EntryFieldView.swift */,
+				73C853812CED485600E1FA41 /* UserProfileView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -348,6 +351,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73D1C5862CE11A5000A87D65 /* EntryFieldView.swift in Sources */,
+				73C853822CED485600E1FA41 /* UserProfileView.swift in Sources */,
 				73D1C59A2CE225F000A87D65 /* RegistrationViewModel.swift in Sources */,
 				73D1C5942CE1649D00A87D65 /* AuthenticationServiceProtocol.swift in Sources */,
 				73C853752CEB760600E1FA41 /* EventoriasAppViewModel.swift in Sources */,

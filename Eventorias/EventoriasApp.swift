@@ -27,12 +27,27 @@ struct EventoriasApp: App {
     var body: some Scene {
         WindowGroup {
             if viewModel.isLogged {
-                EventListView(viewModel: EventListViewModel())
+                MainTabView()
             } else {
                 SignInView(viewModel: AuthenticationViewModel() {
                     viewModel.isLogged = true
                 })
             }
+        }
+    }
+}
+
+struct MainTabView: View {
+    var body: some View {
+        TabView {
+            EventListView(viewModel: EventListViewModel())
+                .tabItem {
+                    Label("Events", systemImage: "calendar")
+                }
+            UserProfileView()
+                .tabItem {
+                    Label("Profile", systemImage: "person")
+                }
         }
     }
 }
