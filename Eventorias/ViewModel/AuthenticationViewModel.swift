@@ -13,27 +13,24 @@ class AuthenticationViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var alertMessage: String? = nil
     private let authenticationService: AuthenticationServiceProtocol
-    
+    let onLoginSucceed: (() -> ())
     
     init(
-        authenticationService: AuthenticationServiceProtocol = AuthenticationService()
+        authenticationService: AuthenticationServiceProtocol = AuthenticationService(),
+        _ callback: @escaping () -> ()
     ) {
         self.authenticationService = authenticationService
+        self.onLoginSucceed = callback
     }
     
-    func onLoginAction(email: String, password: String, onLoading: @escaping (Bool) -> Void) {
+    func onLoginAction(email: String, password: String) {
         alertMessage = nil
-        onLoading(true)
         if !isEmailValid(email: email) {
             alertMessage = "Incorrect email format, please try again."
-            onLoading(false)
         } else if password.isEmpty {
             alertMessage = "Please enter your password."
-            onLoading(false)
         } else {
-            login(email: email, password: password) {
-                onLoading(false)
-            }
+            login(email: email, password: password)
         }
     }
     
@@ -42,14 +39,14 @@ class AuthenticationViewModel: ObservableObject {
         return usernameTest.evaluate(with: email)
     }
     
-    func login(email: String, password: String, onCompletion: @escaping () -> Void) {
+    func login(email: String, password: String) {
         authenticationService.login(email: email, password: password) { success, error in
             if success {
+                self.onLoginSucceed()
                 print("Login succeed")
             } else if let error = error {
                 print("Error message: \(error.localizedDescription)")
             }
-            onCompletion()
         }
     }
 }

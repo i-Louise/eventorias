@@ -14,20 +14,28 @@ struct Event: Codable, Identifiable {
     
     var title: String
     var description: String
-    var date: Date
-    var time: String
+    var dateTime: Date
     var address: String
+    var picture: String
     var category: Category
     
-    var userId = String()
-}
-
-enum Category: String, CaseIterable, Codable  {
-    case musicFestival = "Music festival"
-    case artExhibit = "Art exhibition"
-    case techConference = "Tech conference"
-    case foodFair = "Food fair"
-    case bookSigning = "Book signing"
-    case filmScreening = "Film screening"
-    case charityRun = "Charity run"
+    //var userId = String()
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title = "Title"
+        case description = "Description"
+        case dateTime = "Date"
+        case address = "Address"
+        case picture = "Picture"
+        case category = "Category"
+    }
+    enum Category: String, CaseIterable, Codable  {
+        case Art = "Art"
+        case Tech = "Tech"
+        case Gastronomy = "Gastronomy"
+        case Litterature = "Litterature"
+        case Movie = "Movie"
+        case Caritative = "Caritative"
+    }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 import FirebaseCore
 import FirebaseAuth
+import FirebaseFirestore
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
@@ -21,16 +22,16 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct EventoriasApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @ObservedObject var authenticationService: AuthenticationService = AuthenticationService()
+    @StateObject var viewModel = EventoriasAppViewModel()
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                if authenticationService.isAuthenticated {
-                    EventListView()
-                } else {
-                    SignInView(viewModel: AuthenticationViewModel())
-                }
+            if viewModel.isLogged {
+                EventListView(viewModel: EventListViewModel())
+            } else {
+                SignInView(viewModel: AuthenticationViewModel() {
+                    viewModel.isLogged = true
+                })
             }
         }
     }

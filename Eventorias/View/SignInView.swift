@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct SignInView: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @State private var email: String = "test@gmail.com"
+    @State private var password: String = "test123"
     @State private var showPopover = false
     @State private var isLoading: Bool = false
     @ObservedObject var viewModel: AuthenticationViewModel
@@ -30,9 +30,7 @@ struct SignInView: View {
                 RedButton(
                     title: "Sign in with email",
                     action: {
-                        viewModel.onLoginAction(email: email, password: password, onLoading: { isLoading -> Void in
-                            self.isLoading = isLoading
-                        })
+                        viewModel.onLoginAction(email: email, password: password)
                     },
                     image: "envelope",
                     isLoading: $isLoading
@@ -52,5 +50,5 @@ struct SignInView: View {
 }
 
 #Preview {
-    SignInView(viewModel: AuthenticationViewModel())
+    SignInView(viewModel: AuthenticationViewModel( {}))
 }
