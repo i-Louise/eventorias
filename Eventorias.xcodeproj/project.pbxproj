@@ -18,6 +18,8 @@
 		731F035E2CDF65DD00D72C42 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 731F035D2CDF65DD00D72C42 /* FirebaseDatabase */; };
 		731F03622CDF6B4800D72C42 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F03612CDF6B4800D72C42 /* SignInView.swift */; };
 		7379B0D72CED64870020B6E1 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379B0D62CED64870020B6E1 /* EventDetailView.swift */; };
+		7379B0D92CEE94730020B6E1 /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379B0D82CEE94730020B6E1 /* GoogleMapView.swift */; };
+		7379B0DB2CEE9A4E0020B6E1 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379B0DA2CEE9A460020B6E1 /* EventDetailViewModel.swift */; };
 		73C853752CEB760600E1FA41 /* EventoriasAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */; };
 		73C853822CED485600E1FA41 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C853812CED485600E1FA41 /* UserProfileView.swift */; };
 		73D1C5862CE11A5000A87D65 /* EntryFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5852CE11A5000A87D65 /* EntryFieldView.swift */; };
@@ -36,6 +38,7 @@
 		73D1C5A52CE28D3700A87D65 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5A42CE28D3700A87D65 /* ImagePicker.swift */; };
 		73D1C5A72CE3D83200A87D65 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5A62CE3D83200A87D65 /* EventModel.swift */; };
 		73D1C5A92CE4DFCD00A87D65 /* EventListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5A82CE4DFCD00A87D65 /* EventListViewModel.swift */; };
+		73FFE2772CEEA2630091B931 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 73FFE2762CEEA2630091B931 /* GoogleMaps */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,8 @@
 		731F03572CDF5F1600D72C42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		731F03612CDF6B4800D72C42 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		7379B0D62CED64870020B6E1 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
+		7379B0D82CEE94730020B6E1 /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
+		7379B0DA2CEE9A460020B6E1 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
 		73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasAppViewModel.swift; sourceTree = "<group>"; };
 		73C853812CED485600E1FA41 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		73D1C5802CE0FDCD00A87D65 /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventorias.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +98,7 @@
 			files = (
 				731F035E2CDF65DD00D72C42 /* FirebaseDatabase in Frameworks */,
 				73D1C5A32CE25F4700A87D65 /* FirebaseFirestore in Frameworks */,
+				73FFE2772CEEA2630091B931 /* GoogleMaps in Frameworks */,
 				731F035C2CDF65DD00D72C42 /* FirebaseAuth in Frameworks */,
 				73D1C5A12CE25D1600A87D65 /* FirebaseStorage in Frameworks */,
 			);
@@ -137,6 +143,7 @@
 				73D1C58E2CE159C600A87D65 /* ViewModel */,
 				73D1C58D2CE159BC00A87D65 /* View */,
 				731F032D2CDEEAC100D72C42 /* EventoriasApp.swift */,
+				7379B0D82CEE94730020B6E1 /* GoogleMapView.swift */,
 				73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */,
 				73D1C5932CE1649D00A87D65 /* AuthenticationServiceProtocol.swift */,
 				73D1C5952CE1650500A87D65 /* AuthenticationService.swift */,
@@ -197,6 +204,7 @@
 		73D1C58E2CE159C600A87D65 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				7379B0DA2CEE9A460020B6E1 /* EventDetailViewModel.swift */,
 				73D1C58F2CE159D700A87D65 /* AuthenticationViewModel.swift */,
 				73D1C5992CE225F000A87D65 /* RegistrationViewModel.swift */,
 				73D1C5A82CE4DFCD00A87D65 /* EventListViewModel.swift */,
@@ -234,6 +242,7 @@
 				731F035D2CDF65DD00D72C42 /* FirebaseDatabase */,
 				73D1C5A02CE25D1600A87D65 /* FirebaseStorage */,
 				73D1C5A22CE25F4700A87D65 /* FirebaseFirestore */,
+				73FFE2762CEEA2630091B931 /* GoogleMaps */,
 			);
 			productName = Eventorias;
 			productReference = 73D1C5802CE0FDCD00A87D65 /* Eventorias.app */;
@@ -309,6 +318,7 @@
 			mainGroup = 731F03212CDEEAC100D72C42;
 			packageReferences = (
 				731F03592CDF615000D72C42 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				73FFE2752CEEA2630091B931 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */,
 			);
 			productRefGroup = 731F03212CDEEAC100D72C42;
 			projectDirPath = "";
@@ -363,6 +373,8 @@
 				731F03622CDF6B4800D72C42 /* SignInView.swift in Sources */,
 				73D1C59F2CE25CC300A87D65 /* ImageUploader.swift in Sources */,
 				73D1C58C2CE1421200A87D65 /* EventListView.swift in Sources */,
+				7379B0D92CEE94730020B6E1 /* GoogleMapView.swift in Sources */,
+				7379B0DB2CEE9A4E0020B6E1 /* EventDetailViewModel.swift in Sources */,
 				73D1C5902CE159D700A87D65 /* AuthenticationViewModel.swift in Sources */,
 				7379B0D72CED64870020B6E1 /* EventDetailView.swift in Sources */,
 				73D1C58A2CE12A1900A87D65 /* PasswordEntryFieldView.swift in Sources */,
@@ -705,6 +717,14 @@
 				minimumVersion = 11.4.0;
 			};
 		};
+		73FFE2752CEEA2630091B931 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googlemaps/ios-maps-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -727,6 +747,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 731F03592CDF615000D72C42 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		73FFE2762CEEA2630091B931 /* GoogleMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 73FFE2752CEEA2630091B931 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */;
+			productName = GoogleMaps;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

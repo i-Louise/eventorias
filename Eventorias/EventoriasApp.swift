@@ -10,11 +10,13 @@ import Firebase
 import FirebaseCore
 import FirebaseAuth
 import FirebaseFirestore
+import GoogleMaps
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     FirebaseApp.configure()
+    GMSServices.provideAPIKey("AIzaSyBR3QC4KWiC1WXUis2sRqYRgPvFSoGFrCM")
     return true
   }
 }
