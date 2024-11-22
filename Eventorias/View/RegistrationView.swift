@@ -16,8 +16,10 @@ struct RegistrationView: View {
     @State private var confirmPassword: String = ""
     @State private var isLoading: Bool = false
     @State private var image: UIImage?
-    @State private var showSheet = false
+    @State private var showImagePicker = false
     @ObservedObject var viewModel: RegistrationViewModel
+    @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    
     
     var body: some View {
         ZStack {
@@ -57,53 +59,43 @@ struct RegistrationView: View {
                     }
                     Text("Upload a profile picture")
                         .foregroundColor(.white)
-                    HStack(spacing: -10) {
-                        Button {
-                            showSheet = true
-                        } label: {
-                            Image(systemName: "photo")
-                            Text("From galery")
+                    Menu {
+                        Button("Choose from Library") {
+                            sourceType = .photoLibrary
+                            showImagePicker = true
                         }
-                        .padding()
-                        .background(Color.gray)
-                        .clipShape(Capsule())
-                        .sheet(isPresented: $showSheet) {
-                            ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+                        Button("Take Photo") {
+                            sourceType = .camera
+                            showImagePicker = true
                         }
-                        Button {
-                            showSheet = true
-                        } label: {
-                            Image(systemName: "camera")
-                            Text("From camera")
-                        }
-                        .padding()
-                        .background(Color.customRed)
-                        .clipShape(Capsule())
-                        .sheet(isPresented: $showSheet) {
-                            ImagePicker(sourceType: .camera, selectedImage: self.$image)
-                        }
-                    }
-                    
-                    EntryFieldView(placeHolder: "First Name", field: $firstName, imageName: "person.fill")
-                    EntryFieldView(placeHolder: "Last Name", field: $lastName, imageName: "person.fill")
-                    EntryFieldView(placeHolder: "Mail adress", field: $email, imageName: "mail.fill")
-                    PasswordEntryFieldView(password: $password, placeHolder: "Password")
-                    PasswordEntryFieldView(password: $confirmPassword, placeHolder: "Confirm password")
-                    Button {
-                        viewModel.onSignUpAction(firstName: firstName, lastName: lastName, email: email, password: password, confirmPassword: confirmPassword, profileImage: (image ?? UIImage(systemName: "person.fill"))!, onLoading: { isLoading -> Void in
-                            self.isLoading = isLoading
-                        })
                     } label: {
-                        Text("Create")
-                            .frame(maxWidth: .infinity)
+                        Label("Select Image", systemImage: "photo.on.rectangle.angled")
+                            .font(.title2)
                     }
-                    .fontWeight(.bold)
-                    .padding()
-                    .background(Color(.customRed))
-                    .cornerRadius(5)
                 }
-                .padding(.horizontal, 40)
+                .padding()
+                .sheet(isPresented: $showImagePicker) {
+                    ImagePicker(sourceType: sourceType, selectedImage: $image)
+                }
+                EntryFieldView(placeHolder: "First Name", field: $firstName, imageName: "person.fill")
+                EntryFieldView(placeHolder: "Last Name", field: $lastName, imageName: "person.fill")
+                EntryFieldView(placeHolder: "Mail adress", field: $email, imageName: "mail.fill")
+                PasswordEntryFieldView(password: $password, placeHolder: "Password")
+                PasswordEntryFieldView(password: $confirmPassword, placeHolder: "Confirm password")
+                Button {
+                    viewModel.onSignUpAction(firstName: firstName, lastName: lastName, email: email, password: password, confirmPassword: confirmPassword, profileImage: (image ?? UIImage(systemName: "person.fill"))!, onLoading: { isLoading -> Void in
+                        self.isLoading = isLoading
+                    })
+                } label: {
+                    Text("Create")
+                        .frame(maxWidth: .infinity)
+                }
+                .fontWeight(.bold)
+                .padding()
+                .background(Color(.customRed))
+                .cornerRadius(5)
             }
+            .padding(.horizontal, 40)
         }
     }
 }

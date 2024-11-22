@@ -37,5 +37,6 @@ struct Event: Codable, Identifiable {
         case Litterature = "Litterature"
         case Movie = "Movie"
         case Caritative = "Caritative"
+        case Other = "Other"
     }
 }

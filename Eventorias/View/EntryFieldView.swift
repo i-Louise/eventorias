@@ -27,7 +27,7 @@ struct EntryFieldView: View {
             }
             .padding()
             .textInputAutocapitalization(.never)
-            .background(Color(UIColor.secondarySystemBackground))
+            .background(.customGrey)
             .cornerRadius(8)
             .disableAutocorrection(true)
             

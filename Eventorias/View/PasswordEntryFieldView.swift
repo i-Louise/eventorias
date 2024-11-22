@@ -28,7 +28,7 @@ struct PasswordEntryFieldView: View {
             })
         }
         .padding()
-        .background(Color(UIColor.secondarySystemBackground))
+        .background(.customGrey)
         .cornerRadius(8)
         .disableAutocorrection(true)
     }
