@@ -12,14 +12,14 @@ import FirebaseFirestore
 
 @MainActor
 class EventListViewModel: ObservableObject {
-    @Published var events = [Event]()
+    @Published var events = [EventResponseModel]()
     @Published var errorMessage: String?
     @Published var searchText: String = ""
     @Published var selectedCategory: String? = nil
     private var db = Firestore.firestore()
     private var listener: ListenerRegistration?
         
-    var filteredEvents: [Event] {
+    var filteredEvents: [EventResponseModel] {
         guard !searchText.isEmpty else { return events }
         return events.filter { event in
             event.title.lowercased().contains(searchText.lowercased())
@@ -29,17 +29,13 @@ class EventListViewModel: ObservableObject {
     func fetchEvents() {
         Task {
             do {
-                let querySnapShot = try await db.collection("Event").getDocuments()
-                let events: [Event] = try querySnapShot.documents.compactMap { document in
-                    try document.data(as: Event.self)
+                let querySnapShot = try await db.collection("events").getDocuments()
+                let events: [EventResponseModel] = try querySnapShot.documents.compactMap { document in
+                    try document.data(as: EventResponseModel.self)
                 }
                 
                 DispatchQueue.main.async {
                     self.events = events
-                }
-                
-                for event in events {
-                    print("Event ID: \(event.id ?? "No ID"), Title: \(event.title)")
                 }
             } catch let error as NSError {
                 print("Error fetching events: \(error.localizedDescription)")
@@ -47,30 +43,13 @@ class EventListViewModel: ObservableObject {
         }
     }
     
-    func getAllEventsSortedByDate(descending: Bool) async throws -> [Event] {
-        let snapshot = try await db.collection("Event")
-            .order(by: "Date", descending: descending)
+    func getAllEventsSortedByDate(descending: Bool) async throws -> [EventResponseModel] {
+        let snapshot = try await db.collection("events")
+            .order(by: "date", descending: descending)
             .getDocuments()
         
         return snapshot.documents.compactMap { document in
-            try? document.data(as: Event.self)
-        }
-    }
-    
-    enum FilterOption: String, CaseIterable {
-        case noFilter
-        case priceHigh
-        case priceLow
-    }
-    
-    func filterSelected(option: FilterOption) async throws {
-        switch option {
-        case .noFilter:
-            fetchEvents()
-        case .priceHigh:
-            self.events = try await getAllEventsSortedByDate(descending: true)
-        case .priceLow:
-            self.events = try await getAllEventsSortedByDate(descending: false)
+            try? document.data(as: EventResponseModel.self)
         }
     }
 }

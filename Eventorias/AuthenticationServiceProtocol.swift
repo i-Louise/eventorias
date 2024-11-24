@@ -7,7 +7,17 @@
 
 import Foundation
 
-protocol AuthenticationServiceProtocol: AnyObject {
-    func login(email: String, password: String, completion: @escaping (Bool, Error?) -> Void)
-    func registration(credentials: AuthCredentials, completion: @escaping(Error?) -> Void)
+protocol AuthenticationServiceProtocol {
+    func login(
+        email: String,
+        password: String,
+        onSuccess: @escaping () -> Void,
+        onFailure: @escaping (String) -> Void
+    ) async
+    
+    func registration(
+        credentials: AuthCredentials,
+        onSuccess: @escaping () -> Void,
+        onFailure: @escaping (String) -> Void
+    ) async
 }

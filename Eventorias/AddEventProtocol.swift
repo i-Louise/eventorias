@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol AddEventProtocol: AnyObject {
-    func addEvent(event: Event, completion: @escaping(Error?) -> Void)
+protocol AddEventProtocol {
+    func addEvent(event: EventRequestModel, completion: @escaping (Error?) -> Void) async
 }

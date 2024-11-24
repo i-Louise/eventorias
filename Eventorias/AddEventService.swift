@@ -10,28 +10,28 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 
-class AddEventService: AddEventProtocol, ObservableObject {
-    private var db = Firestore.firestore()
+class AddEventService: AddEventProtocol {
+    private let db = Firestore.firestore()
     
-    func addEvent(event: Event, completion: @escaping ((any Error)?) -> Void) {
-        Task {
-            do {
-                guard let userId = Auth.auth().currentUser?.uid else {
-                    completion(NSError(domain: "User not logged in", code: 1, userInfo: nil))
-                    return
-                }
-                let ref = try await db.collection("Event").addDocument(data: [
-                    "Address": event.address,
-                    "Category": event.category,
-                    "Date": event.dateTime,
-                    "Description": event.description,
-                    "Picture": event.picture,
-                    "Title": event.title,
-                    "userId": userId
-                ])
-            } catch {
-                print(error.localizedDescription)
+    func addEvent(event: EventRequestModel, completion: @escaping (Error?) -> Void) async {
+        do {
+            guard let userId = Auth.auth().currentUser?.uid else {
+                completion(NSError(domain: "User not logged in", code: 1, userInfo: nil))
+                return
             }
+            
+            try await db.collection("events").addDocument(data: [
+                "address": event.address,
+                "category": event.category,
+                "date": event.dateTime,
+                "description": event.description,
+                "picture": event.pictureUrl,
+                "title": event.title,
+                "userId": userId
+            ])
+            completion(nil)
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }

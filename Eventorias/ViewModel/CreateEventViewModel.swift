@@ -17,7 +17,7 @@ class CreateEventViewModel: ObservableObject {
         self.onCreationSucceed = callback
     }
     
-    func onCreationAction(address: String, category: Event.Category, date: Date, description: String, picture: String, title: String) {
+    func onCreationAction(address: String, category: EventCategory, date: Date, description: String, picture: Data, title: String) {
         alertMessage = nil
         if title.isEmpty {
             alertMessage = "Title must be at least 2 characters long"
@@ -28,11 +28,16 @@ class CreateEventViewModel: ObservableObject {
         }
     }
     
-    func createEvent(address: String, category: Event.Category, date: Date, description: String, picture: String, title: String) {
-        addService.addEvent(event: Event(title: title, description: description, dateTime: date, address: address, picture: picture, category: category)) { error in
-            if let error = error {
-                print("Error creating event: \(error.localizedDescription)")
-                return
+    private func createEvent(address: String, category: EventCategory, date: Date, description: String, picture: Data, title: String) {
+        ImageUploader.uploadImage(path: "/event_pictures/", image: picture) { imageUrl in
+            let newEvent = EventRequestModel(title: title, description: description, dateTime: date, address: address, pictureUrl: imageUrl, category: category)
+            Task {
+                await self.addService.addEvent(event: newEvent) { error in
+                    if let error = error {
+                        print("Error creating event: \(error.localizedDescription)")
+                        return
+                    }
+                }
             }
         }
     }

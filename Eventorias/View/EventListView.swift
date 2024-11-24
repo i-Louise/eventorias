@@ -17,39 +17,7 @@ struct EventListView: View {
             ZStack(alignment: .bottomTrailing) {
                 List(viewModel.filteredEvents) { event in
                     NavigationLink(destination: EventDetailView(viewModel: EventDetailViewModel(), event: event)) {
-                        HStack {
-                            Image(systemName: "person.fill")
-                                .padding()
-                                .overlay(
-                                    Circle()
-                                        .stroke(Color.primary,
-                                                lineWidth:1))
-                            VStack(alignment: .leading) {
-                                Text(event.title)
-                                    .font(.headline)
-                                Text(formattedDate(from: event.dateTime))
-                                    .font(.subheadline)
-                            }
-                            Spacer()
-                            AsyncImage(url: URL(string: event.picture)) { phase in
-                                switch phase {
-                                case .failure:
-                                    Image(systemName: "photo")
-                                        .font(.largeTitle)
-                                case .success(let image):
-                                    image
-                                        .resizable()
-                                        .frame(width: UIScreen.main.bounds.width / 3, height: 50)
-                                        .edgesIgnoringSafeArea(.all)
-                                    
-                                default:
-                                    ProgressView()
-                                }
-                            }
-                            .clipShape(.rect(cornerRadius: 16))
-                            
-                        }
-                        .foregroundStyle(Color.white)
+                        EventItemView(event: event)
                     }
                     .listRowBackground(Color.customGrey)
                 }
@@ -83,6 +51,45 @@ struct EventListView: View {
             }.searchable(text: $viewModel.searchText)
         }
     }
+}
+
+struct EventItemView: View {
+    let event: EventResponseModel
+    
+    var body: some View {
+        HStack {
+            Image(systemName: "person.fill")
+                .padding()
+                .overlay(
+                    Circle()
+                        .stroke(Color.primary, lineWidth:1)
+                )
+            VStack(alignment: .leading) {
+                Text(event.title)
+                    .font(.headline)
+                Text(formattedDate(from: event.dateTime))
+                    .font(.subheadline)
+            }
+            Spacer()
+            AsyncImage(url: URL(string: event.picture)) { phase in
+                switch phase {
+                case .failure:
+                    Image(systemName: "photo")
+                        .font(.largeTitle)
+                case .success(let image):
+                    image
+                        .resizable()
+                        .frame(width: UIScreen.main.bounds.width / 3, height: 50)
+                        .edgesIgnoringSafeArea(.all)
+                default:
+                    ProgressView()
+                }
+            }
+            .clipShape(.rect(cornerRadius: 16))
+        }
+        .foregroundStyle(Color.white)
+    }
+    
     private func formattedDate(from date: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMMM dd, yyyy"

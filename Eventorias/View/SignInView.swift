@@ -23,14 +23,20 @@ struct SignInView: View {
                     Image("Logo")
                         .padding()
                 }
-                EntryFieldView(placeHolder: "Email adress", field: $email, imageName: "person.fill")
+                EntryFieldView(placeHolder: "Email address", field: $email, imageName: "person.fill")
                     .keyboardType(.emailAddress)
                 PasswordEntryFieldView(password: $password, placeHolder: "Password")
                 
                 RedButton(
                     title: "Sign in with email",
                     action: {
-                        viewModel.onLoginAction(email: email, password: password)
+                        viewModel.onLoginAction(
+                            email: email,
+                            password: password,
+                            isLoading: { isLoading in
+                                self.isLoading = isLoading
+                            }
+                        )
                     },
                     image: "envelope",
                     isLoading: $isLoading

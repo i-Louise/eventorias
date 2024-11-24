@@ -6,12 +6,10 @@
 //
 
 import Foundation
-import SwiftUI
 
 struct AuthCredentials {
     let email: String
     let password: String
     let firstName: String
     let lastName: String
-    let profileImage: UIImage
 }

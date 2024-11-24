@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 class RegistrationViewModel: ObservableObject {
     @Published var alertMessage: String? = nil
@@ -19,7 +18,14 @@ class RegistrationViewModel: ObservableObject {
         self.authenticationService = authenticationService
     }
     
-    func onSignUpAction(firstName: String, lastName: String, email: String, password: String, confirmPassword: String, profileImage: UIImage, onLoading: @escaping (Bool) -> Void) {
+    func onSignUpAction(
+        firstName: String,
+        lastName: String,
+        email: String,
+        password: String,
+        confirmPassword: String,
+        onLoading: @escaping (Bool) -> Void
+    ) {
         alertMessage = nil
         onLoading(true)
         
@@ -39,9 +45,30 @@ class RegistrationViewModel: ObservableObject {
             alertMessage = "Passwords are not matching."
             onLoading(false)
         } else {
-            signUp(credentials: AuthCredentials(email: email, password: password, firstName: firstName, lastName: lastName, profileImage: profileImage)) {
-                onLoading(false)
-            }
+            signUp(
+                credentials: AuthCredentials(
+                    email: email,
+                    password: password,
+                    firstName: firstName,
+                    lastName: lastName
+                ),
+                onLoading: onLoading
+            )
+        }
+    }
+    
+    private func signUp(credentials: AuthCredentials, onLoading: @escaping (Bool) -> Void) {
+        Task {
+            await authenticationService.registration(
+                credentials: credentials,
+                onSuccess: {
+                    onLoading(false)
+                },
+                onFailure: { error in
+                    print("Error registering user: \(error)")
+                    onLoading(false)
+                }
+            )
         }
     }
     
@@ -53,15 +80,5 @@ class RegistrationViewModel: ObservableObject {
     private func isPasswordValid(password: String) -> Bool {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^.*(?=.{6,})(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*\\d)|(?=.*[!#$%&? ]).*$")
         return passwordTest.evaluate(with: password)
-    }
-    
-    func signUp(credentials: AuthCredentials, onCompletion: @escaping () -> Void) {
-        authenticationService.registration(credentials: credentials) { error in
-            if let error = error {
-                print("Error registering user: \(error.localizedDescription)")
-                return
-            }
-            onCompletion()
-        }
     }
 }

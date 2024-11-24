@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct RegistrationView: View {
     @Binding var showPopover: Bool
@@ -19,7 +20,6 @@ struct RegistrationView: View {
     @State private var showImagePicker = false
     @ObservedObject var viewModel: RegistrationViewModel
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
-    
     
     var body: some View {
         ZStack {
@@ -36,56 +36,23 @@ struct RegistrationView: View {
                             .font(.headline)
                             .foregroundColor(.white)
                     }
-                    if let image = image {
-                        Image(uiImage: image) 
-                            .resizable()
-                            .cornerRadius(50)
-                            .padding(.all, 4)
-                            .frame(width: 100, height: 100)
-                            .background(Color.white)
-                            .aspectRatio(contentMode: .fill)
-                            .clipShape(Circle())
-                            .padding(8)
-                    } else {
-                        Image(systemName: "person.fill")
-                            .resizable()
-                            .cornerRadius(50)
-                            .padding(.all, 4)
-                            .frame(width: 100, height: 100)
-                            .background(Color.white)
-                            .aspectRatio(contentMode: .fill)
-                            .clipShape(Circle())
-                            .padding(8)
-                    }
-                    Text("Upload a profile picture")
-                        .foregroundColor(.white)
-                    Menu {
-                        Button("Choose from Library") {
-                            sourceType = .photoLibrary
-                            showImagePicker = true
-                        }
-                        Button("Take Photo") {
-                            sourceType = .camera
-                            showImagePicker = true
-                        }
-                    } label: {
-                        Label("Select Image", systemImage: "photo.on.rectangle.angled")
-                            .font(.title2)
-                    }
-                }
-                .padding()
-                .sheet(isPresented: $showImagePicker) {
-                    ImagePicker(sourceType: sourceType, selectedImage: $image)
                 }
                 EntryFieldView(placeHolder: "First Name", field: $firstName, imageName: "person.fill")
                 EntryFieldView(placeHolder: "Last Name", field: $lastName, imageName: "person.fill")
-                EntryFieldView(placeHolder: "Mail adress", field: $email, imageName: "mail.fill")
+                EntryFieldView(placeHolder: "Mail address", field: $email, imageName: "mail.fill")
                 PasswordEntryFieldView(password: $password, placeHolder: "Password")
                 PasswordEntryFieldView(password: $confirmPassword, placeHolder: "Confirm password")
                 Button {
-                    viewModel.onSignUpAction(firstName: firstName, lastName: lastName, email: email, password: password, confirmPassword: confirmPassword, profileImage: (image ?? UIImage(systemName: "person.fill"))!, onLoading: { isLoading -> Void in
-                        self.isLoading = isLoading
-                    })
+                    viewModel.onSignUpAction(
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: email,
+                        password: password,
+                        confirmPassword: confirmPassword,
+                        onLoading: { isLoading in
+                            self.isLoading = isLoading
+                        }
+                    )
                 } label: {
                     Text("Create")
                         .frame(maxWidth: .infinity)
@@ -97,6 +64,10 @@ struct RegistrationView: View {
             }
             .padding(.horizontal, 40)
         }
+    }
+    
+    private func mapUiImageToData(image: UIImage) -> Data? {
+        return image.jpegData(compressionQuality: 0.75)
     }
 }
 

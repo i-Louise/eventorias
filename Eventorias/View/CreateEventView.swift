@@ -14,7 +14,7 @@ struct CreateEventView: View {
     @State var address: String = ""
     @State var showSheet = false
     @State var image: UIImage?
-    @State var category: Event.Category = .Other
+    @State var category: EventCategory = .other
     @ObservedObject var viewModel: CreateEventViewModel
     
     var body: some View {
@@ -25,7 +25,7 @@ struct CreateEventView: View {
                     VStack {
                         Text("Category")
                         Picker("Category", selection: $category) {
-                            ForEach(Event.Category.allCases, id: \.self) { category in
+                            ForEach(EventCategory.allCases, id: \.self) { category in
                                 Text(category.rawValue).tag(category)
                             }
                         }
@@ -73,6 +73,17 @@ struct CreateEventView: View {
                     }
                 }
                 Button {
+                    guard let image else {
+                        // TODO: tell the user image cannot be empty
+                        return
+                    }
+                    let imageData = mapUiImageToData(image: image)
+                    guard let imageData else {
+                        // TODO: image could not be compressed, show a generic error to the user (?)
+                        // So a new event cannot be created in this case!
+                        return
+                    }
+                    viewModel.onCreationAction(address: address, category: category, date: dateTime, description: description, picture: imageData, title: title)
                 } label: {
                     Text("Validate")
                 }
@@ -86,6 +97,10 @@ struct CreateEventView: View {
             .background(Color.background)
         }
         .navigationTitle("Creation of an event")
+    }
+    
+    private func mapUiImageToData(image: UIImage) -> Data? {
+        return image.jpegData(compressionQuality: 0.75)
     }
 }
 

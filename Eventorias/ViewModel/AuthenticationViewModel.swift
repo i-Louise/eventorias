@@ -10,7 +10,6 @@ import Firebase
 import FirebaseAuth
 
 class AuthenticationViewModel: ObservableObject {
-    @Published var isLoading = false
     @Published var alertMessage: String? = nil
     private let authenticationService: AuthenticationServiceProtocol
     let onLoginSucceed: (() -> ())
@@ -23,8 +22,13 @@ class AuthenticationViewModel: ObservableObject {
         self.onLoginSucceed = callback
     }
     
-    func onLoginAction(email: String, password: String) {
+    func onLoginAction(
+        email: String,
+        password: String,
+        isLoading: @escaping (Bool) -> Void
+    ) {
         alertMessage = nil
+        
         if !isEmailValid(email: email) {
             alertMessage = "Incorrect email format, please try again."
         } else if password.isEmpty {
@@ -40,13 +44,17 @@ class AuthenticationViewModel: ObservableObject {
     }
     
     func login(email: String, password: String) {
-        authenticationService.login(email: email, password: password) { success, error in
-            if success {
-                self.onLoginSucceed()
-                print("Login succeed")
-            } else if let error = error {
-                print("Error message: \(error.localizedDescription)")
-            }
+        Task {
+            await authenticationService.login(
+                email: email,
+                password: password,
+                onSuccess: {
+                    self.onLoginSucceed()
+                },
+                onFailure: { error in
+                    print(error)
+                }
+            )
         }
     }
 }

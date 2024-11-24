@@ -9,36 +9,36 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-class AuthenticationService: AuthenticationServiceProtocol, ObservableObject {
-    @Published var isAuthenticated = false
-    
-    func login(email: String, password: String, completion: @escaping (Bool, (any Error)?) -> Void) {
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-            if (authResult?.user) != nil {
-                self?.isAuthenticated = true
-                completion(true, nil)
-            } else {
-                completion(false, error)
-            }
+class AuthenticationService: AuthenticationServiceProtocol {
+    func login(
+        email: String,
+        password: String,
+        onSuccess: @escaping () -> Void,
+        onFailure: @escaping (String) -> Void
+    ) async {
+        do {
+            _ = try await Auth.auth().signIn(withEmail: email, password: password)
+            onSuccess()
+        } catch {
+            onFailure("Could not login user: \(error.localizedDescription)")
         }
     }
     
-    func registration(credentials: AuthCredentials, completion: @escaping(Error?) -> Void) {
-        ImageUploader.uploadImage(image: credentials.profileImage) { imageURL in
-            Auth.auth().createUser(withEmail: credentials.email, password: credentials.password) { result, error in
-                if let error = error {
-                    print("Err: Failed to register user \(error.localizedDescription)")
-                    return
-                }
-                
-                guard let uid = result?.user.uid else {return}
-                let data: [String: Any] = ["email": credentials.email,
-                                           "firstName": credentials.firstName,
-                                           "profileImageURL": imageURL,
-                                           "uid": uid]
-                
-                Firestore.firestore().collection("users").document(uid).setData(data, completion: completion)
-            }
+    func registration(
+        credentials: AuthCredentials,
+        onSuccess: @escaping () -> Void,
+        onFailure: @escaping (String) -> Void
+    ) async {
+        do {
+            let authResult = try await Auth.auth().createUser(withEmail: credentials.email, password: credentials.password)
+            try await Firestore.firestore().collection("users").document(authResult.user.uid).setData([
+                "email": credentials.email,
+                "firstName": credentials.firstName,
+                "lastName": credentials.lastName
+            ])
+            onSuccess()
+        } catch {
+            onFailure("Could not sign up user: \(error.localizedDescription)")
         }
     }
 }
