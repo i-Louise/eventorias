@@ -46,6 +46,7 @@
 		73FFE2BD2CF0EBBD0091B931 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFE2BC2CF0EBBD0091B931 /* UserProfileViewModel.swift */; };
 		73FFE2BF2CF333870091B931 /* EventResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFE2BE2CF333870091B931 /* EventResponseModel.swift */; };
 		73FFE2C12CF37C430091B931 /* EventCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFE2C02CF37C340091B931 /* EventCategory.swift */; };
+		73FFE2C52CF3D57A0091B931 /* UserResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFE2C42CF3D5740091B931 /* UserResponseModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		73FFE2BC2CF0EBBD0091B931 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		73FFE2BE2CF333870091B931 /* EventResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResponseModel.swift; sourceTree = "<group>"; };
 		73FFE2C02CF37C340091B931 /* EventCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategory.swift; sourceTree = "<group>"; };
+		73FFE2C42CF3D5740091B931 /* UserResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponseModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +238,7 @@
 			children = (
 				73FFE2C02CF37C340091B931 /* EventCategory.swift */,
 				73D1C59C2CE258BB00A87D65 /* AuthCredentials.swift */,
+				73FFE2C42CF3D5740091B931 /* UserResponseModel.swift */,
 				73D1C5A62CE3D83200A87D65 /* EventRequestModel.swift */,
 				73FFE2BE2CF333870091B931 /* EventResponseModel.swift */,
 			);
@@ -412,6 +415,7 @@
 				73FFE2BB2CEFF7010091B931 /* CreateEventView.swift in Sources */,
 				731F032E2CDEEAC100D72C42 /* EventoriasApp.swift in Sources */,
 				73FFE2792CEFA98E0091B931 /* CreateEventViewModel.swift in Sources */,
+				73FFE2C52CF3D57A0091B931 /* UserResponseModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,6 @@ struct EventResponseModel: Decodable, Identifiable {
     let description: String
     let picture: String
     let dateTime: Date
-    let category: EventCategory
+    let category: String
     let userId: String
 }

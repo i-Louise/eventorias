@@ -9,6 +9,7 @@ import SwiftUI
 
 struct UserProfileView: View {
     @State var notification = false
+    @ObservedObject var viewModel: UserProfileViewModel
     
     var body: some View {
         NavigationStack {
@@ -21,7 +22,7 @@ struct UserProfileView: View {
                     }
                     VStack {
                         Text("Name")
-                        Text("John Doe")
+                        Text(viewModel.user?.firstName ?? "")
                     }
                     .padding(.horizontal, 15)
                     .padding(.vertical, 15)
@@ -30,7 +31,7 @@ struct UserProfileView: View {
                     
                     VStack {
                         Text("E-mail")
-                        Text("John Doe")
+                        Text(viewModel.user?.email ?? "")
                     }
                     .padding(.horizontal, 15)
                     .padding(.vertical, 15)
@@ -43,10 +44,13 @@ struct UserProfileView: View {
             }
             .padding()
             .background(Color.background)
+            .onAppear() {
+                viewModel.fetchUserProfile()
+            }
         }
     }
 }
-
-#Preview {
-    UserProfileView()
-}
+//
+//#Preview {
+//    UserProfileView(viewModel: UserProfileViewModel(), user: <#UserResponseModel#>)
+//}

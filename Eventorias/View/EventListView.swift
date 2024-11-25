@@ -32,7 +32,14 @@ struct EventListView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        NavigationLink(destination: CreateEventView(viewModel: CreateEventViewModel(addService: AddEventService(), {}))) {
+                        NavigationLink(destination:
+                                        CreateEventView(
+                                            viewModel: CreateEventViewModel(
+                                                addService: AddEventService(),
+                                                {}
+                                            )
+                                        )
+                        ) {
                             Image(systemName: "plus")
                                 .resizable()
                                 .scaledToFit()

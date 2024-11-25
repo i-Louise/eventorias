@@ -46,7 +46,7 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Events", systemImage: "calendar")
                 }
-            UserProfileView()
+            UserProfileView(viewModel: UserProfileViewModel())
                 .tabItem {
                     Label("Profile", systemImage: "person")
                 }
