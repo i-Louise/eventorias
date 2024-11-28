@@ -18,7 +18,21 @@ struct UserProfileView: View {
                     HStack {
                         Text("User profile")
                         Spacer()
-                        Image(systemName: "person.crop.circle.fill")
+                        AsyncImage(url: URL(string: viewModel.user?.profilePicture ?? "")) { phase in
+                            switch phase {
+                            case .failure:
+                                Image(systemName: "photo")
+                                    .font(.largeTitle)
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 50, height: 50)
+                                    .clipShape(Circle())
+                            default:
+                                ProgressView()
+                            }
+                        }
                     }
                     VStack {
                         Text("Name")
