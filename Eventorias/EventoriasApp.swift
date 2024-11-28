@@ -51,5 +51,6 @@ struct MainTabView: View {
                     Label("Profile", systemImage: "person")
                 }
         }
+        .accentColor(.customRed)
     }
 }
