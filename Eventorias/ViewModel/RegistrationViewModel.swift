@@ -24,6 +24,7 @@ class RegistrationViewModel: ObservableObject {
         email: String,
         password: String,
         confirmPassword: String,
+        image: Data,
         onLoading: @escaping (Bool) -> Void
     ) {
         alertMessage = nil
@@ -52,23 +53,28 @@ class RegistrationViewModel: ObservableObject {
                     firstName: firstName,
                     lastName: lastName
                 ),
+                image: image,
                 onLoading: onLoading
             )
         }
     }
     
-    private func signUp(credentials: AuthCredentials, onLoading: @escaping (Bool) -> Void) {
-        Task {
-            await authenticationService.registration(
-                credentials: credentials,
-                onSuccess: {
-                    onLoading(false)
-                },
-                onFailure: { error in
-                    print("Error registering user: \(error)")
-                    onLoading(false)
-                }
-            )
+    private func signUp(credentials: AuthCredentials, image: Data, onLoading: @escaping (Bool) -> Void) {
+        ImageUploader.uploadImage(path: "events/images/\(UUID().uuidString).jpg", image: image) { imageUrl in
+            let newUser = UserRequestModel(authCredentials: credentials, profilePictureUrl: imageUrl)
+            Task {
+                await self.authenticationService.registration(
+                    user: newUser,
+                    onSuccess: {
+                        print("Success")
+                        onLoading(false)
+                    },
+                    onFailure: { error in
+                        print("Error registering user: \(error)")
+                        onLoading(false)
+                    }
+                )
+            }
         }
     }
     

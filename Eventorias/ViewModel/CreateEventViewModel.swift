@@ -17,20 +17,20 @@ class CreateEventViewModel: ObservableObject {
         self.onCreationSucceed = callback
     }
     
-    func onCreationAction(address: String, category: EventCategory, date: Date, description: String, picture: Data, title: String) {
+    func onCreationAction(address: String, category: EventCategory, date: Date, description: String, image: Data, title: String) {
         alertMessage = nil
         if title.isEmpty {
             alertMessage = "Title must be at least 2 characters long"
         } else if address.isEmpty {
             alertMessage = "Address not recognized"
         } else {
-            createEvent(address: address, category: category, date: date, description: description, picture: picture, title: title)
+            createEvent(address: address, category: category.rawValue, date: date, description: description, image: image, title: title)
         }
     }
     
-    private func createEvent(address: String, category: EventCategory, date: Date, description: String, picture: Data, title: String) {
-        ImageUploader.uploadImage(path: "/event_pictures/", image: picture) { imageUrl in
-            let newEvent = EventRequestModel(title: title, description: description, dateTime: date, address: address, pictureUrl: imageUrl, category: category)
+    private func createEvent(address: String, category: String, date: Date, description: String, image: Data, title: String) {
+        ImageUploader.uploadImage(path: "events/images/\(UUID().uuidString).jpg", image: image) { imageUrl in
+            let newEvent = EventRequestModel(title: title, description: description, dateTime: date, address: address, imageUrl: imageUrl, category: category)
             Task {
                 await self.addService.addEvent(event: newEvent) { error in
                     if let error = error {

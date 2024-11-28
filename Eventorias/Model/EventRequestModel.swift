@@ -9,11 +9,11 @@ import Foundation
 import FirebaseFirestore
 
 struct EventRequestModel {
-    @DocumentID var id: String?
+//    @DocumentID var id: String?
     let title: String
     let description: String
     let dateTime: Date
     let address: String
-    let pictureUrl: String
-    let category: EventCategory
+    let imageUrl: String
+    let category: String
 }

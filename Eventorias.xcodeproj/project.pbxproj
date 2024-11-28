@@ -47,6 +47,8 @@
 		73FFE2BF2CF333870091B931 /* EventResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFE2BE2CF333870091B931 /* EventResponseModel.swift */; };
 		73FFE2C12CF37C430091B931 /* EventCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFE2C02CF37C340091B931 /* EventCategory.swift */; };
 		73FFE2C52CF3D57A0091B931 /* UserResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFE2C42CF3D5740091B931 /* UserResponseModel.swift */; };
+		73FFE2C72CF8B4690091B931 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFE2C62CF8B4690091B931 /* EventModel.swift */; };
+		73FFE2CC2CF906470091B931 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFE2CB2CF906460091B931 /* ImagePickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		73FFE2BE2CF333870091B931 /* EventResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResponseModel.swift; sourceTree = "<group>"; };
 		73FFE2C02CF37C340091B931 /* EventCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategory.swift; sourceTree = "<group>"; };
 		73FFE2C42CF3D5740091B931 /* UserResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponseModel.swift; sourceTree = "<group>"; };
+		73FFE2C62CF8B4690091B931 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		73FFE2CB2CF906460091B931 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +217,7 @@
 				7379B0D62CED64870020B6E1 /* EventDetailView.swift */,
 				73D1C5892CE12A1900A87D65 /* PasswordEntryFieldView.swift */,
 				73D1C5872CE11B0500A87D65 /* RegistrationView.swift */,
+				73FFE2CB2CF906460091B931 /* ImagePickerView.swift */,
 				73D1C5852CE11A5000A87D65 /* EntryFieldView.swift */,
 				73C853812CED485600E1FA41 /* UserProfileView.swift */,
 				73FFE2BA2CEFF7010091B931 /* CreateEventView.swift */,
@@ -241,6 +246,7 @@
 				73FFE2C42CF3D5740091B931 /* UserResponseModel.swift */,
 				73D1C5A62CE3D83200A87D65 /* EventRequestModel.swift */,
 				73FFE2BE2CF333870091B931 /* EventResponseModel.swift */,
+				73FFE2C62CF8B4690091B931 /* EventModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -398,6 +404,7 @@
 				73D1C59D2CE258BB00A87D65 /* AuthCredentials.swift in Sources */,
 				731F03622CDF6B4800D72C42 /* SignInView.swift in Sources */,
 				73FFE2C12CF37C430091B931 /* EventCategory.swift in Sources */,
+				73FFE2CC2CF906470091B931 /* ImagePickerView.swift in Sources */,
 				73D1C59F2CE25CC300A87D65 /* ImageUploader.swift in Sources */,
 				73FFE2BF2CF333870091B931 /* EventResponseModel.swift in Sources */,
 				73D1C58C2CE1421200A87D65 /* EventListView.swift in Sources */,
@@ -415,6 +422,7 @@
 				73FFE2BB2CEFF7010091B931 /* CreateEventView.swift in Sources */,
 				731F032E2CDEEAC100D72C42 /* EventoriasApp.swift in Sources */,
 				73FFE2792CEFA98E0091B931 /* CreateEventViewModel.swift in Sources */,
+				73FFE2C72CF8B4690091B931 /* EventModel.swift in Sources */,
 				73FFE2C52CF3D57A0091B931 /* UserResponseModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

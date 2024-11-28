@@ -17,7 +17,7 @@ struct RegistrationView: View {
     @State private var confirmPassword: String = ""
     @State private var isLoading: Bool = false
     @State private var image: UIImage?
-    @State private var showImagePicker = false
+    @State private var showSheet = false
     @ObservedObject var viewModel: RegistrationViewModel
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     
@@ -27,15 +27,35 @@ struct RegistrationView: View {
             ScrollView {
                 VStack(spacing: 20) {
                     Spacer()
-                    VStack {
-                        Text("Register")
-                            .font(.largeTitle)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.customRed)
-                        Text("Create a new account")
-                            .font(.headline)
-                            .foregroundColor(.white)
+                    Text("Register")
+                        .font(.largeTitle)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.customRed)
+                    Text("Create a new account")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                    if let image = image {
+                        Image(uiImage: image)
+                            .resizable()
+                            .cornerRadius(50)
+                            .padding(.all, 4)
+                            .frame(width: 100, height: 100)
+                            .background(Color.white)
+                            .aspectRatio(contentMode: .fill)
+                            .clipShape(Circle())
+                            .padding(8)
+                    } else {
+                        Image(systemName: "person.fill")
+                            .resizable()
+                            .cornerRadius(50)
+                            .padding(.all, 4)
+                            .frame(width: 100, height: 100)
+                            .background(Color.white)
+                            .aspectRatio(contentMode: .fill)
+                            .clipShape(Circle())
+                            .padding(8)
                     }
+                    ImagePickerView(showSheet: $showSheet, image: $image)
                 }
                 EntryFieldView(placeHolder: "First Name", field: $firstName, imageName: "person.fill")
                 EntryFieldView(placeHolder: "Last Name", field: $lastName, imageName: "person.fill")
@@ -43,12 +63,23 @@ struct RegistrationView: View {
                 PasswordEntryFieldView(password: $password, placeHolder: "Password")
                 PasswordEntryFieldView(password: $confirmPassword, placeHolder: "Confirm password")
                 Button {
+                    guard let image else {
+                        // TODO: tell the user image cannot be empty
+                        return
+                    }
+                    let imageData = mapUiImageToData(image: image)
+                    guard let imageData else {
+                        // TODO: image could not be compressed, show a generic error to the user (?)
+                        // So a new event cannot be created in this case!
+                        return
+                    }
                     viewModel.onSignUpAction(
                         firstName: firstName,
                         lastName: lastName,
                         email: email,
                         password: password,
                         confirmPassword: confirmPassword,
+                        image: imageData,
                         onLoading: { isLoading in
                             self.isLoading = isLoading
                         }

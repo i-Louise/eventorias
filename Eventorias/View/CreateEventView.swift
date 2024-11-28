@@ -43,35 +43,7 @@ struct CreateEventView: View {
                     Field(fieldName: "Address", placeHolder: "Enter the full address", userInput: $address)
                     
                 }
-                HStack(spacing: 20) {
-                    Button {
-                        showSheet = true
-                    } label: {
-                        Image(systemName: "camera")
-                    }
-                    .padding()
-                    .frame(width: 50, height: 50)
-                    .background(Color.white)
-                    .foregroundStyle(.black)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .sheet(isPresented: $showSheet) {
-                        ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
-                    }
-                    Button {
-                        showSheet = true
-                    } label: {
-                        Image(systemName: "paperclip")
-                    }
-                    .padding()
-                    .frame(width: 50, height: 50)
-                    .background(Color.customRed)
-                    .foregroundStyle(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    
-                    .sheet(isPresented: $showSheet) {
-                        ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
-                    }
-                }
+                ImagePickerView(showSheet: $showSheet, image: $image)
                 Button {
                     guard let image else {
                         // TODO: tell the user image cannot be empty
@@ -83,7 +55,7 @@ struct CreateEventView: View {
                         // So a new event cannot be created in this case!
                         return
                     }
-                    viewModel.onCreationAction(address: address, category: category, date: dateTime, description: description, picture: imageData, title: title)
+                    viewModel.onCreationAction(address: address, category: category, date: dateTime, description: description, image: imageData, title: title)
                 } label: {
                     Text("Validate")
                 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 struct EventListView: View {
     @ObservedObject var viewModel: EventListViewModel
     @State private var searchText = ""
@@ -15,16 +16,17 @@ struct EventListView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
-                List(viewModel.filteredEvents) { event in
-                    NavigationLink(destination: EventDetailView(viewModel: EventDetailViewModel(), event: event)) {
-                        EventItemView(event: event)
+                List {
+                    ForEach(viewModel.events) { event in
+                        NavigationLink {
+                            EventDetailView(viewModel: EventDetailViewModel(), event: event)
+                        } label: {
+                            EventItemView(event: event)
+                        }
                     }
                     .listRowBackground(Color.customGrey)
                 }
                 .listStyle(.insetGrouped)
-                .onAppear {
-                    viewModel.fetchEvents()
-                }
                 .background(Color.background)
                 .scrollContentBackground(.hidden)
                 
@@ -55,22 +57,41 @@ struct EventListView: View {
                     }
                 }
                 
-            }.searchable(text: $viewModel.searchText)
+            }
+            //.searchable(text: $viewModel.searchText)
+        }
+        .onAppear {
+            viewModel.fetchEvents()
         }
     }
 }
 
 struct EventItemView: View {
-    let event: EventResponseModel
+    let event: EventModel
     
     var body: some View {
         HStack {
-            Image(systemName: "person.fill")
-                .padding()
-                .overlay(
-                    Circle()
-                        .stroke(Color.primary, lineWidth:1)
-                )
+            AsyncImage(url: URL(string: event.profilePictureUrl)) { phase in
+                switch phase {
+                case .failure:
+                    Image(systemName: "photo")
+                        .font(.largeTitle)
+                case .success(let image):
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 50, height: 50)
+                        .clipShape(Circle())
+                default:
+                    ProgressView()
+                }
+            }
+//            Image(systemName: "person.fill")
+//                .padding()
+//                .overlay(
+//                    Circle()
+//                        .stroke(Color.primary, lineWidth:1)
+//                )
             VStack(alignment: .leading) {
                 Text(event.title)
                     .font(.headline)
@@ -78,7 +99,7 @@ struct EventItemView: View {
                     .font(.subheadline)
             }
             Spacer()
-            AsyncImage(url: URL(string: event.picture)) { phase in
+            AsyncImage(url: URL(string: event.imageUrl)) { phase in
                 switch phase {
                 case .failure:
                     Image(systemName: "photo")

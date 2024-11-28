@@ -23,12 +23,13 @@ class AddEventService: AddEventProtocol {
             try await db.collection("events").addDocument(data: [
                 "address": event.address,
                 "category": event.category,
-                "date": event.dateTime,
+                "dateTime": event.dateTime,
                 "description": event.description,
-                "picture": event.pictureUrl,
+                "imageUrl": event.imageUrl,
                 "title": event.title,
                 "userId": userId
             ])
+            print("Event creation success")
             completion(nil)
         } catch {
             print(error.localizedDescription)

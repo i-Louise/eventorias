@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 struct EventResponseModel: Decodable, Identifiable {
-    var id: String?
+    @DocumentID var id: String?
     let title: String
     let address: String
     let description: String
-    let picture: String
+    let imageUrl: String
     let dateTime: Date
     let category: String
     let userId: String
