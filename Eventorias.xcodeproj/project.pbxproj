@@ -48,6 +48,7 @@
 		73FFE2C12CF37C430091B931 /* EventCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFE2C02CF37C340091B931 /* EventCategory.swift */; };
 		73FFE2C52CF3D57A0091B931 /* UserResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFE2C42CF3D5740091B931 /* UserResponseModel.swift */; };
 		73FFE2C72CF8B4690091B931 /* EventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFE2C62CF8B4690091B931 /* EventModel.swift */; };
+		73FFE2CA2CF8F36A0091B931 /* UserRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFE2C92CF8F36A0091B931 /* UserRequestModel.swift */; };
 		73FFE2CC2CF906470091B931 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73FFE2CB2CF906460091B931 /* ImagePickerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -108,6 +109,7 @@
 		73FFE2C02CF37C340091B931 /* EventCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCategory.swift; sourceTree = "<group>"; };
 		73FFE2C42CF3D5740091B931 /* UserResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponseModel.swift; sourceTree = "<group>"; };
 		73FFE2C62CF8B4690091B931 /* EventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventModel.swift; sourceTree = "<group>"; };
+		73FFE2C92CF8F36A0091B931 /* UserRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRequestModel.swift; sourceTree = "<group>"; };
 		73FFE2CB2CF906460091B931 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -247,6 +249,7 @@
 				73D1C5A62CE3D83200A87D65 /* EventRequestModel.swift */,
 				73FFE2BE2CF333870091B931 /* EventResponseModel.swift */,
 				73FFE2C62CF8B4690091B931 /* EventModel.swift */,
+				73FFE2C92CF8F36A0091B931 /* UserRequestModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				73C853822CED485600E1FA41 /* UserProfileView.swift in Sources */,
 				73D1C59A2CE225F000A87D65 /* RegistrationViewModel.swift in Sources */,
 				73FFE27B2CEFA9F10091B931 /* AddEventProtocol.swift in Sources */,
+				73FFE2CA2CF8F36A0091B931 /* UserRequestModel.swift in Sources */,
 				73FFE27D2CEFAA9E0091B931 /* AddEventService.swift in Sources */,
 				73D1C5942CE1649D00A87D65 /* AuthenticationServiceProtocol.swift in Sources */,
 				73C853752CEB760600E1FA41 /* EventoriasAppViewModel.swift in Sources */,

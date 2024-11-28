@@ -16,7 +16,7 @@ protocol AuthenticationServiceProtocol {
     ) async
     
     func registration(
-        credentials: AuthCredentials,
+        user: UserRequestModel,
         onSuccess: @escaping () -> Void,
         onFailure: @escaping (String) -> Void
     ) async

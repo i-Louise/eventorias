@@ -60,7 +60,7 @@ class RegistrationViewModel: ObservableObject {
     }
     
     private func signUp(credentials: AuthCredentials, image: Data, onLoading: @escaping (Bool) -> Void) {
-        ImageUploader.uploadImage(path: "events/images/\(UUID().uuidString).jpg", image: image) { imageUrl in
+        ImageUploader.uploadImage(path: "users/profilePictures/\(UUID().uuidString).jpg", image: image) { imageUrl in
             let newUser = UserRequestModel(authCredentials: credentials, profilePictureUrl: imageUrl)
             Task {
                 await self.authenticationService.registration(
