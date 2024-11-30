@@ -26,6 +26,9 @@ struct EventListView: View {
                     }
                     .listRowBackground(Color.customGrey)
                 }
+                .onAppear {
+                    viewModel.fetchEvents()
+                }
                 .listStyle(.insetGrouped)
                 .background(Color.background)
                 .scrollContentBackground(.hidden)
@@ -38,7 +41,9 @@ struct EventListView: View {
                                         CreateEventView(
                                             viewModel: CreateEventViewModel(
                                                 addService: AddEventService(),
-                                                {}
+                                                onCreationSucceed: {
+                                                    print("fetch events done")
+                                                }
                                             )
                                         )
                         ) {
@@ -60,9 +65,6 @@ struct EventListView: View {
             }
             //.searchable(text: $viewModel.searchText)
         }
-        .onAppear {
-            viewModel.fetchEvents()
-        }
     }
 }
 
@@ -74,8 +76,12 @@ struct EventItemView: View {
             AsyncImage(url: URL(string: event.profilePictureUrl)) { phase in
                 switch phase {
                 case .failure:
-                    Image(systemName: "photo")
-                        .font(.largeTitle)
+                    Image(systemName: "person.fill")
+                        .padding()
+                        .overlay(
+                            Circle()
+                                .stroke(Color.primary, lineWidth:1)
+                        )
                 case .success(let image):
                     image
                         .resizable()
@@ -84,14 +90,10 @@ struct EventItemView: View {
                         .clipShape(Circle())
                 default:
                     ProgressView()
+                        .background(Circle().fill(.gray))
+                        .frame(width: 50, height: 50)
                 }
             }
-//            Image(systemName: "person.fill")
-//                .padding()
-//                .overlay(
-//                    Circle()
-//                        .stroke(Color.primary, lineWidth:1)
-//                )
             VStack(alignment: .leading) {
                 Text(event.title)
                     .font(.headline)
@@ -107,13 +109,16 @@ struct EventItemView: View {
                 case .success(let image):
                     image
                         .resizable()
+                        .scaledToFill()
                         .frame(width: UIScreen.main.bounds.width / 3, height: 50)
+                        .clipShape(.rect(cornerRadius: 16))
                         .edgesIgnoringSafeArea(.all)
                 default:
                     ProgressView()
+                        .background(RoundedRectangle(cornerRadius: 16).fill(.gray))
+                        .frame(width: UIScreen.main.bounds.width / 3, height: 50)
                 }
             }
-            .clipShape(.rect(cornerRadius: 16))
         }
         .foregroundStyle(Color.white)
     }
