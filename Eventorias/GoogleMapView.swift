@@ -35,6 +35,12 @@ struct GoogleMapView: UIViewRepresentable {
     func makeUIView(context: Context) -> GMSMapView {
         let mapView = context.coordinator.mapView
         mapView.delegate = context.coordinator
+        
+        mapView.isUserInteractionEnabled = false
+        mapView.settings.scrollGestures = false
+        mapView.settings.zoomGestures = false
+        mapView.settings.tiltGestures = false
+        mapView.settings.rotateGestures = false
         //Create Camera View (Location Where We Want To Focus Map Camera)
         let camera = GMSCameraPosition.camera(withTarget: markerLocation, zoom: 15)
         mapView.camera = camera
