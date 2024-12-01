@@ -12,7 +12,8 @@ struct CreateEventView: View {
     @State var description: String = ""
     @State var dateTime = Date()
     @State var address: String = ""
-    @State var showSheet = false
+    @State var showGallerySheet = false
+    @State var showCameraSheet = false
     @State var image: UIImage?
     @State var category: EventCategory = .other
     @ObservedObject var viewModel: CreateEventViewModel
@@ -44,7 +45,7 @@ struct CreateEventView: View {
                     Field(fieldName: "Address", placeHolder: "Enter the full address", userInput: $address)
                     
                 }
-                ImagePickerView(showSheet: $showSheet, image: $image)
+                ImagePickerView(showCameraSheet: $showCameraSheet, showGallerySheet: $showGallerySheet, image: $image)
                 Button {
                     guard let image else {
                         // TODO: tell the user image cannot be empty

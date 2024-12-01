@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct ImagePickerView: View {
-    @Binding var showSheet: Bool
+    @Binding var showCameraSheet: Bool
+    @Binding var showGallerySheet: Bool
     @Binding var image: UIImage?
     
     var body: some View {
         HStack(spacing: 20) {
             Button {
-                showSheet = true
+                showCameraSheet = true
             } label: {
                 Image(systemName: "camera")
             }
@@ -23,12 +24,12 @@ struct ImagePickerView: View {
             .background(Color.white)
             .foregroundStyle(.black)
             .clipShape(RoundedRectangle(cornerRadius: 10))
-            .sheet(isPresented: $showSheet) {
-                ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+            .sheet(isPresented: $showCameraSheet) {
+                ImagePicker(sourceType: .camera, selectedImage: self.$image)
             }
             
             Button {
-                showSheet = true
+                showGallerySheet = true
             } label: {
                 Image(systemName: "paperclip")
             }
@@ -37,8 +38,8 @@ struct ImagePickerView: View {
             .background(Color.customRed)
             .foregroundStyle(.white)
             .clipShape(RoundedRectangle(cornerRadius: 10))
-            .sheet(isPresented: $showSheet) {
-                ImagePicker(sourceType: .camera, selectedImage: self.$image)
+            .sheet(isPresented: $showGallerySheet) {
+                ImagePicker(sourceType: .photoLibrary , selectedImage: self.$image)
             }
         }
     }

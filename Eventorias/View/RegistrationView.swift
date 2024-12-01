@@ -17,7 +17,8 @@ struct RegistrationView: View {
     @State private var confirmPassword: String = ""
     @State private var isLoading: Bool = false
     @State private var image: UIImage?
-    @State private var showSheet = false
+    @State private var showCameraSheet = false
+    @State private var showGallerySheet = false
     @ObservedObject var viewModel: RegistrationViewModel
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
     
@@ -55,7 +56,7 @@ struct RegistrationView: View {
                             .clipShape(Circle())
                             .padding(8)
                     }
-                    ImagePickerView(showSheet: $showSheet, image: $image)
+                    ImagePickerView(showCameraSheet: $showCameraSheet, showGallerySheet: $showGallerySheet, image: $image)
                 }
                 EntryFieldView(placeHolder: "First Name", field: $firstName, imageName: "person.fill")
                 EntryFieldView(placeHolder: "Last Name", field: $lastName, imageName: "person.fill")
