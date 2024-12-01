@@ -10,11 +10,11 @@ import Foundation
 class CreateEventViewModel: ObservableObject {
     @Published var alertMessage: String? = nil
     private let addService: AddEventService
-    let onCreationSucceed: (() -> ())
+    var onCreationSucceed: (() -> Void)
     
-    init(addService: AddEventService, _ callback: @escaping () -> ()) {
+    init(addService: AddEventService, onCreationSucceed: @escaping () -> Void) {
         self.addService = addService
-        self.onCreationSucceed = callback
+        self.onCreationSucceed = onCreationSucceed
     }
     
     func onCreationAction(address: String, category: EventCategory, date: Date, description: String, image: Data, title: String) {
@@ -36,6 +36,9 @@ class CreateEventViewModel: ObservableObject {
                     if let error = error {
                         print("Error creating event: \(error.localizedDescription)")
                         return
+                    }
+                    DispatchQueue.main.async {
+                        self.onCreationSucceed()
                     }
                 }
             }

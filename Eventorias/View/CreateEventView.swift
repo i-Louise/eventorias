@@ -16,6 +16,7 @@ struct CreateEventView: View {
     @State var image: UIImage?
     @State var category: EventCategory = .other
     @ObservedObject var viewModel: CreateEventViewModel
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationStack {
@@ -64,6 +65,11 @@ struct CreateEventView: View {
                 .background(Color.customRed)
                 .foregroundStyle(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
+                .onAppear {
+                    viewModel.onCreationSucceed = {
+                        dismiss() 
+                    }
+                }
             }
             .padding()
             .background(Color.background)
