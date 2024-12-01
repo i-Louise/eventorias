@@ -20,6 +20,9 @@
 		7379B0D72CED64870020B6E1 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379B0D62CED64870020B6E1 /* EventDetailView.swift */; };
 		7379B0D92CEE94730020B6E1 /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379B0D82CEE94730020B6E1 /* GoogleMapView.swift */; };
 		7379B0DB2CEE9A4E0020B6E1 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379B0DA2CEE9A460020B6E1 /* EventDetailViewModel.swift */; };
+		738D17042CFD1370000C5881 /* GooglePlacesSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 738D17032CFD1370000C5881 /* GooglePlacesSwift */; };
+		738D17062CFD138E000C5881 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = 738D17052CFD138E000C5881 /* GooglePlaces */; };
+		738D17082CFD14A3000C5881 /* GoogleAutocompleteAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D17072CFD14A3000C5881 /* GoogleAutocompleteAddressView.swift */; };
 		73C853752CEB760600E1FA41 /* EventoriasAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */; };
 		73C853822CED485600E1FA41 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C853812CED485600E1FA41 /* UserProfileView.swift */; };
 		73D1C5862CE11A5000A87D65 /* EntryFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5852CE11A5000A87D65 /* EntryFieldView.swift */; };
@@ -81,6 +84,7 @@
 		7379B0D62CED64870020B6E1 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		7379B0D82CEE94730020B6E1 /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
 		7379B0DA2CEE9A460020B6E1 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
+		738D17072CFD14A3000C5881 /* GoogleAutocompleteAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAutocompleteAddressView.swift; sourceTree = "<group>"; };
 		73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasAppViewModel.swift; sourceTree = "<group>"; };
 		73C853812CED485600E1FA41 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		73D1C5802CE0FDCD00A87D65 /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventorias.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,9 +124,11 @@
 			files = (
 				731F035E2CDF65DD00D72C42 /* FirebaseDatabase in Frameworks */,
 				73D1C5A32CE25F4700A87D65 /* FirebaseFirestore in Frameworks */,
+				738D17062CFD138E000C5881 /* GooglePlaces in Frameworks */,
 				73FFE2772CEEA2630091B931 /* GoogleMaps in Frameworks */,
 				731F035C2CDF65DD00D72C42 /* FirebaseAuth in Frameworks */,
 				73D1C5A12CE25D1600A87D65 /* FirebaseStorage in Frameworks */,
+				738D17042CFD1370000C5881 /* GooglePlacesSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +171,7 @@
 				73D1C58E2CE159C600A87D65 /* ViewModel */,
 				73D1C58D2CE159BC00A87D65 /* View */,
 				731F032D2CDEEAC100D72C42 /* EventoriasApp.swift */,
+				738D17072CFD14A3000C5881 /* GoogleAutocompleteAddressView.swift */,
 				7379B0D82CEE94730020B6E1 /* GoogleMapView.swift */,
 				73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */,
 				73D1C5932CE1649D00A87D65 /* AuthenticationServiceProtocol.swift */,
@@ -276,6 +283,8 @@
 				73D1C5A02CE25D1600A87D65 /* FirebaseStorage */,
 				73D1C5A22CE25F4700A87D65 /* FirebaseFirestore */,
 				73FFE2762CEEA2630091B931 /* GoogleMaps */,
+				738D17032CFD1370000C5881 /* GooglePlacesSwift */,
+				738D17052CFD138E000C5881 /* GooglePlaces */,
 			);
 			productName = Eventorias;
 			productReference = 73D1C5802CE0FDCD00A87D65 /* Eventorias.app */;
@@ -352,6 +361,7 @@
 			packageReferences = (
 				731F03592CDF615000D72C42 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				73FFE2752CEEA2630091B931 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */,
+				738D17022CFD1370000C5881 /* XCRemoteSwiftPackageReference "ios-places-sdk" */,
 			);
 			productRefGroup = 731F03212CDEEAC100D72C42;
 			projectDirPath = "";
@@ -398,6 +408,7 @@
 			files = (
 				73D1C5862CE11A5000A87D65 /* EntryFieldView.swift in Sources */,
 				73C853822CED485600E1FA41 /* UserProfileView.swift in Sources */,
+				738D17082CFD14A3000C5881 /* GoogleAutocompleteAddressView.swift in Sources */,
 				73D1C59A2CE225F000A87D65 /* RegistrationViewModel.swift in Sources */,
 				73FFE27B2CEFA9F10091B931 /* AddEventProtocol.swift in Sources */,
 				73FFE2CA2CF8F36A0091B931 /* UserRequestModel.swift in Sources */,
@@ -763,6 +774,14 @@
 				minimumVersion = 11.4.0;
 			};
 		};
+		738D17022CFD1370000C5881 /* XCRemoteSwiftPackageReference "ios-places-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googlemaps/ios-places-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.2.0;
+			};
+		};
 		73FFE2752CEEA2630091B931 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/googlemaps/ios-maps-sdk";
@@ -783,6 +802,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 731F03592CDF615000D72C42 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseDatabase;
+		};
+		738D17032CFD1370000C5881 /* GooglePlacesSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 738D17022CFD1370000C5881 /* XCRemoteSwiftPackageReference "ios-places-sdk" */;
+			productName = GooglePlacesSwift;
+		};
+		738D17052CFD138E000C5881 /* GooglePlaces */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 738D17022CFD1370000C5881 /* XCRemoteSwiftPackageReference "ios-places-sdk" */;
+			productName = GooglePlaces;
 		};
 		73D1C5A02CE25D1600A87D65 /* FirebaseStorage */ = {
 			isa = XCSwiftPackageProductDependency;

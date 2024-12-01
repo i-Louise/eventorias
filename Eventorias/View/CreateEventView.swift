@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import GooglePlaces
+import GooglePlacesSwift
 
 struct CreateEventView: View {
     @State var title: String = ""
@@ -18,19 +20,22 @@ struct CreateEventView: View {
     @State var category: EventCategory = .other
     @ObservedObject var viewModel: CreateEventViewModel
     @Environment(\.dismiss) var dismiss
+    @State private var showAutocomplete = false
+    @State private var coordinate: CLLocationCoordinate2D?
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     Field(fieldName: "Title", placeHolder: "Write the title of your event", userInput: $title)
-                    VStack {
+                    VStack(alignment: .leading) {
                         Text("Category")
                         Picker("Category", selection: $category) {
                             ForEach(EventCategory.allCases, id: \.self) { category in
                                 Text(category.rawValue).tag(category)
                             }
                         }
+                        .accentColor(.white)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 15)
@@ -43,9 +48,27 @@ struct CreateEventView: View {
                         .padding()
                         .background(.customGrey, in: RoundedRectangle(cornerRadius: 10))
                     Field(fieldName: "Address", placeHolder: "Enter the full address", userInput: $address)
-                    
+                        .disabled(true)
+                        .onTapGesture {
+                            showAutocomplete = true
+                        }
                 }
+                .sheet(isPresented: $showAutocomplete) {
+                    GoogleAutocompleteAddressView(address: $address, coordinate: $coordinate)
+                }
+                Text("Upload a picture")
+                    .padding()
                 ImagePickerView(showCameraSheet: $showCameraSheet, showGallerySheet: $showGallerySheet, image: $image)
+                if let image = image {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 350, height: 350)
+                        .clipped()
+                        .cornerRadius(10)
+                        .padding(.vertical, 15)
+
+                }
                 Button {
                     guard let image else {
                         // TODO: tell the user image cannot be empty
