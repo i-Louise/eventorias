@@ -43,7 +43,7 @@ class AuthenticationViewModel: ObservableObject {
         return usernameTest.evaluate(with: email)
     }
     
-    func login(email: String, password: String) {
+    private func login(email: String, password: String) {
         Task {
             await authenticationService.login(
                 email: email,
