@@ -31,7 +31,7 @@ struct EventListView: View {
                         }
                     }
                     .onAppear {
-                        viewModel.fetchEvents()
+                        viewModel.fetchEvents(sortedByDate: true)
                     }
                 createEventButton
             }
@@ -113,6 +113,7 @@ struct EventListView: View {
     var searchedResults: [EventModel] {
         
         if userSearch.isEmpty {
+            print("Searched results: \(viewModel.events.map { $0.dateTime })")
             return viewModel.events
         } else {
             return viewModel.events.filter { event in
