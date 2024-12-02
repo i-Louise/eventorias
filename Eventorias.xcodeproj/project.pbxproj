@@ -25,6 +25,7 @@
 		738D17082CFD14A3000C5881 /* GoogleAutocompleteAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D17072CFD14A3000C5881 /* GoogleAutocompleteAddressView.swift */; };
 		738D170A2CFDDFAA000C5881 /* EventItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D17092CFDDFAA000C5881 /* EventItemView.swift */; };
 		738D170C2CFE0EAF000C5881 /* FilterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D170B2CFE0EAF000C5881 /* FilterOption.swift */; };
+		738D17232CFE7B0C000C5881 /* AuthenticationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D17222CFE7B0C000C5881 /* AuthenticationViewModelTests.swift */; };
 		73C853752CEB760600E1FA41 /* EventoriasAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */; };
 		73C853822CED485600E1FA41 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C853812CED485600E1FA41 /* UserProfileView.swift */; };
 		73D1C5862CE11A5000A87D65 /* EntryFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5852CE11A5000A87D65 /* EntryFieldView.swift */; };
@@ -89,6 +90,7 @@
 		738D17072CFD14A3000C5881 /* GoogleAutocompleteAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAutocompleteAddressView.swift; sourceTree = "<group>"; };
 		738D17092CFDDFAA000C5881 /* EventItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItemView.swift; sourceTree = "<group>"; };
 		738D170B2CFE0EAF000C5881 /* FilterOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOption.swift; sourceTree = "<group>"; };
+		738D17222CFE7B0C000C5881 /* AuthenticationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModelTests.swift; sourceTree = "<group>"; };
 		73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasAppViewModel.swift; sourceTree = "<group>"; };
 		73C853812CED485600E1FA41 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		73D1C5802CE0FDCD00A87D65 /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventorias.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,18 +173,12 @@
 		731F032C2CDEEAC100D72C42 /* Eventorias */ = {
 			isa = PBXGroup;
 			children = (
+				738D17252CFE7C89000C5881 /* GoogleMaps */,
+				738D17242CFE7BD8000C5881 /* Service */,
 				73D1C59B2CE257A200A87D65 /* Model */,
 				73D1C58E2CE159C600A87D65 /* ViewModel */,
 				73D1C58D2CE159BC00A87D65 /* View */,
 				731F032D2CDEEAC100D72C42 /* EventoriasApp.swift */,
-				738D17072CFD14A3000C5881 /* GoogleAutocompleteAddressView.swift */,
-				7379B0D82CEE94730020B6E1 /* GoogleMapView.swift */,
-				73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */,
-				73D1C5932CE1649D00A87D65 /* AuthenticationServiceProtocol.swift */,
-				73FFE27A2CEFA9F10091B931 /* AddEventProtocol.swift */,
-				73FFE27C2CEFAA9E0091B931 /* AddEventService.swift */,
-				73D1C5952CE1650500A87D65 /* AuthenticationService.swift */,
-				73D1C59E2CE25CC300A87D65 /* ImageUploader.swift */,
 				731F03312CDEEAC300D72C42 /* Assets.xcassets */,
 				731F03332CDEEAC300D72C42 /* Preview Content */,
 			);
@@ -201,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				731F033E2CDEEAC300D72C42 /* EventoriasTests.swift */,
+				738D17222CFE7B0C000C5881 /* AuthenticationViewModelTests.swift */,
 			);
 			path = EventoriasTests;
 			sourceTree = "<group>";
@@ -221,9 +218,30 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		738D17242CFE7BD8000C5881 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				73D1C5932CE1649D00A87D65 /* AuthenticationServiceProtocol.swift */,
+				73FFE27A2CEFA9F10091B931 /* AddEventProtocol.swift */,
+				73FFE27C2CEFAA9E0091B931 /* AddEventService.swift */,
+				73D1C5952CE1650500A87D65 /* AuthenticationService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		738D17252CFE7C89000C5881 /* GoogleMaps */ = {
+			isa = PBXGroup;
+			children = (
+				7379B0D82CEE94730020B6E1 /* GoogleMapView.swift */,
+				738D17072CFD14A3000C5881 /* GoogleAutocompleteAddressView.swift */,
+			);
+			path = GoogleMaps;
+			sourceTree = "<group>";
+		};
 		73D1C58D2CE159BC00A87D65 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				73D1C59E2CE25CC300A87D65 /* ImageUploader.swift */,
 				73D1C5972CE16AF300A87D65 /* RedButton.swift */,
 				731F03612CDF6B4800D72C42 /* SignInView.swift */,
 				73D1C58B2CE1421200A87D65 /* EventListView.swift */,
@@ -243,6 +261,7 @@
 		73D1C58E2CE159C600A87D65 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */,
 				7379B0DA2CEE9A460020B6E1 /* EventDetailViewModel.swift */,
 				73D1C58F2CE159D700A87D65 /* AuthenticationViewModel.swift */,
 				73D1C5992CE225F000A87D65 /* RegistrationViewModel.swift */,
@@ -454,6 +473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				738D17232CFE7B0C000C5881 /* AuthenticationViewModelTests.swift in Sources */,
 				731F033F2CDEEAC300D72C42 /* EventoriasTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
