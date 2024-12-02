@@ -23,6 +23,8 @@
 		738D17042CFD1370000C5881 /* GooglePlacesSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 738D17032CFD1370000C5881 /* GooglePlacesSwift */; };
 		738D17062CFD138E000C5881 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = 738D17052CFD138E000C5881 /* GooglePlaces */; };
 		738D17082CFD14A3000C5881 /* GoogleAutocompleteAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D17072CFD14A3000C5881 /* GoogleAutocompleteAddressView.swift */; };
+		738D170A2CFDDFAA000C5881 /* EventItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D17092CFDDFAA000C5881 /* EventItemView.swift */; };
+		738D170C2CFE0EAF000C5881 /* FilterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D170B2CFE0EAF000C5881 /* FilterOption.swift */; };
 		73C853752CEB760600E1FA41 /* EventoriasAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */; };
 		73C853822CED485600E1FA41 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C853812CED485600E1FA41 /* UserProfileView.swift */; };
 		73D1C5862CE11A5000A87D65 /* EntryFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5852CE11A5000A87D65 /* EntryFieldView.swift */; };
@@ -85,6 +87,8 @@
 		7379B0D82CEE94730020B6E1 /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
 		7379B0DA2CEE9A460020B6E1 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
 		738D17072CFD14A3000C5881 /* GoogleAutocompleteAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAutocompleteAddressView.swift; sourceTree = "<group>"; };
+		738D17092CFDDFAA000C5881 /* EventItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItemView.swift; sourceTree = "<group>"; };
+		738D170B2CFE0EAF000C5881 /* FilterOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOption.swift; sourceTree = "<group>"; };
 		73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasAppViewModel.swift; sourceTree = "<group>"; };
 		73C853812CED485600E1FA41 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		73D1C5802CE0FDCD00A87D65 /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventorias.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -230,6 +234,8 @@
 				73D1C5852CE11A5000A87D65 /* EntryFieldView.swift */,
 				73C853812CED485600E1FA41 /* UserProfileView.swift */,
 				73FFE2BA2CEFF7010091B931 /* CreateEventView.swift */,
+				738D17092CFDDFAA000C5881 /* EventItemView.swift */,
+				738D170B2CFE0EAF000C5881 /* FilterOption.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -412,6 +418,7 @@
 				73D1C59A2CE225F000A87D65 /* RegistrationViewModel.swift in Sources */,
 				73FFE27B2CEFA9F10091B931 /* AddEventProtocol.swift in Sources */,
 				73FFE2CA2CF8F36A0091B931 /* UserRequestModel.swift in Sources */,
+				738D170C2CFE0EAF000C5881 /* FilterOption.swift in Sources */,
 				73FFE27D2CEFAA9E0091B931 /* AddEventService.swift in Sources */,
 				73D1C5942CE1649D00A87D65 /* AuthenticationServiceProtocol.swift in Sources */,
 				73C853752CEB760600E1FA41 /* EventoriasAppViewModel.swift in Sources */,
@@ -420,6 +427,7 @@
 				731F03622CDF6B4800D72C42 /* SignInView.swift in Sources */,
 				73FFE2C12CF37C430091B931 /* EventCategory.swift in Sources */,
 				73FFE2CC2CF906470091B931 /* ImagePickerView.swift in Sources */,
+				738D170A2CFDDFAA000C5881 /* EventItemView.swift in Sources */,
 				73D1C59F2CE25CC300A87D65 /* ImageUploader.swift in Sources */,
 				73FFE2BF2CF333870091B931 /* EventResponseModel.swift in Sources */,
 				73D1C58C2CE1421200A87D65 /* EventListView.swift in Sources */,

@@ -6,130 +6,118 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseFirestore
 
 @MainActor
 struct EventListView: View {
     @ObservedObject var viewModel: EventListViewModel
     @State private var searchText = ""
     @State private var isShowingCreateView = false
+    @State private var userSearch = ""
+    @State private var selectedFilterOption: FilterOption = .newestDate
+    @State private var selectedCategory: EventCategory = .all
     
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
-                List {
-                    ForEach(viewModel.events) { event in
-                        NavigationLink {
-                            EventDetailView(viewModel: EventDetailViewModel(), event: event)
-                        } label: {
-                            EventItemView(event: event)
+                eventsList
+                    .toolbar {
+                        ToolbarItem(placement: .automatic) {
+                            filterMenu
+                        }
+                        ToolbarItem(placement: .automatic) {
+                            categoryMenu
                         }
                     }
-                    .listRowBackground(Color.customGrey)
-                }
-                .onAppear {
-                    viewModel.fetchEvents()
-                }
-                .listStyle(.insetGrouped)
-                .background(Color.background)
-                .scrollContentBackground(.hidden)
-                
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        NavigationLink(destination:
-                                        CreateEventView(
-                                            viewModel: CreateEventViewModel(
-                                                addService: AddEventService(),
-                                                onCreationSucceed: {
-                                                    print("fetch events done")
-                                                }
-                                            )
-                                        )
-                        ) {
-                            Image(systemName: "plus")
-                                .resizable()
-                                .scaledToFit()
-                                .padding()
-                                .frame(width: 60, height: 60)
-                                .background(Color.customRed)
-                                .foregroundColor(.white)
-                                .clipShape(Circle())
-                                .shadow(radius: 5)
-                        }
-                        .padding(.trailing, 20)
-                        .padding(.bottom, 20)
+                    .onAppear {
+                        viewModel.fetchEvents()
                     }
-                }
-                
+                createEventButton
             }
-            //.searchable(text: $viewModel.searchText)
+            .searchable(text: $userSearch)
         }
     }
-}
-
-struct EventItemView: View {
-    let event: EventModel
     
-    var body: some View {
-        HStack {
-            AsyncImage(url: URL(string: event.profilePictureUrl)) { phase in
-                switch phase {
-                case .failure:
-                    Image(systemName: "person.fill")
-                        .padding()
-                        .overlay(
-                            Circle()
-                                .stroke(Color.primary, lineWidth:1)
-                        )
-                case .success(let image):
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 50, height: 50)
-                        .clipShape(Circle())
-                default:
-                    ProgressView()
-                        .background(Circle().fill(.gray))
-                        .frame(width: 50, height: 50)
+    private var eventsList: some View {
+        List {
+            ForEach(searchedResults) { event in
+                NavigationLink {
+                    EventDetailView(viewModel: EventDetailViewModel(), event: event)
+                } label: {
+                    EventItemView(event: event)
                 }
             }
-            VStack(alignment: .leading) {
-                Text(event.title)
-                    .font(.headline)
-                Text(formattedDate(from: event.dateTime))
-                    .font(.subheadline)
+            .listRowBackground(Color.customGrey)
+        }
+        .listRowSpacing(8.0)
+        .background(Color.background)
+        .scrollContentBackground(.hidden)
+    }
+    
+    private var filterMenu: some View {
+        Menu("Sort by: \(selectedFilterOption.rawValue)") {
+            Button("Oldest") {
+                selectedFilterOption = .olderDate
+                viewModel.fetchEvents(sortedByDate: false, category: selectedCategory.rawValue)
             }
+            Button("Newest") {
+                selectedFilterOption = .newestDate
+                viewModel.fetchEvents(sortedByDate: true, category: selectedCategory.rawValue)
+            }
+        }
+    }
+    
+    private var categoryMenu: some View {
+        Menu("Category \(selectedCategory.rawValue)") {
+            ForEach(EventCategory.allCases, id: \.self) { category in
+                Button("\(category.rawValue)") {
+                    selectedCategory = category
+                    viewModel.fetchEvents(category: category == .all ? nil : category.rawValue)
+                }
+            }
+        }
+    }
+    
+    private var createEventButton: some View {
+        VStack {
             Spacer()
-            AsyncImage(url: URL(string: event.imageUrl)) { phase in
-                switch phase {
-                case .failure:
-                    Image(systemName: "photo")
-                        .font(.largeTitle)
-                case .success(let image):
-                    image
+            HStack {
+                Spacer()
+                NavigationLink(destination:
+                                CreateEventView(
+                                    viewModel: CreateEventViewModel(
+                                        addService: AddEventService(),
+                                        onCreationSucceed: {
+                                            print("fetch events done")
+                                        }
+                                    )
+                                )
+                ) {
+                    Image(systemName: "plus")
                         .resizable()
-                        .scaledToFill()
-                        .frame(width: UIScreen.main.bounds.width / 3, height: 50)
-                        .clipShape(.rect(cornerRadius: 16))
-                        .edgesIgnoringSafeArea(.all)
-                default:
-                    ProgressView()
-                        .background(RoundedRectangle(cornerRadius: 16).fill(.gray))
-                        .frame(width: UIScreen.main.bounds.width / 3, height: 50)
+                        .scaledToFit()
+                        .padding()
+                        .frame(width: 60, height: 60)
+                        .background(Color.customRed)
+                        .foregroundColor(.white)
+                        .clipShape(Circle())
+                        .shadow(radius: 5)
                 }
+                .padding(.trailing, 20)
+                .padding(.bottom, 20)
             }
         }
-        .foregroundStyle(Color.white)
     }
     
-    private func formattedDate(from date: Date) -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd, yyyy"
-        return formatter.string(from: date)
+    var searchedResults: [EventModel] {
+        
+        if userSearch.isEmpty {
+            return viewModel.events
+        } else {
+            return viewModel.events.filter { event in
+                event.title.localizedCaseInsensitiveContains(userSearch)
+            }
+        }
     }
-}
-
-#Preview {
-    EventListView(viewModel: EventListViewModel())
 }

@@ -31,7 +31,7 @@ struct CreateEventView: View {
                     VStack(alignment: .leading) {
                         Text("Category")
                         Picker("Category", selection: $category) {
-                            ForEach(EventCategory.allCases, id: \.self) { category in
+                            ForEach(EventCategory.allCasesForPicker, id: \.self) { category in
                                 Text(category.rawValue).tag(category)
                             }
                         }

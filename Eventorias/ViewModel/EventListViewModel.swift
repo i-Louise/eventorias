@@ -19,23 +19,33 @@ class EventListViewModel: ObservableObject {
     private var db = Firestore.firestore()
     private var listener: ListenerRegistration?
     
-//    var filteredEvents: [EventResponseModel] {
-//        guard !searchText.isEmpty else { return events }
-//        return events.filter { event in
-//            event.title.lowercased().contains(searchText.lowercased())
-//        }
-//    }
+    //    var filteredEvents: [EventResponseModel] {
+    //        guard !searchText.isEmpty else { return events }
+    //        return events.filter { event in
+    //            event.title.lowercased().contains(searchText.lowercased())
+    //        }
+    //    }
     
-    func fetchEvents() {
+    func fetchEvents(sortedByDate descending: Bool? = nil, category: String? = nil) {
         Task {
             do {
-                let eventSnapshot = try await db.collection("events").getDocuments()
+                var query: Query = db.collection("events")
+                
+                if let descending = descending {
+                    query = query.order(by: "dateTime", descending: descending)
+                }
+                
+                let eventSnapshot = try await query.getDocuments()
                 let fetchedEvents: [EventResponseModel] = try eventSnapshot.documents.compactMap { document in
                     try document.data(as: EventResponseModel.self)
                 }
                 
                 var eventWithUser: [EventModel] = []
                 for event in fetchedEvents {
+                    if let category = category, event.category != category {
+                        continue
+                    }
+                    
                     let userSnapshot = try await db.collection("users").document(event.userId).getDocument()
                     if let profilePictureUrl = userSnapshot["profilePicture"] as? String, let eventId = event.id {
                         let combinedModel = EventModel(
@@ -63,29 +73,20 @@ class EventListViewModel: ObservableObject {
         }
     }
     
-//    func fetchUserInfo(userId: String) {
-//        Task {
-//            do {
-//                let document = try await db.collection("users").document(userId).getDocument()
-//                if let profilePictureUrl = document["profilePicture"] as? String {
-//                    self.profilePictureUrl = profilePictureUrl
-//                } else {
-//                    self.profilePictureUrl = ""
-//                }
-//            } catch {
-//                print("Error fetching profile picture: \(error.localizedDescription)")
-//            }
-//        }
-//    }
+    //    func fetchUserInfo(userId: String) {
+    //        Task {
+    //            do {
+    //                let document = try await db.collection("users").document(userId).getDocument()
+    //                if let profilePictureUrl = document["profilePicture"] as? String {
+    //                    self.profilePictureUrl = profilePictureUrl
+    //                } else {
+    //                    self.profilePictureUrl = ""
+    //                }
+    //            } catch {
+    //                print("Error fetching profile picture: \(error.localizedDescription)")
+    //            }
+    //        }
+    //    }
     
-    func getAllEventsSortedByDate(descending: Bool) async throws -> [EventResponseModel] {
-        let snapshot = try await db.collection("events")
-            .order(by: "date", descending: descending)
-            .getDocuments()
-        
-        return snapshot.documents.compactMap { document in
-            try? document.data(as: EventResponseModel.self)
-        }
-    }
 }
 

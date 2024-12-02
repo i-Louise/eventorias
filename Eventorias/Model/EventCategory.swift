@@ -13,4 +13,10 @@ enum EventCategory: String, CaseIterable, Codable {
     case movie = "Movie"
     case caritative = "Caritative"
     case other = "Other"
+    
+    case all = "All"
+    
+    static var allCasesForPicker: [EventCategory] {
+        return EventCategory.allCases.filter { $0 != .all }
+    }
 }
