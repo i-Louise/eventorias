@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		730D74212CFFC0AD00E57B6B /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D74202CFFC0AD00E57B6B /* UserService.swift */; };
+		730D74232CFFC0E500E57B6B /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D74222CFFC0E500E57B6B /* UserServiceProtocol.swift */; };
 		731F032E2CDEEAC100D72C42 /* EventoriasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F032D2CDEEAC100D72C42 /* EventoriasApp.swift */; };
 		731F03322CDEEAC300D72C42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 731F03312CDEEAC300D72C42 /* Assets.xcassets */; };
 		731F03352CDEEAC300D72C42 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 731F03342CDEEAC300D72C42 /* Preview Assets.xcassets */; };
@@ -80,6 +82,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		730D74202CFFC0AD00E57B6B /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		730D74222CFFC0E500E57B6B /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
 		731F032D2CDEEAC100D72C42 /* EventoriasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasApp.swift; sourceTree = "<group>"; };
 		731F03312CDEEAC300D72C42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		731F03342CDEEAC300D72C42 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -231,12 +235,15 @@
 		738D17242CFE7BD8000C5881 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				738D172E2CFE9344000C5881 /* FirestoreProtocol.swift */,
 				73D1C5932CE1649D00A87D65 /* AuthenticationServiceProtocol.swift */,
 				73FFE27A2CEFA9F10091B931 /* AddEventProtocol.swift */,
 				73FFE27C2CEFAA9E0091B931 /* AddEventService.swift */,
 				73D1C5952CE1650500A87D65 /* AuthenticationService.swift */,
 				73A2C68B2CFF771A00F16DEC /* EventService.swift */,
 				73A2C68D2CFF779300F16DEC /* EventServiceProtocol.swift */,
+				730D74202CFFC0AD00E57B6B /* UserService.swift */,
+				730D74222CFFC0E500E57B6B /* UserServiceProtocol.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -473,8 +480,10 @@
 				73D1C5982CE16AF400A87D65 /* RedButton.swift in Sources */,
 				73D1C5A92CE4DFCD00A87D65 /* EventListViewModel.swift in Sources */,
 				73FFE2BD2CF0EBBD0091B931 /* UserProfileViewModel.swift in Sources */,
+				730D74232CFFC0E500E57B6B /* UserServiceProtocol.swift in Sources */,
 				73D1C5A52CE28D3700A87D65 /* ImagePicker.swift in Sources */,
 				73D1C5882CE11B0500A87D65 /* RegistrationView.swift in Sources */,
+				730D74212CFFC0AD00E57B6B /* UserService.swift in Sources */,
 				73D1C5A72CE3D83200A87D65 /* EventRequestModel.swift in Sources */,
 				73FFE2BB2CEFF7010091B931 /* CreateEventView.swift in Sources */,
 				731F032E2CDEEAC100D72C42 /* EventoriasApp.swift in Sources */,

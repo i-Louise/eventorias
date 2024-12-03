@@ -59,7 +59,7 @@ struct UserProfileView: View {
             .padding()
             .background(Color.background)
             .onAppear() {
-                viewModel.fetchUserProfile()
+                viewModel.onActionFetchingUserProfile()
             }
         }
     }

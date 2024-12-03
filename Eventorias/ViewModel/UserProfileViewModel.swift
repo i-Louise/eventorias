@@ -11,22 +11,17 @@ import FirebaseFirestore
 import FirebaseAuth
 
 class UserProfileViewModel: ObservableObject {
-    private var db = Firestore.firestore()
+    private let db = Firestore.firestore()
+    private let userService = UserService()
+    @Published var errorMessage: String?
     @Published var user: UserResponseModel?
     
-    func fetchUserProfile() {
+    func onActionFetchingUserProfile() {
         Task {
-            guard let currentUser = Auth.auth().currentUser?.uid else { return }
             do {
-                let documentSnapShot = try await db.collection("users").document(currentUser).getDocument()
-                
-                if let user = try documentSnapShot.data(as: UserResponseModel?.self) {
-                    DispatchQueue.main.async {
-                        self.user = user
-                    }
-                }
-            } catch let error as NSError {
-                print("Error fetching user: \(error.localizedDescription)")
+                user = try await userService.fetchUserProfile()
+            } catch {
+                errorMessage = "An error occurred: \(error)"
             }
         }
     }
