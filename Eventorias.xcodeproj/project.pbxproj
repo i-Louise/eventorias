@@ -28,6 +28,8 @@
 		738D17232CFE7B0C000C5881 /* AuthenticationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D17222CFE7B0C000C5881 /* AuthenticationViewModelTests.swift */; };
 		738D17272CFE7E29000C5881 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D17262CFE7E29000C5881 /* MockAuthenticationService.swift */; };
 		738D172B2CFE8A34000C5881 /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D172A2CFE8A34000C5881 /* RegistrationViewModelTests.swift */; };
+		73A2C68C2CFF771A00F16DEC /* EventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A2C68B2CFF771A00F16DEC /* EventService.swift */; };
+		73A2C68E2CFF779300F16DEC /* EventServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73A2C68D2CFF779300F16DEC /* EventServiceProtocol.swift */; };
 		73C853752CEB760600E1FA41 /* EventoriasAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */; };
 		73C853822CED485600E1FA41 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C853812CED485600E1FA41 /* UserProfileView.swift */; };
 		73D1C5862CE11A5000A87D65 /* EntryFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5852CE11A5000A87D65 /* EntryFieldView.swift */; };
@@ -95,6 +97,8 @@
 		738D17222CFE7B0C000C5881 /* AuthenticationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModelTests.swift; sourceTree = "<group>"; };
 		738D17262CFE7E29000C5881 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
 		738D172A2CFE8A34000C5881 /* RegistrationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModelTests.swift; sourceTree = "<group>"; };
+		73A2C68B2CFF771A00F16DEC /* EventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventService.swift; sourceTree = "<group>"; };
+		73A2C68D2CFF779300F16DEC /* EventServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventServiceProtocol.swift; sourceTree = "<group>"; };
 		73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasAppViewModel.swift; sourceTree = "<group>"; };
 		73C853812CED485600E1FA41 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		73D1C5802CE0FDCD00A87D65 /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventorias.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +235,8 @@
 				73FFE27A2CEFA9F10091B931 /* AddEventProtocol.swift */,
 				73FFE27C2CEFAA9E0091B931 /* AddEventService.swift */,
 				73D1C5952CE1650500A87D65 /* AuthenticationService.swift */,
+				73A2C68B2CFF771A00F16DEC /* EventService.swift */,
+				73A2C68D2CFF779300F16DEC /* EventServiceProtocol.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -444,6 +450,7 @@
 				73FFE27B2CEFA9F10091B931 /* AddEventProtocol.swift in Sources */,
 				73FFE2CA2CF8F36A0091B931 /* UserRequestModel.swift in Sources */,
 				738D170C2CFE0EAF000C5881 /* FilterOption.swift in Sources */,
+				73A2C68C2CFF771A00F16DEC /* EventService.swift in Sources */,
 				73FFE27D2CEFAA9E0091B931 /* AddEventService.swift in Sources */,
 				73D1C5942CE1649D00A87D65 /* AuthenticationServiceProtocol.swift in Sources */,
 				73C853752CEB760600E1FA41 /* EventoriasAppViewModel.swift in Sources */,
@@ -460,6 +467,7 @@
 				7379B0D92CEE94730020B6E1 /* GoogleMapView.swift in Sources */,
 				7379B0DB2CEE9A4E0020B6E1 /* EventDetailViewModel.swift in Sources */,
 				73D1C5902CE159D700A87D65 /* AuthenticationViewModel.swift in Sources */,
+				73A2C68E2CFF779300F16DEC /* EventServiceProtocol.swift in Sources */,
 				7379B0D72CED64870020B6E1 /* EventDetailView.swift in Sources */,
 				73D1C58A2CE12A1900A87D65 /* PasswordEntryFieldView.swift in Sources */,
 				73D1C5982CE16AF400A87D65 /* RedButton.swift in Sources */,

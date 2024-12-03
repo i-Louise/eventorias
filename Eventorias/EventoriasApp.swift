@@ -44,6 +44,7 @@ struct EventoriasApp: App {
 }
 
 struct MainTabView: View {
+    
     var body: some View {
         TabView {
             EventListView(viewModel: EventListViewModel())

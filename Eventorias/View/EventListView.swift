@@ -31,7 +31,7 @@ struct EventListView: View {
                         }
                     }
                     .onAppear {
-                        viewModel.fetchEvents(sortedByDate: true)
+                        viewModel.onActionFetchingEvents(sortedByDate: true)
                     }
                 createEventButton
             }
@@ -59,11 +59,11 @@ struct EventListView: View {
         Menu("Sort by: \(selectedFilterOption.rawValue)") {
             Button("Oldest") {
                 selectedFilterOption = .olderDate
-                viewModel.fetchEvents(sortedByDate: false, category: selectedCategory.rawValue)
+                viewModel.onActionFetchingEvents(sortedByDate: false, category: selectedCategory.rawValue)
             }
             Button("Newest") {
                 selectedFilterOption = .newestDate
-                viewModel.fetchEvents(sortedByDate: true, category: selectedCategory.rawValue)
+                viewModel.onActionFetchingEvents(sortedByDate: true, category: selectedCategory.rawValue)
             }
         }
     }
@@ -73,7 +73,7 @@ struct EventListView: View {
             ForEach(EventCategory.allCases, id: \.self) { category in
                 Button("\(category.rawValue)") {
                     selectedCategory = category
-                    viewModel.fetchEvents(category: category == .all ? nil : category.rawValue)
+                    viewModel.onActionFetchingEvents(category: category == .all ? nil : category.rawValue)
                 }
             }
         }

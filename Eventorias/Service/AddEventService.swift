@@ -19,7 +19,6 @@ class AddEventService: AddEventProtocol {
                 completion(NSError(domain: "User not logged in", code: 1, userInfo: nil))
                 return
             }
-            
             try await db.collection("events").addDocument(data: [
                 "address": event.address,
                 "category": event.category,
