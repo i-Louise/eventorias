@@ -6,30 +6,76 @@
 //
 
 import XCTest
+@testable import Eventorias
 
 final class AuthenticationViewModelTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    var viewModel: AuthenticationViewModel!
+    var mockService: MockAuthenticationService!
+    
+    override func setUp() {
+        super.setUp()
+        mockService = MockAuthenticationService()
+        viewModel = AuthenticationViewModel(authenticationService: mockService, {
+            print("Login succeeded")
+        })
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    override func tearDown() {
+        viewModel = nil
+        mockService = nil
+        super.tearDown()
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    func test_givenInvalidEmail_WhenOnLoginActionIsCalled_ThenReturnsErrorMessage() {
+        // Given
+        var invalidEmail = "invalid"
+        var password = "password"
+        let expectation = XCTestExpectation(description: "alertMessage should be set when email is invalid")
+        
+        //When
+        viewModel.onLoginAction(email: invalidEmail, password: password) { isLoading in }
+        
+        XCTAssertEqual(viewModel.alertMessage, "Incorrect email format, please try again.")
+        expectation.fulfill()
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    func test_givenEmptyPassword_WhenOnLoginActionIsCalled_ThenReturnsAnError() {
+        // Given
+        var validMail = "test@example.com"
+        var invalidPassword = ""
+        let expectation = XCTestExpectation(description: "alertMessage should be set when password is empty")
+        
+        // When
+        viewModel.onLoginAction(email: validMail, password: invalidPassword) { isLoading in }
+        
+        // Then
+        XCTAssertEqual(viewModel.alertMessage, "Please enter your password.")
+        expectation.fulfill()
     }
-
+    
+    func test_givenValidCredentials_WhenOnLoginActionIsCalled_ThenReturnsSuccess() async {
+        
+        // Given
+        var email = "test@example.com"
+        var password = "password123"
+        mockService.shouldSucceedLogin = true
+        
+        viewModel.onLoginAction(email: email, password: password) { isLoading in }
+        
+        XCTAssertNil(viewModel.alertMessage, "alertMessage should be nil when the input is valid")
+        XCTAssertTrue(mockService.loginCalled, "The login function should be called")
+    }
+    
+    func test_givenValidCredentials_WhenOnLoginActionIsCalledAndShouldSucceedFalse_ThenReturnsFailure() async {
+        
+        // Given
+        var email = "test@example.com"
+        var password = "password123"
+        mockService.shouldSucceedLogin = false
+        
+        viewModel.onLoginAction(email: email, password: password) { isLoading in }
+        
+        XCTAssertEqual(viewModel.alertMessage, "An error occur. Please try again.")
+        XCTAssertTrue(mockService.loginCalled, "The login function should be called")
+    }
 }

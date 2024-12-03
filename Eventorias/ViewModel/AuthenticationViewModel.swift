@@ -52,6 +52,7 @@ class AuthenticationViewModel: ObservableObject {
                     self.onLoginSucceed()
                 },
                 onFailure: { error in
+                    self.alertMessage = "An error occur. Please try again."
                     print(error)
                 }
             )

@@ -26,6 +26,8 @@
 		738D170A2CFDDFAA000C5881 /* EventItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D17092CFDDFAA000C5881 /* EventItemView.swift */; };
 		738D170C2CFE0EAF000C5881 /* FilterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D170B2CFE0EAF000C5881 /* FilterOption.swift */; };
 		738D17232CFE7B0C000C5881 /* AuthenticationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D17222CFE7B0C000C5881 /* AuthenticationViewModelTests.swift */; };
+		738D17272CFE7E29000C5881 /* MockAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D17262CFE7E29000C5881 /* MockAuthenticationService.swift */; };
+		738D172B2CFE8A34000C5881 /* RegistrationViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D172A2CFE8A34000C5881 /* RegistrationViewModelTests.swift */; };
 		73C853752CEB760600E1FA41 /* EventoriasAppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */; };
 		73C853822CED485600E1FA41 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73C853812CED485600E1FA41 /* UserProfileView.swift */; };
 		73D1C5862CE11A5000A87D65 /* EntryFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D1C5852CE11A5000A87D65 /* EntryFieldView.swift */; };
@@ -91,6 +93,8 @@
 		738D17092CFDDFAA000C5881 /* EventItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItemView.swift; sourceTree = "<group>"; };
 		738D170B2CFE0EAF000C5881 /* FilterOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOption.swift; sourceTree = "<group>"; };
 		738D17222CFE7B0C000C5881 /* AuthenticationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModelTests.swift; sourceTree = "<group>"; };
+		738D17262CFE7E29000C5881 /* MockAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationService.swift; sourceTree = "<group>"; };
+		738D172A2CFE8A34000C5881 /* RegistrationViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModelTests.swift; sourceTree = "<group>"; };
 		73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasAppViewModel.swift; sourceTree = "<group>"; };
 		73C853812CED485600E1FA41 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
 		73D1C5802CE0FDCD00A87D65 /* Eventorias.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Eventorias.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,6 +202,8 @@
 			children = (
 				731F033E2CDEEAC300D72C42 /* EventoriasTests.swift */,
 				738D17222CFE7B0C000C5881 /* AuthenticationViewModelTests.swift */,
+				738D17262CFE7E29000C5881 /* MockAuthenticationService.swift */,
+				738D172A2CFE8A34000C5881 /* RegistrationViewModelTests.swift */,
 			);
 			path = EventoriasTests;
 			sourceTree = "<group>";
@@ -442,6 +448,7 @@
 				73D1C5942CE1649D00A87D65 /* AuthenticationServiceProtocol.swift in Sources */,
 				73C853752CEB760600E1FA41 /* EventoriasAppViewModel.swift in Sources */,
 				73D1C5962CE1650500A87D65 /* AuthenticationService.swift in Sources */,
+				738D172F2CFE934D000C5881 /* FirestoreProtocol.swift in Sources */,
 				73D1C59D2CE258BB00A87D65 /* AuthCredentials.swift in Sources */,
 				731F03622CDF6B4800D72C42 /* SignInView.swift in Sources */,
 				73FFE2C12CF37C430091B931 /* EventCategory.swift in Sources */,
@@ -474,6 +481,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				738D17232CFE7B0C000C5881 /* AuthenticationViewModelTests.swift in Sources */,
+				738D17272CFE7E29000C5881 /* MockAuthenticationService.swift in Sources */,
+				738D172B2CFE8A34000C5881 /* RegistrationViewModelTests.swift in Sources */,
 				731F033F2CDEEAC300D72C42 /* EventoriasTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
