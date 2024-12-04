@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		730D74212CFFC0AD00E57B6B /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D74202CFFC0AD00E57B6B /* UserService.swift */; };
 		730D74232CFFC0E500E57B6B /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D74222CFFC0E500E57B6B /* UserServiceProtocol.swift */; };
+		730D74252CFFC7A400E57B6B /* MockEventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D74242CFFC7A400E57B6B /* MockEventService.swift */; };
+		730D74272CFFCEC300E57B6B /* EventServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D74262CFFCEB900E57B6B /* EventServiceError.swift */; };
 		731F032E2CDEEAC100D72C42 /* EventoriasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F032D2CDEEAC100D72C42 /* EventoriasApp.swift */; };
 		731F03322CDEEAC300D72C42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 731F03312CDEEAC300D72C42 /* Assets.xcassets */; };
 		731F03352CDEEAC300D72C42 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 731F03342CDEEAC300D72C42 /* Preview Assets.xcassets */; };
@@ -84,6 +86,8 @@
 /* Begin PBXFileReference section */
 		730D74202CFFC0AD00E57B6B /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		730D74222CFFC0E500E57B6B /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
+		730D74242CFFC7A400E57B6B /* MockEventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventService.swift; sourceTree = "<group>"; };
+		730D74262CFFCEB900E57B6B /* EventServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventServiceError.swift; sourceTree = "<group>"; };
 		731F032D2CDEEAC100D72C42 /* EventoriasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasApp.swift; sourceTree = "<group>"; };
 		731F03312CDEEAC300D72C42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		731F03342CDEEAC300D72C42 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -211,6 +215,7 @@
 				731F033E2CDEEAC300D72C42 /* EventoriasTests.swift */,
 				738D17222CFE7B0C000C5881 /* AuthenticationViewModelTests.swift */,
 				738D17262CFE7E29000C5881 /* MockAuthenticationService.swift */,
+				730D74242CFFC7A400E57B6B /* MockEventService.swift */,
 				738D172A2CFE8A34000C5881 /* RegistrationViewModelTests.swift */,
 			);
 			path = EventoriasTests;
@@ -235,6 +240,7 @@
 		738D17242CFE7BD8000C5881 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				730D74262CFFCEB900E57B6B /* EventServiceError.swift */,
 				738D172E2CFE9344000C5881 /* FirestoreProtocol.swift */,
 				73D1C5932CE1649D00A87D65 /* AuthenticationServiceProtocol.swift */,
 				73FFE27A2CEFA9F10091B931 /* AddEventProtocol.swift */,
@@ -473,6 +479,7 @@
 				73D1C58C2CE1421200A87D65 /* EventListView.swift in Sources */,
 				7379B0D92CEE94730020B6E1 /* GoogleMapView.swift in Sources */,
 				7379B0DB2CEE9A4E0020B6E1 /* EventDetailViewModel.swift in Sources */,
+				730D74272CFFCEC300E57B6B /* EventServiceError.swift in Sources */,
 				73D1C5902CE159D700A87D65 /* AuthenticationViewModel.swift in Sources */,
 				73A2C68E2CFF779300F16DEC /* EventServiceProtocol.swift in Sources */,
 				7379B0D72CED64870020B6E1 /* EventDetailView.swift in Sources */,
@@ -499,6 +506,7 @@
 			files = (
 				738D17232CFE7B0C000C5881 /* AuthenticationViewModelTests.swift in Sources */,
 				738D17272CFE7E29000C5881 /* MockAuthenticationService.swift in Sources */,
+				730D74252CFFC7A400E57B6B /* MockEventService.swift in Sources */,
 				738D172B2CFE8A34000C5881 /* RegistrationViewModelTests.swift in Sources */,
 				731F033F2CDEEAC300D72C42 /* EventoriasTests.swift in Sources */,
 			);

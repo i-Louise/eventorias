@@ -10,5 +10,5 @@ import Foundation
 protocol EventServiceProtocol {
     func fetchEvents(sortedByDate descending: Bool?, category: String?) async throws -> [EventModel]
     func fetchEventDocuments(sortedByDate descending: Bool?, category: String?) async throws -> [EventResponseModel]
-    func fetchUserDetails(for events: [EventResponseModel]) async throws -> [EventModel]
+    func enrichEventsWithUserDetails(for events: [EventResponseModel]) async throws -> [EventModel]
 }
