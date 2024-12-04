@@ -15,15 +15,18 @@ class EventListViewModel: ObservableObject {
     @Published var errorMessage: String?
     @Published var searchText: String = ""
     @Published var selectedCategory: String? = nil
-    private var db = Firestore.firestore()
-    private let eventService = EventService()
+    private let eventService: EventServiceProtocol
+    
+    init(eventService: EventServiceProtocol = EventService()) {
+        self.eventService = eventService
+    }
     
     func onActionFetchingEvents(sortedByDate descending: Bool? = nil, category: String? = nil) {
         Task {
             do {
                events = try await eventService.fetchEvents(sortedByDate: descending, category: category)
             } catch {
-                errorMessage = "Error fetching events: \(error.localizedDescription)"
+                errorMessage = "An error has occured, please try again later"
             }
         }
     }
