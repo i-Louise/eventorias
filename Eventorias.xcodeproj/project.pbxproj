@@ -20,7 +20,6 @@
 		731F032E2CDEEAC100D72C42 /* EventoriasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F032D2CDEEAC100D72C42 /* EventoriasApp.swift */; };
 		731F03322CDEEAC300D72C42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 731F03312CDEEAC300D72C42 /* Assets.xcassets */; };
 		731F03352CDEEAC300D72C42 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 731F03342CDEEAC300D72C42 /* Preview Assets.xcassets */; };
-		731F033F2CDEEAC300D72C42 /* EventoriasTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F033E2CDEEAC300D72C42 /* EventoriasTests.swift */; };
 		731F03492CDEEAC300D72C42 /* EventoriasUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F03482CDEEAC300D72C42 /* EventoriasUITests.swift */; };
 		731F034B2CDEEAC300D72C42 /* EventoriasUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F034A2CDEEAC300D72C42 /* EventoriasUITestsLaunchTests.swift */; };
 		731F03582CDF5F1600D72C42 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 731F03572CDF5F1600D72C42 /* GoogleService-Info.plist */; };
@@ -104,7 +103,6 @@
 		731F032D2CDEEAC100D72C42 /* EventoriasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasApp.swift; sourceTree = "<group>"; };
 		731F03312CDEEAC300D72C42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		731F03342CDEEAC300D72C42 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		731F033E2CDEEAC300D72C42 /* EventoriasTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasTests.swift; sourceTree = "<group>"; };
 		731F03482CDEEAC300D72C42 /* EventoriasUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasUITests.swift; sourceTree = "<group>"; };
 		731F034A2CDEEAC300D72C42 /* EventoriasUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		731F03572CDF5F1600D72C42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -184,6 +182,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		730D74352D02318E00E57B6B /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				738D17262CFE7E29000C5881 /* MockAuthenticationService.swift */,
+				730D74242CFFC7A400E57B6B /* MockEventService.swift */,
+				730D74282D00B53000E57B6B /* MockAddEventService.swift */,
+				730D742E2D011E6D00E57B6B /* MockImageUploader.swift */,
+				730D74302D013FDA00E57B6B /* UserServiceMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
+		730D74362D02325000E57B6B /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				73D1C5932CE1649D00A87D65 /* AuthenticationServiceProtocol.swift */,
+				73FFE27A2CEFA9F10091B931 /* AddEventProtocol.swift */,
+				73A2C68D2CFF779300F16DEC /* EventServiceProtocol.swift */,
+				730D74222CFFC0E500E57B6B /* UserServiceProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		731F03212CDEEAC100D72C42 = {
 			isa = PBXGroup;
 			children = (
@@ -226,16 +247,11 @@
 		731F033D2CDEEAC300D72C42 /* EventoriasTests */ = {
 			isa = PBXGroup;
 			children = (
-				731F033E2CDEEAC300D72C42 /* EventoriasTests.swift */,
+				730D74352D02318E00E57B6B /* Mocks */,
 				738D17222CFE7B0C000C5881 /* AuthenticationViewModelTests.swift */,
-				738D17262CFE7E29000C5881 /* MockAuthenticationService.swift */,
-				730D74242CFFC7A400E57B6B /* MockEventService.swift */,
 				738D172A2CFE8A34000C5881 /* RegistrationViewModelTests.swift */,
 				738D172C2CFE9234000C5881 /* EventListViewModelTests.swift */,
-				730D74282D00B53000E57B6B /* MockAddEventService.swift */,
 				730D742A2D00BE1A00E57B6B /* AddEventTests.swift */,
-				730D742E2D011E6D00E57B6B /* MockImageUploader.swift */,
-				730D74302D013FDA00E57B6B /* UserServiceMock.swift */,
 				730D74322D0140BE00E57B6B /* UserProfileViewModelTests.swift */,
 			);
 			path = EventoriasTests;
@@ -260,15 +276,12 @@
 		738D17242CFE7BD8000C5881 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				730D74362D02325000E57B6B /* Protocols */,
 				730D74262CFFCEB900E57B6B /* EventServiceError.swift */,
-				73D1C5932CE1649D00A87D65 /* AuthenticationServiceProtocol.swift */,
-				73FFE27A2CEFA9F10091B931 /* AddEventProtocol.swift */,
 				73FFE27C2CEFAA9E0091B931 /* AddEventService.swift */,
 				73D1C5952CE1650500A87D65 /* AuthenticationService.swift */,
 				73A2C68B2CFF771A00F16DEC /* EventService.swift */,
-				73A2C68D2CFF779300F16DEC /* EventServiceProtocol.swift */,
 				730D74202CFFC0AD00E57B6B /* UserService.swift */,
-				730D74222CFFC0E500E57B6B /* UserServiceProtocol.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -532,7 +545,6 @@
 				738D172D2CFE9234000C5881 /* EventListViewModelTests.swift in Sources */,
 				738D172B2CFE8A34000C5881 /* RegistrationViewModelTests.swift in Sources */,
 				730D74312D013FDA00E57B6B /* UserServiceMock.swift in Sources */,
-				731F033F2CDEEAC300D72C42 /* EventoriasTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
