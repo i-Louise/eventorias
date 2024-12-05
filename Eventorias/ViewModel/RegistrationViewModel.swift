@@ -69,12 +69,7 @@ class RegistrationViewModel: ObservableObject {
                         self.alertMessage = "Image upload failed"
                         return
                     }
-                    guard let imageUrl = imageUrl else {
-                        print("Image URL is nil")
-                        self.alertMessage = "Image upload failed"
-                        return
-                    }
-            let newUser = UserRequestModel(authCredentials: credentials, profilePictureUrl: imageUrl)
+            let newUser = UserRequestModel(authCredentials: credentials, profilePictureUrl: imageUrl ?? "imageUrl")
             Task {
                 await self.authenticationService.registration(
                     user: newUser,

@@ -43,7 +43,7 @@ struct EventListView: View {
         List {
             ForEach(searchedResults) { event in
                 NavigationLink {
-                    EventDetailView(viewModel: EventDetailViewModel(), event: event)
+                    EventDetailView(event: event)
                 } label: {
                     EventItemView(event: event)
                 }

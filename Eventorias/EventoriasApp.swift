@@ -35,9 +35,7 @@ struct EventoriasApp: App {
             if viewModel.isLogged {
                 MainTabView()
             } else {
-                SignInView(viewModel: AuthenticationViewModel() {
-                    viewModel.isLogged = true
-                })
+                SignInView(viewModel: viewModel.authenticationViewModel)
             }
         }
     }
