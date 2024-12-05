@@ -11,11 +11,14 @@ class RegistrationViewModel: ObservableObject {
     @Published var alertMessage: String? = nil
     @Published var isLoading = false
     private var authenticationService: AuthenticationServiceProtocol
+    private let imageUploader: ImageUploaderProtocol
 
     init(
-         authenticationService: AuthenticationServiceProtocol = AuthenticationService()
+        authenticationService: AuthenticationServiceProtocol = AuthenticationService(),
+         imageUploader: ImageUploaderProtocol = ImageUploader()
     ) {
         self.authenticationService = authenticationService
+        self.imageUploader = imageUploader
     }
     
     func onSignUpAction(
@@ -60,7 +63,17 @@ class RegistrationViewModel: ObservableObject {
     }
     
     private func signUp(credentials: AuthCredentials, image: Data, onLoading: @escaping (Bool) -> Void) {
-        ImageUploader.uploadImage(path: "users/profilePictures/\(UUID().uuidString).jpg", image: image) { imageUrl in
+        imageUploader.uploadImage(path: "users/profilePictures/\(UUID().uuidString).jpg", image: image) { imageUrl, error in
+            if let error = error {
+                        print("Image upload failed: \(error.localizedDescription)")
+                        self.alertMessage = "Image upload failed"
+                        return
+                    }
+                    guard let imageUrl = imageUrl else {
+                        print("Image URL is nil")
+                        self.alertMessage = "Image upload failed"
+                        return
+                    }
             let newUser = UserRequestModel(authCredentials: credentials, profilePictureUrl: imageUrl)
             Task {
                 await self.authenticationService.registration(
@@ -71,6 +84,7 @@ class RegistrationViewModel: ObservableObject {
                     },
                     onFailure: { error in
                         print("Error registering user: \(error)")
+                        self.alertMessage = "An error occured, while registering."
                         onLoading(false)
                     }
                 )

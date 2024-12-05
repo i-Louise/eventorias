@@ -29,53 +29,59 @@ final class AuthenticationViewModelTests: XCTestCase {
     
     func test_givenInvalidEmail_WhenOnLoginActionIsCalled_ThenReturnsErrorMessage() {
         // Given
-        var invalidEmail = "invalid"
-        var password = "password"
-        let expectation = XCTestExpectation(description: "alertMessage should be set when email is invalid")
+        let invalidEmail = "invalid"
+        let password = "password"
         
         //When
         viewModel.onLoginAction(email: invalidEmail, password: password) { isLoading in }
         
         XCTAssertEqual(viewModel.alertMessage, "Incorrect email format, please try again.")
-        expectation.fulfill()
     }
     func test_givenEmptyPassword_WhenOnLoginActionIsCalled_ThenReturnsAnError() {
         // Given
-        var validMail = "test@example.com"
-        var invalidPassword = ""
-        let expectation = XCTestExpectation(description: "alertMessage should be set when password is empty")
+        let validMail = "test@example.com"
+        let invalidPassword = ""
         
         // When
         viewModel.onLoginAction(email: validMail, password: invalidPassword) { isLoading in }
         
         // Then
         XCTAssertEqual(viewModel.alertMessage, "Please enter your password.")
-        expectation.fulfill()
     }
     
-    func test_givenValidCredentials_WhenOnLoginActionIsCalled_ThenReturnsSuccess() async {
-        
+    func test_givenValidCredentials_WhenOnLoginActionIsCalled_ThenReturnsSuccess() {
+        let expectation = XCTestExpectation(description: "Authentication service call expectation")
+
         // Given
-        var email = "test@example.com"
-        var password = "password123"
+        let email = "test@example.com"
+        let password = "password123"
         mockService.shouldSucceedLogin = true
         
         viewModel.onLoginAction(email: email, password: password) { isLoading in }
         
-        XCTAssertNil(viewModel.alertMessage, "alertMessage should be nil when the input is valid")
-        XCTAssertTrue(mockService.loginCalled, "The login function should be called")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            XCTAssertNil(self.viewModel.alertMessage)
+            XCTAssertTrue(self.mockService.loginCalled)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 2.0)
     }
     
-    func test_givenValidCredentials_WhenOnLoginActionIsCalledAndShouldSucceedFalse_ThenReturnsFailure() async {
-        
+    func test_givenValidCredentials_WhenOnLoginActionIsCalledAndShouldSucceedFalse_ThenReturnsFailure() {
+        let expectation = XCTestExpectation(description: "Authentication service fail expectation")
+
         // Given
-        var email = "test@example.com"
-        var password = "password123"
+        let email = "test@example.com"
+        let password = "password123"
         mockService.shouldSucceedLogin = false
         
         viewModel.onLoginAction(email: email, password: password) { isLoading in }
         
-        XCTAssertEqual(viewModel.alertMessage, "An error occur. Please try again.")
-        XCTAssertTrue(mockService.loginCalled, "The login function should be called")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            XCTAssertEqual(self.viewModel.alertMessage, "An error occur. Please try again.")
+            XCTAssertTrue(self.mockService.loginCalled)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 2.0)
     }
 }

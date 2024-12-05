@@ -6,12 +6,11 @@
 //
 
 import SwiftUI
-import UIKit
-//import GoogleMaps
+import GoogleMaps
 
 struct EventDetailView: View {
-    @ObservedObject var viewModel: EventDetailViewModel
     var event: EventModel
+    @State private var markerCoordinate = CLLocationCoordinate2D(latitude: 41.693333, longitude: 44.801667)
     
     var body: some View {
         ScrollView {
@@ -35,7 +34,7 @@ struct EventDetailView: View {
                             ProgressView()
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(.gray)
-                                .frame(height: UIScreen.main.bounds.size.height / 2)
+                                .frame(width: 350, height: 350)
                         }
                     }
                 }
@@ -78,7 +77,7 @@ struct EventDetailView: View {
                 HStack {
                     Text(event.address)
                         .foregroundStyle(.white)
-                    GoogleMapView(markerLocation: $viewModel.markerCoordinate, address: event.address)
+                    GoogleMapView(markerLocation: $markerCoordinate, address: event.address)
                         .frame(height: 100)
                         .cornerRadius(10)
                 }

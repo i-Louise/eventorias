@@ -8,9 +8,9 @@
 import Foundation
 import FirebaseStorage
 
-struct ImageUploader {
+class ImageUploader: ImageUploaderProtocol {
     
-    static func uploadImage(path: String, image: Data, completion: @escaping (String) -> Void) {
+    func uploadImage(path: String, image: Data, completion: @escaping (String?, Error?) -> Void) {
         let fileName = UUID().uuidString
         let ref = Storage.storage().reference(withPath: path + fileName)
         
@@ -22,7 +22,7 @@ struct ImageUploader {
             
             ref.downloadURL { url, error in
                 guard let imageURL = url?.absoluteString else {return}
-                completion(imageURL)
+                completion(imageURL, nil)
             }
         }
     }

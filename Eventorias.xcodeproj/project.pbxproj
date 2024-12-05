@@ -11,6 +11,12 @@
 		730D74232CFFC0E500E57B6B /* UserServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D74222CFFC0E500E57B6B /* UserServiceProtocol.swift */; };
 		730D74252CFFC7A400E57B6B /* MockEventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D74242CFFC7A400E57B6B /* MockEventService.swift */; };
 		730D74272CFFCEC300E57B6B /* EventServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D74262CFFCEB900E57B6B /* EventServiceError.swift */; };
+		730D74292D00B53000E57B6B /* MockAddEventService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D74282D00B53000E57B6B /* MockAddEventService.swift */; };
+		730D742B2D00BE1A00E57B6B /* AddEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D742A2D00BE1A00E57B6B /* AddEventTests.swift */; };
+		730D742D2D011E0200E57B6B /* ImageUploaderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D742C2D011E0200E57B6B /* ImageUploaderProtocol.swift */; };
+		730D742F2D011E6D00E57B6B /* MockImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D742E2D011E6D00E57B6B /* MockImageUploader.swift */; };
+		730D74312D013FDA00E57B6B /* UserServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D74302D013FDA00E57B6B /* UserServiceMock.swift */; };
+		730D74332D0140BE00E57B6B /* UserProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D74322D0140BE00E57B6B /* UserProfileViewModelTests.swift */; };
 		731F032E2CDEEAC100D72C42 /* EventoriasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F032D2CDEEAC100D72C42 /* EventoriasApp.swift */; };
 		731F03322CDEEAC300D72C42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 731F03312CDEEAC300D72C42 /* Assets.xcassets */; };
 		731F03352CDEEAC300D72C42 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 731F03342CDEEAC300D72C42 /* Preview Assets.xcassets */; };
@@ -23,7 +29,6 @@
 		731F03622CDF6B4800D72C42 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F03612CDF6B4800D72C42 /* SignInView.swift */; };
 		7379B0D72CED64870020B6E1 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379B0D62CED64870020B6E1 /* EventDetailView.swift */; };
 		7379B0D92CEE94730020B6E1 /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379B0D82CEE94730020B6E1 /* GoogleMapView.swift */; };
-		7379B0DB2CEE9A4E0020B6E1 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379B0DA2CEE9A460020B6E1 /* EventDetailViewModel.swift */; };
 		738D17042CFD1370000C5881 /* GooglePlacesSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 738D17032CFD1370000C5881 /* GooglePlacesSwift */; };
 		738D17062CFD138E000C5881 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = 738D17052CFD138E000C5881 /* GooglePlaces */; };
 		738D17082CFD14A3000C5881 /* GoogleAutocompleteAddressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 738D17072CFD14A3000C5881 /* GoogleAutocompleteAddressView.swift */; };
@@ -89,6 +94,13 @@
 		730D74222CFFC0E500E57B6B /* UserServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceProtocol.swift; sourceTree = "<group>"; };
 		730D74242CFFC7A400E57B6B /* MockEventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventService.swift; sourceTree = "<group>"; };
 		730D74262CFFCEB900E57B6B /* EventServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventServiceError.swift; sourceTree = "<group>"; };
+		730D74282D00B53000E57B6B /* MockAddEventService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAddEventService.swift; sourceTree = "<group>"; };
+		730D742A2D00BE1A00E57B6B /* AddEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventTests.swift; sourceTree = "<group>"; };
+		730D742C2D011E0200E57B6B /* ImageUploaderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploaderProtocol.swift; sourceTree = "<group>"; };
+		730D742E2D011E6D00E57B6B /* MockImageUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageUploader.swift; sourceTree = "<group>"; };
+		730D74302D013FDA00E57B6B /* UserServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceMock.swift; sourceTree = "<group>"; };
+		730D74322D0140BE00E57B6B /* UserProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModelTests.swift; sourceTree = "<group>"; };
+		730D74342D022DB000E57B6B /* Eventorias.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Eventorias.xctestplan; sourceTree = "<group>"; };
 		731F032D2CDEEAC100D72C42 /* EventoriasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasApp.swift; sourceTree = "<group>"; };
 		731F03312CDEEAC300D72C42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		731F03342CDEEAC300D72C42 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -99,7 +111,6 @@
 		731F03612CDF6B4800D72C42 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		7379B0D62CED64870020B6E1 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		7379B0D82CEE94730020B6E1 /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
-		7379B0DA2CEE9A460020B6E1 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
 		738D17072CFD14A3000C5881 /* GoogleAutocompleteAddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAutocompleteAddressView.swift; sourceTree = "<group>"; };
 		738D17092CFDDFAA000C5881 /* EventItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventItemView.swift; sourceTree = "<group>"; };
 		738D170B2CFE0EAF000C5881 /* FilterOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOption.swift; sourceTree = "<group>"; };
@@ -176,6 +187,7 @@
 		731F03212CDEEAC100D72C42 = {
 			isa = PBXGroup;
 			children = (
+				730D74342D022DB000E57B6B /* Eventorias.xctestplan */,
 				73D1C5A42CE28D3700A87D65 /* ImagePicker.swift */,
 				731F03572CDF5F1600D72C42 /* GoogleService-Info.plist */,
 				731F032C2CDEEAC100D72C42 /* Eventorias */,
@@ -220,6 +232,11 @@
 				730D74242CFFC7A400E57B6B /* MockEventService.swift */,
 				738D172A2CFE8A34000C5881 /* RegistrationViewModelTests.swift */,
 				738D172C2CFE9234000C5881 /* EventListViewModelTests.swift */,
+				730D74282D00B53000E57B6B /* MockAddEventService.swift */,
+				730D742A2D00BE1A00E57B6B /* AddEventTests.swift */,
+				730D742E2D011E6D00E57B6B /* MockImageUploader.swift */,
+				730D74302D013FDA00E57B6B /* UserServiceMock.swift */,
+				730D74322D0140BE00E57B6B /* UserProfileViewModelTests.swift */,
 			);
 			path = EventoriasTests;
 			sourceTree = "<group>";
@@ -269,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				73D1C59E2CE25CC300A87D65 /* ImageUploader.swift */,
+				730D742C2D011E0200E57B6B /* ImageUploaderProtocol.swift */,
 				73D1C5972CE16AF300A87D65 /* RedButton.swift */,
 				731F03612CDF6B4800D72C42 /* SignInView.swift */,
 				73D1C58B2CE1421200A87D65 /* EventListView.swift */,
@@ -289,7 +307,6 @@
 			isa = PBXGroup;
 			children = (
 				73C853742CEB760600E1FA41 /* EventoriasAppViewModel.swift */,
-				7379B0DA2CEE9A460020B6E1 /* EventDetailViewModel.swift */,
 				73D1C58F2CE159D700A87D65 /* AuthenticationViewModel.swift */,
 				73D1C5992CE225F000A87D65 /* RegistrationViewModel.swift */,
 				73D1C5A82CE4DFCD00A87D65 /* EventListViewModel.swift */,
@@ -479,7 +496,6 @@
 				73FFE2BF2CF333870091B931 /* EventResponseModel.swift in Sources */,
 				73D1C58C2CE1421200A87D65 /* EventListView.swift in Sources */,
 				7379B0D92CEE94730020B6E1 /* GoogleMapView.swift in Sources */,
-				7379B0DB2CEE9A4E0020B6E1 /* EventDetailViewModel.swift in Sources */,
 				730D74272CFFCEC300E57B6B /* EventServiceError.swift in Sources */,
 				73D1C5902CE159D700A87D65 /* AuthenticationViewModel.swift in Sources */,
 				73A2C68E2CFF779300F16DEC /* EventServiceProtocol.swift in Sources */,
@@ -496,6 +512,7 @@
 				73FFE2BB2CEFF7010091B931 /* CreateEventView.swift in Sources */,
 				731F032E2CDEEAC100D72C42 /* EventoriasApp.swift in Sources */,
 				73FFE2792CEFA98E0091B931 /* CreateEventViewModel.swift in Sources */,
+				730D742D2D011E0200E57B6B /* ImageUploaderProtocol.swift in Sources */,
 				73FFE2C72CF8B4690091B931 /* EventModel.swift in Sources */,
 				73FFE2C52CF3D57A0091B931 /* UserResponseModel.swift in Sources */,
 			);
@@ -505,11 +522,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				730D742F2D011E6D00E57B6B /* MockImageUploader.swift in Sources */,
 				738D17232CFE7B0C000C5881 /* AuthenticationViewModelTests.swift in Sources */,
+				730D74292D00B53000E57B6B /* MockAddEventService.swift in Sources */,
 				738D17272CFE7E29000C5881 /* MockAuthenticationService.swift in Sources */,
 				730D74252CFFC7A400E57B6B /* MockEventService.swift in Sources */,
+				730D74332D0140BE00E57B6B /* UserProfileViewModelTests.swift in Sources */,
+				730D742B2D00BE1A00E57B6B /* AddEventTests.swift in Sources */,
 				738D172D2CFE9234000C5881 /* EventListViewModelTests.swift in Sources */,
 				738D172B2CFE8A34000C5881 /* RegistrationViewModelTests.swift in Sources */,
+				730D74312D013FDA00E57B6B /* UserServiceMock.swift in Sources */,
 				731F033F2CDEEAC300D72C42 /* EventoriasTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

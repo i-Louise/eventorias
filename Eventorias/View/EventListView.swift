@@ -31,7 +31,7 @@ struct EventListView: View {
                         }
                     }
                     .onAppear {
-                        viewModel.onActionFetchingEvents(sortedByDate: true)
+                        viewModel.onActionFetchingEvents(sortedByDate: true, category: selectedCategory.rawValue)
                     }
                 createEventButton
             }

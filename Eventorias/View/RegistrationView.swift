@@ -102,8 +102,3 @@ struct RegistrationView: View {
         return image.jpegData(compressionQuality: 0.75)
     }
 }
-
-#Preview {
-    @Previewable @State var showPopover = true
-    RegistrationView(showPopover: $showPopover, viewModel: RegistrationViewModel())
-}
