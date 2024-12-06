@@ -33,10 +33,10 @@ class RegistrationViewModel: ObservableObject {
         alertMessage = nil
         onLoading(true)
         
-        if firstName == "" {
+        if firstName.isEmpty {
             alertMessage = "Please enter your first name."
             onLoading(false)
-        } else if lastName == "" {
+        } else if lastName.isEmpty {
             alertMessage = "Please enter your last name."
             onLoading(false)
         } else if !isEmailValid(email: email) {

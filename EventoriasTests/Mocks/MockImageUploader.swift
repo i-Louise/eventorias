@@ -11,6 +11,7 @@ import Foundation
 class MockImageUploader: ImageUploaderProtocol {
     var shouldFail = false
     var imageUploaded = false
+    var imageUrl: String?
     
     func uploadImage(path: String, image: Data, completion: @escaping (String?, Error?) -> Void) {
         if shouldFail {

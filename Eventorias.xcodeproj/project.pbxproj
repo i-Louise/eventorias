@@ -17,6 +17,7 @@
 		730D742F2D011E6D00E57B6B /* MockImageUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D742E2D011E6D00E57B6B /* MockImageUploader.swift */; };
 		730D74312D013FDA00E57B6B /* UserServiceMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D74302D013FDA00E57B6B /* UserServiceMock.swift */; };
 		730D74332D0140BE00E57B6B /* UserProfileViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D74322D0140BE00E57B6B /* UserProfileViewModelTests.swift */; };
+		730D74382D0239AE00E57B6B /* EventoriasAppViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730D74372D0239AE00E57B6B /* EventoriasAppViewModelTests.swift */; };
 		731F032E2CDEEAC100D72C42 /* EventoriasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F032D2CDEEAC100D72C42 /* EventoriasApp.swift */; };
 		731F03322CDEEAC300D72C42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 731F03312CDEEAC300D72C42 /* Assets.xcassets */; };
 		731F03352CDEEAC300D72C42 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 731F03342CDEEAC300D72C42 /* Preview Assets.xcassets */; };
@@ -100,6 +101,7 @@
 		730D74302D013FDA00E57B6B /* UserServiceMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceMock.swift; sourceTree = "<group>"; };
 		730D74322D0140BE00E57B6B /* UserProfileViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModelTests.swift; sourceTree = "<group>"; };
 		730D74342D022DB000E57B6B /* Eventorias.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Eventorias.xctestplan; sourceTree = "<group>"; };
+		730D74372D0239AE00E57B6B /* EventoriasAppViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasAppViewModelTests.swift; sourceTree = "<group>"; };
 		731F032D2CDEEAC100D72C42 /* EventoriasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventoriasApp.swift; sourceTree = "<group>"; };
 		731F03312CDEEAC300D72C42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		731F03342CDEEAC300D72C42 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				738D172C2CFE9234000C5881 /* EventListViewModelTests.swift */,
 				730D742A2D00BE1A00E57B6B /* AddEventTests.swift */,
 				730D74322D0140BE00E57B6B /* UserProfileViewModelTests.swift */,
+				730D74372D0239AE00E57B6B /* EventoriasAppViewModelTests.swift */,
 			);
 			path = EventoriasTests;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 			files = (
 				730D742F2D011E6D00E57B6B /* MockImageUploader.swift in Sources */,
 				738D17232CFE7B0C000C5881 /* AuthenticationViewModelTests.swift in Sources */,
+				730D74382D0239AE00E57B6B /* EventoriasAppViewModelTests.swift in Sources */,
 				730D74292D00B53000E57B6B /* MockAddEventService.swift in Sources */,
 				738D17272CFE7E29000C5881 /* MockAuthenticationService.swift in Sources */,
 				730D74252CFFC7A400E57B6B /* MockEventService.swift in Sources */,
