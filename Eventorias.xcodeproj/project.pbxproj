@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -207,6 +207,18 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		730D74572D032F7700E57B6B /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				73D1C5972CE16AF300A87D65 /* RedButton.swift */,
+				73D1C5852CE11A5000A87D65 /* EntryFieldView.swift */,
+				738D17092CFDDFAA000C5881 /* EventItemView.swift */,
+				73D1C5892CE12A1900A87D65 /* PasswordEntryFieldView.swift */,
+				73FFE2CB2CF906460091B931 /* ImagePickerView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
 		731F03212CDEEAC100D72C42 = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +238,8 @@
 		731F032C2CDEEAC100D72C42 /* Eventorias */ = {
 			isa = PBXGroup;
 			children = (
+				73D1C59E2CE25CC300A87D65 /* ImageUploader.swift */,
+				730D742C2D011E0200E57B6B /* ImageUploaderProtocol.swift */,
 				738D17252CFE7C89000C5881 /* GoogleMaps */,
 				738D17242CFE7BD8000C5881 /* Service */,
 				73D1C59B2CE257A200A87D65 /* Model */,
@@ -292,20 +306,13 @@
 		73D1C58D2CE159BC00A87D65 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				73D1C59E2CE25CC300A87D65 /* ImageUploader.swift */,
-				730D742C2D011E0200E57B6B /* ImageUploaderProtocol.swift */,
-				73D1C5972CE16AF300A87D65 /* RedButton.swift */,
+				730D74572D032F7700E57B6B /* Subviews */,
 				731F03612CDF6B4800D72C42 /* SignInView.swift */,
 				73D1C58B2CE1421200A87D65 /* EventListView.swift */,
 				7379B0D62CED64870020B6E1 /* EventDetailView.swift */,
-				73D1C5892CE12A1900A87D65 /* PasswordEntryFieldView.swift */,
 				73D1C5872CE11B0500A87D65 /* RegistrationView.swift */,
-				73FFE2CB2CF906460091B931 /* ImagePickerView.swift */,
-				73D1C5852CE11A5000A87D65 /* EntryFieldView.swift */,
 				73C853812CED485600E1FA41 /* UserProfileView.swift */,
 				73FFE2BA2CEFF7010091B931 /* CreateEventView.swift */,
-				738D17092CFDDFAA000C5881 /* EventItemView.swift */,
-				738D170B2CFE0EAF000C5881 /* FilterOption.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -326,6 +333,7 @@
 		73D1C59B2CE257A200A87D65 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				738D170B2CFE0EAF000C5881 /* FilterOption.swift */,
 				73FFE2C02CF37C340091B931 /* EventCategory.swift */,
 				73D1C59C2CE258BB00A87D65 /* AuthCredentials.swift */,
 				73FFE2C42CF3D5740091B931 /* UserResponseModel.swift */,
