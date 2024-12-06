@@ -12,10 +12,10 @@ class RegistrationViewModel: ObservableObject {
     @Published var isLoading = false
     private var authenticationService: AuthenticationServiceProtocol
     private let imageUploader: ImageUploaderProtocol
-
+    
     init(
         authenticationService: AuthenticationServiceProtocol = AuthenticationService(),
-         imageUploader: ImageUploaderProtocol = ImageUploader()
+        imageUploader: ImageUploaderProtocol = ImageUploader()
     ) {
         self.authenticationService = authenticationService
         self.imageUploader = imageUploader
@@ -74,7 +74,6 @@ class RegistrationViewModel: ObservableObject {
                 await self.authenticationService.registration(
                     user: newUser,
                     onSuccess: {
-                        print("Success")
                         onLoading(false)
                     },
                     onFailure: { error in

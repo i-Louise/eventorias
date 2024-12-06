@@ -21,6 +21,7 @@ struct RegistrationView: View {
     @State private var showGallerySheet = false
     @ObservedObject var viewModel: RegistrationViewModel
     @State private var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
@@ -32,6 +33,7 @@ struct RegistrationView: View {
                         .font(.largeTitle)
                         .fontWeight(.semibold)
                         .foregroundColor(.customRed)
+                        .accessibilityIdentifier("registrationView")
                     Text("Create a new account")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -83,6 +85,7 @@ struct RegistrationView: View {
                         image: imageData,
                         onLoading: { isLoading in
                             self.isLoading = isLoading
+                            dismiss()
                         }
                     )
                 } label: {
