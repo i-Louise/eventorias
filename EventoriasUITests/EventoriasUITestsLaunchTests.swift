@@ -2,7 +2,7 @@
 //  EventoriasUITestsLaunchTests.swift
 //  EventoriasUITests
 //
-//  Created by Louise Ta on 09/11/2024.
+//  Created by Louise Ta on 06/12/2024.
 //
 
 import XCTest
@@ -17,6 +17,7 @@ final class EventoriasUITestsLaunchTests: XCTestCase {
         continueAfterFailure = false
     }
 
+    @MainActor
     func testLaunch() throws {
         let app = XCUIApplication()
         app.launch()
