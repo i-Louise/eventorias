@@ -25,6 +25,7 @@ struct SignInView: View {
                 }
                 EntryFieldView(placeHolder: "Email address", field: $email, imageName: "person.fill")
                     .keyboardType(.emailAddress)
+                    .accessibilityIdentifier("emailTextField")
                 PasswordEntryFieldView(password: $password, placeHolder: "Password")
                 
                 RedButton(
@@ -41,6 +42,7 @@ struct SignInView: View {
                     image: "envelope",
                     isLoading: $isLoading
                 )
+                .accessibilityIdentifier("signInButton")
                 
                 Button("Don't have an account? Sign up!") {
                     showPopover = true
@@ -49,6 +51,7 @@ struct SignInView: View {
                 .popover(isPresented: $showPopover) {
                     RegistrationView(showPopover: $showPopover, viewModel: RegistrationViewModel())
                 }
+                .accessibilityIdentifier("signUpButton")
             }
             .padding(.horizontal, 40)
         }

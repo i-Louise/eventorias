@@ -17,8 +17,10 @@ struct PasswordEntryFieldView: View {
             Image(systemName: "lock.fill")
             if hidePassword {
                 SecureField(placeHolder, text: $password)
+                    .accessibilityIdentifier("passwordSecuredTextField")
             } else {
                 TextField(placeHolder, text: $password)
+                    .accessibilityIdentifier("passwordTextField")
             }
             Button(action: {
                 self.hidePassword.toggle()
@@ -26,6 +28,8 @@ struct PasswordEntryFieldView: View {
                 Image(systemName: hidePassword ? "eye.fill" : "eye.slash.fill")
                     .foregroundStyle(.gray)
             })
+            .accessibilityIdentifier("passwordVisibilityButton")
+
         }
         .padding()
         .background(.customGrey)

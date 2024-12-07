@@ -17,19 +17,18 @@
   },
   "testTargets" : [
     {
-      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Eventorias.xcodeproj",
+        "identifier" : "73617AFE2D0343A600CAA055",
+        "name" : "EventoriasUITests"
+      }
+    },
+    {
+      "parallelizable" : false,
       "target" : {
         "containerPath" : "container:Eventorias.xcodeproj",
         "identifier" : "731F03392CDEEAC300D72C42",
         "name" : "EventoriasTests"
-      }
-    },
-    {
-      "parallelizable" : true,
-      "target" : {
-        "containerPath" : "container:Eventorias.xcodeproj",
-        "identifier" : "731F03432CDEEAC300D72C42",
-        "name" : "EventoriasUITests"
       }
     }
   ],

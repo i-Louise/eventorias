@@ -37,7 +37,7 @@
       <Testables>
          <TestableReference
             skipped = "NO"
-            parallelizable = "YES">
+            parallelizable = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "731F03392CDEEAC300D72C42"
@@ -47,13 +47,23 @@
             </BuildableReference>
          </TestableReference>
          <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "73617AFE2D0343A600CAA055"
+               BuildableName = "EventoriasUITests.xctest"
+               BlueprintName = "EventoriasUITests"
+               ReferencedContainer = "container:Eventorias.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
             skipped = "NO"
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "731F03432CDEEAC300D72C42"
-               BuildableName = "EventoriasUITests.xctest"
-               BlueprintName = "EventoriasUITests"
+               BlueprintIdentifier = "730D745D2D03371200E57B6B"
+               BuildableName = "EventoriasUITests2.xctest"
+               BlueprintName = "EventoriasUITests2"
                ReferencedContainer = "container:Eventorias.xcodeproj">
             </BuildableReference>
          </TestableReference>

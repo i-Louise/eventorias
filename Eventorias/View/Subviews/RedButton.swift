@@ -19,6 +19,7 @@ struct RedButton: View {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .white))
                     .frame(maxWidth: .infinity)
+                    .accessibilityIdentifier("isLoading")
             } else {
                 Image(systemName: image)
                 Text(title)
