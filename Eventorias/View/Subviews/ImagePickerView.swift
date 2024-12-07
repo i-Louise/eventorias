@@ -26,6 +26,7 @@ struct ImagePickerView: View {
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .sheet(isPresented: $showCameraSheet) {
                 ImagePicker(sourceType: .camera, selectedImage: self.$image)
+                    .accessibilityIdentifier("camera")
             }
             .accessibilityIdentifier("cameraButton")
             
@@ -41,6 +42,7 @@ struct ImagePickerView: View {
             .clipShape(RoundedRectangle(cornerRadius: 10))
             .sheet(isPresented: $showGallerySheet) {
                 ImagePicker(sourceType: .photoLibrary , selectedImage: self.$image)
+                    .accessibilityIdentifier("photoLibrary")
             }
             .accessibilityIdentifier("galleryButton")
         }

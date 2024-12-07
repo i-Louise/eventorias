@@ -60,6 +60,7 @@ struct RegistrationView: View {
                             .accessibilityIdentifier("placeHolderProfilePicture")
                     }
                     ImagePickerView(showCameraSheet: $showCameraSheet, showGallerySheet: $showGallerySheet, image: $image)
+                        .accessibilityIdentifier("imagePickerView")
                 }
                 EntryFieldView(placeHolder: "First Name", field: $firstName, imageName: "person.fill")
                     .accessibilityIdentifier("firstNameTextField")
