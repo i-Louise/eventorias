@@ -47,24 +47,30 @@ struct RegistrationView: View {
                             .aspectRatio(contentMode: .fill)
                             .clipShape(Circle())
                             .padding(8)
+                            .accessibilityIdentifier("profilePicture")
                     } else {
                         Image(systemName: "person.fill")
                             .resizable()
                             .cornerRadius(50)
                             .padding(.all, 4)
                             .frame(width: 100, height: 100)
-                            .background(Color.white)
                             .aspectRatio(contentMode: .fill)
                             .clipShape(Circle())
                             .padding(8)
+                            .accessibilityIdentifier("placeHolderProfilePicture")
                     }
                     ImagePickerView(showCameraSheet: $showCameraSheet, showGallerySheet: $showGallerySheet, image: $image)
                 }
                 EntryFieldView(placeHolder: "First Name", field: $firstName, imageName: "person.fill")
+                    .accessibilityIdentifier("firstNameTextField")
                 EntryFieldView(placeHolder: "Last Name", field: $lastName, imageName: "person.fill")
+                    .accessibilityIdentifier("lastNameTextField")
                 EntryFieldView(placeHolder: "Mail address", field: $email, imageName: "mail.fill")
+                    .accessibilityIdentifier("mailAddressTextField")
                 PasswordEntryFieldView(password: $password, placeHolder: "Password")
+                    .accessibilityIdentifier("passwordSecuredField")
                 PasswordEntryFieldView(password: $confirmPassword, placeHolder: "Confirm password")
+                    .accessibilityIdentifier("passwordConfirmSecuredField")
                 Button {
                     guard let image else {
                         // TODO: tell the user image cannot be empty
@@ -96,6 +102,7 @@ struct RegistrationView: View {
                 .padding()
                 .background(Color(.customRed))
                 .cornerRadius(5)
+                .accessibilityIdentifier("createButton")
             }
             .padding(.horizontal, 40)
         }

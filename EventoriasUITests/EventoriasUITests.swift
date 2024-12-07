@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import Eventorias
 
 final class EventoriasUITests: XCTestCase {
 

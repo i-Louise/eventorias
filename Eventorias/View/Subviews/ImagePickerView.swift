@@ -27,6 +27,7 @@ struct ImagePickerView: View {
             .sheet(isPresented: $showCameraSheet) {
                 ImagePicker(sourceType: .camera, selectedImage: self.$image)
             }
+            .accessibilityIdentifier("cameraButton")
             
             Button {
                 showGallerySheet = true
@@ -41,6 +42,7 @@ struct ImagePickerView: View {
             .sheet(isPresented: $showGallerySheet) {
                 ImagePicker(sourceType: .photoLibrary , selectedImage: self.$image)
             }
+            .accessibilityIdentifier("galleryButton")
         }
     }
 }

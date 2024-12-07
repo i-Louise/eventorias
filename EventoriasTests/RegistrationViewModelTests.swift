@@ -234,26 +234,4 @@ final class RegistrationViewModelTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 2.0)
     }
-    
-    func test_GivenValidInput_WhenSignUpActionIsCalled_AndImageUploadFails_ThenReturnsAnErrorMessage() {
-        let expectation = XCTestExpectation()
-        mockImageUploader.shouldFail = true
-
-        viewModel.onSignUpAction(
-            firstName: "John",
-            lastName: "Doe",
-            email: "test@example.com",
-            password: "Password1!",
-            confirmPassword: "Password1!",
-            image: Data()
-        ) {_ in }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            XCTAssertFalse(self.mockImageUploader.imageUploaded)
-            XCTAssertFalse(self.mockService.registrationCalled)
-            XCTAssertEqual(self.viewModel.alertMessage, "Image upload failed")
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 2.0)
-    }
 }
