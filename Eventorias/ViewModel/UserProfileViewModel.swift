@@ -6,17 +6,13 @@
 //
 
 import Foundation
-import Firebase
-import FirebaseFirestore
-import FirebaseAuth
 
 class UserProfileViewModel: ObservableObject {
-    private let db = Firestore.firestore()
     private let userService: UserServiceProtocol
     @Published var errorMessage: String?
     @Published var user: UserResponseModel?
     
-    init(userService: UserServiceProtocol = UserService()) {
+    init(userService: UserServiceProtocol) {
         self.userService = userService
     }
     

@@ -32,7 +32,7 @@ struct UserProfileView: View {
                             default:
                                 ProgressView()
                             }
-                        }
+                        }.accessibilityIdentifier("userProfileImage")
                     }
                     VStack {
                         Text("Name")
@@ -42,6 +42,7 @@ struct UserProfileView: View {
                     .padding(.vertical, 15)
                     .frame(maxWidth: .infinity)
                     .background(.customGrey, in: RoundedRectangle(cornerRadius: 10))
+                    .accessibilityIdentifier("username")
                     
                     VStack {
                         Text("E-mail")
@@ -51,9 +52,11 @@ struct UserProfileView: View {
                     .padding(.vertical, 15)
                     .frame(maxWidth: .infinity)
                     .background(.customGrey, in: RoundedRectangle(cornerRadius: 10))
+                    .accessibilityIdentifier("userEmail")
                     
                     Toggle("Notifications", isOn: $notification)
                         .toggleStyle(SwitchToggleStyle(tint: .customRed))
+                        .accessibilityIdentifier("notificationToggle")
                 }
             }
             .padding()
@@ -64,7 +67,3 @@ struct UserProfileView: View {
         }
     }
 }
-//
-//#Preview {
-//    UserProfileView(viewModel: UserProfileViewModel(), user: <#UserResponseModel#>)
-//}

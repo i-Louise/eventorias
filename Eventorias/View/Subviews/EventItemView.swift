@@ -40,15 +40,17 @@ struct EventItemView: View {
                     .frame(width: 50, height: 50)
                     .background(Circle().fill(.gray))
             }
-        }
+        }.accessibilityIdentifier("profileImage")
     }
     
     private var eventDetails: some View {
         VStack(alignment: .leading) {
             Text(event.title)
                 .font(.subheadline)
+                .accessibilityIdentifier("eventTitle")
             Text(formattedDate(from: event.dateTime))
                 .font(.caption)
+                .accessibilityIdentifier("eventDate")
         }
     }
     
@@ -74,6 +76,7 @@ struct EventItemView: View {
         .frame(maxWidth: .infinity, alignment: .trailing)
         .padding(.trailing, -40)
         .padding(.vertical, -10)
+        .accessibilityIdentifier("eventImage")
     }
     
     private func formattedDate(from date: Date) -> String {

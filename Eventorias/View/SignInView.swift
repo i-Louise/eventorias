@@ -49,15 +49,11 @@ struct SignInView: View {
                 }
                 .fontWeight(.bold)
                 .popover(isPresented: $showPopover) {
-                    RegistrationView(showPopover: $showPopover, viewModel: RegistrationViewModel())
+                    RegistrationView(showPopover: $showPopover, viewModel: viewModel.registrationViewModel)
                 }
                 .accessibilityIdentifier("signUpButton")
             }
             .padding(.horizontal, 40)
         }
     }
-}
-
-#Preview {
-    SignInView(viewModel: AuthenticationViewModel( {}))
 }

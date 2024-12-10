@@ -11,17 +11,29 @@ import Combine
 
 class EventListViewModelTests: XCTestCase {
     private var mockEventService: MockEventService!
+    private var mockAddEventService: MockAddEventService!
+    private var mockImageUploader: MockImageUploader!
     private var viewModel: EventListViewModel!
     
     override func setUp() {
         super.setUp()
         mockEventService = MockEventService()
-        viewModel = EventListViewModel(eventService: mockEventService)
+        mockAddEventService = MockAddEventService()
+        mockAddEventService.shouldSucceedAddEvent = true
+        mockImageUploader = MockImageUploader()
+        mockImageUploader.shouldFail = false
+        viewModel = EventListViewModel(
+            eventService: mockEventService,
+            addEventService: mockAddEventService,
+            imageUploader: mockImageUploader
+        )
     }
     
     override func tearDown() {
         viewModel = nil
         mockEventService = nil
+        mockAddEventService = nil
+        mockImageUploader = nil
         super.tearDown()
     }
     

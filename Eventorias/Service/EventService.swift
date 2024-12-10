@@ -6,13 +6,13 @@
 //
 
 import Foundation
-import FirebaseCore
-import FirebaseFirestore
+import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 
 class EventService: EventServiceProtocol {
     private let db = Firestore.firestore()
-
+    
     func fetchEvents(sortedByDate descending: Bool?, category: String?) async throws -> [EventModel] {
         do {
             let fetchedEvents = try await fetchEventDocuments(sortedByDate: descending, category: category)
@@ -31,8 +31,8 @@ class EventService: EventServiceProtocol {
             query = query.order(by: "dateTime", descending: descending)
         }
         if let category = category, category != "All" {
-                query = query.whereField("category", isEqualTo: category)
-            }
+            query = query.whereField("category", isEqualTo: category)
+        }
         
         do {
             let eventSnapshot = try await query.getDocuments()

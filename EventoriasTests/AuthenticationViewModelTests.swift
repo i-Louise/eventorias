@@ -12,18 +12,24 @@ final class AuthenticationViewModelTests: XCTestCase {
     
     var viewModel: AuthenticationViewModel!
     var mockService: MockAuthenticationService!
+    private var mockImageUploader: MockImageUploader!
     
     override func setUp() {
-        super.setUp()
         mockService = MockAuthenticationService()
-        viewModel = AuthenticationViewModel(authenticationService: mockService, {
+        mockImageUploader = MockImageUploader()
+        mockImageUploader.shouldFail = false
+        viewModel = AuthenticationViewModel(
+            authenticationService: mockService,
+            imageUploader: mockImageUploader
+        ) {
             print("Login succeeded")
-        })
+        }
     }
     
     override func tearDown() {
         viewModel = nil
         mockService = nil
+        mockImageUploader = nil
         super.tearDown()
     }
     

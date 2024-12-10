@@ -6,22 +6,25 @@
 //
 
 import SwiftUI
-import Firebase
-import FirebaseFirestore
 
 @MainActor
 struct EventListView: View {
-    @ObservedObject var viewModel: EventListViewModel
+    @ObservedObject private var viewModel: EventListViewModel
     @State private var searchText = ""
     @State private var isShowingCreateView = false
     @State private var userSearch = ""
     @State private var selectedFilterOption: FilterOption = .newestDate
     @State private var selectedCategory: EventCategory = .all
     
+    init(viewModel: EventListViewModel) {
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
                 eventsList
+                    .accessibilityIdentifier("eventList")
                     .toolbar {
                         ToolbarItem(placement: .automatic) {
                             filterMenu
@@ -44,12 +47,15 @@ struct EventListView: View {
             ForEach(searchedResults) { event in
                 NavigationLink {
                     EventDetailView(event: event)
+                        .accessibilityIdentifier("eventDetailView")
                 } label: {
                     EventItemView(event: event)
+                        .accessibilityIdentifier("eventItemView")
                 }
             }
             .listRowBackground(Color.customGrey)
         }
+        .accessibilityIdentifier("eventList")
         .listRowSpacing(8.0)
         .background(Color.background)
         .scrollContentBackground(.hidden)
@@ -61,11 +67,14 @@ struct EventListView: View {
                 selectedFilterOption = .olderDate
                 viewModel.onActionFetchingEvents(sortedByDate: false, category: selectedCategory.rawValue)
             }
+            .accessibilityIdentifier("oldestFilterButton")
             Button("Newest") {
                 selectedFilterOption = .newestDate
                 viewModel.onActionFetchingEvents(sortedByDate: true, category: selectedCategory.rawValue)
             }
+            .accessibilityIdentifier("newestFilterButton")
         }
+        .accessibilityIdentifier("filterMenu")
     }
     
     private var categoryMenu: some View {
@@ -75,8 +84,10 @@ struct EventListView: View {
                     selectedCategory = category
                     viewModel.onActionFetchingEvents(category: category == .all ? nil : category.rawValue)
                 }
+                .accessibilityIdentifier("\(category.rawValue)")
             }
         }
+        .accessibilityIdentifier("categoryButton")
     }
     
     private var createEventButton: some View {
@@ -84,15 +95,7 @@ struct EventListView: View {
             Spacer()
             HStack {
                 Spacer()
-                NavigationLink(destination:
-                                CreateEventView(
-                                    viewModel: CreateEventViewModel(
-                                        addService: AddEventService(),
-                                        onCreationSucceed: {
-                                            print("fetch events done")
-                                        }
-                                    )
-                                )
+                NavigationLink(destination: CreateEventView(viewModel: viewModel.createEventViewModel)
                 ) {
                     Image(systemName: "plus")
                         .resizable()
@@ -104,6 +107,7 @@ struct EventListView: View {
                         .clipShape(Circle())
                         .shadow(radius: 5)
                 }
+                .accessibilityIdentifier("createEventButton")
                 .padding(.trailing, 20)
                 .padding(.bottom, 20)
             }

@@ -28,15 +28,21 @@ struct CreateEventView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     titleField
+                        .accessibilityIdentifier("titleTextField")
                     CategoryPicker(selectedCategory: $category)
                     descriptionField
+                        .accessibilityIdentifier("descriptionTextField")
                     datePicker
+                        .accessibilityIdentifier("datePicker")
                     addressField
+                        .accessibilityIdentifier("addressTextField")
                     imageUploadSection
                     validateButton
+                        .accessibilityIdentifier("validateButton")
                 }
                 .sheet(isPresented: $showAutocomplete) {
                     GoogleAutocompleteAddressView(address: $address, coordinate: $coordinate)
+                        .accessibilityIdentifier("googleAutoComplete")
                 }
             }
             .padding()
@@ -67,6 +73,7 @@ extension CreateEventView {
                 }
                 .accentColor(.white)
             }
+            .accessibilityIdentifier("categoryPicker")
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 15)
             .padding(.vertical, 15)
@@ -98,6 +105,7 @@ extension CreateEventView {
             Text("Upload a picture")
                 .padding()
             ImagePickerView(showCameraSheet: $showCameraSheet, showGallerySheet: $showGallerySheet, image: $image)
+                .accessibilityIdentifier("imagePickerView")
             if let image = image {
                 Image(uiImage: image)
                     .resizable()

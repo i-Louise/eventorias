@@ -6,7 +6,6 @@
 //
 
 import Foundation
-@testable import Eventorias
 
 class MockAuthenticationService: AuthenticationServiceProtocol {
     var shouldSucceedLogin = true

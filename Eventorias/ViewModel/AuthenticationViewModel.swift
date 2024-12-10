@@ -6,20 +6,28 @@
 //
 
 import Foundation
-import Firebase
-import FirebaseAuth
 
 class AuthenticationViewModel: ObservableObject {
     @Published var alertMessage: String? = nil
     private let authenticationService: AuthenticationServiceProtocol
+    private let imageUploader: ImageUploaderProtocol
     let onLoginSucceed: (() -> ())
     
     init(
-        authenticationService: AuthenticationServiceProtocol = AuthenticationService(),
+        authenticationService: AuthenticationServiceProtocol,
+        imageUploader: ImageUploaderProtocol,
         _ callback: @escaping () -> ()
     ) {
         self.authenticationService = authenticationService
+        self.imageUploader = imageUploader
         self.onLoginSucceed = callback
+    }
+    
+    var registrationViewModel: RegistrationViewModel {
+        return RegistrationViewModel(
+            authenticationService: authenticationService,
+            imageUploader: imageUploader
+        )
     }
     
     func onLoginAction(

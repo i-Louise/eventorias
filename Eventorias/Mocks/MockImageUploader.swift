@@ -6,7 +6,6 @@
 //
 
 import Foundation
-@testable import Eventorias
 
 class MockImageUploader: ImageUploaderProtocol {
     var shouldFail = false

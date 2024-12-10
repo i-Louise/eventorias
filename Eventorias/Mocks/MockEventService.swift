@@ -6,7 +6,6 @@
 //
 
 import Foundation
-@testable import Eventorias
 
 class MockEventService: EventServiceProtocol {
     var eventsWithUserDetails: [EventModel] = []

@@ -13,22 +13,20 @@ final class SignInViewTests: XCTestCase {
 
     override func setUpWithError() throws {
         continueAfterFailure = false
+        app.launchArguments.append("UI_TEST_MODE")
         app.launch()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        app.terminate()
     }
     
-    func test_GivenLoginView_WhenAppLaunches_ThenEnsureTextFieldsArePresent() throws {
+    func test_GivenLoginView_WhenAppIsRunning_ThenEnsureTextFieldsArePresent() throws {
         // Given
         let emailField = app.textFields["emailTextField"]
         let passwordSecuredField = app.secureTextFields["passwordSecuredTextField"]
         let signInButton = app.buttons["signInButton"]
         let signUpButton = app.buttons["signUpButton"]
-        
-        // When
-        app.launch()
         
         // Then
         XCTAssertTrue(emailField.exists)
@@ -61,14 +59,5 @@ final class SignInViewTests: XCTestCase {
         signUpButton.tap()
         
         XCTAssertTrue(popoverTitle.exists)
-    }
-
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
     }
 }

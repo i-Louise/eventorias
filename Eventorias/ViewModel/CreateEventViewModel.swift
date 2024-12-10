@@ -10,10 +10,10 @@ import Foundation
 class CreateEventViewModel: ObservableObject {
     @Published var alertMessage: String? = nil
     private let addService: AddEventProtocol
-    var onCreationSucceed: (() -> Void)
     private let imageUploader: ImageUploaderProtocol
+    var onCreationSucceed: (() -> Void)
     
-    init(addService: AddEventProtocol, imageUploader: ImageUploaderProtocol = ImageUploader(), onCreationSucceed: @escaping () -> Void) {
+    init(addService: AddEventProtocol, imageUploader: ImageUploaderProtocol, onCreationSucceed: @escaping () -> Void) {
         self.addService = addService
         self.imageUploader = imageUploader
         self.onCreationSucceed = onCreationSucceed

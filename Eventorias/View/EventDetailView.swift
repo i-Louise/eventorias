@@ -17,6 +17,7 @@ struct EventDetailView: View {
             VStack {
                 Text(event.title)
                     .font(.title)
+                    .accessibilityIdentifier("eventTitle")
                 AsyncImage(url: URL(string: event.imageUrl)) { phase in
                     switch phase {
                     case .failure:
@@ -37,19 +38,22 @@ struct EventDetailView: View {
                                 .frame(width: 350, height: 350)
                         }
                     }
-                }
+                }.accessibilityIdentifier("eventImage")
+
 
                 HStack {
                     VStack(alignment: .leading) {
                         HStack {
                             Image(systemName: "calendar")
                             Text(formattedDate(from: event.dateTime))
+                                .accessibilityIdentifier("eventDate")
                         }
                         .foregroundStyle(.white)
                         Spacer()
                         HStack {
                             Image(systemName: "clock")
                             Text(formattedTime(from: event.dateTime))
+                                .accessibilityIdentifier("eventTime")
                         }
                         .foregroundStyle(.white)
                     }
@@ -68,18 +72,21 @@ struct EventDetailView: View {
                         default:
                             ProgressView()
                         }
-                    }
+                    }.accessibilityIdentifier("profilePicture")
                 }
                 .padding(.bottom, 10)
                 .padding(.top, 10)
                 Text(event.description)
                     .foregroundStyle(.white)
+                    .accessibilityIdentifier("eventDescription")
                 HStack {
                     Text(event.address)
                         .foregroundStyle(.white)
+                        .accessibilityIdentifier("eventAddress")
                     GoogleMapView(markerLocation: $markerCoordinate, address: event.address)
                         .frame(height: 100)
                         .cornerRadius(10)
+                        .accessibilityIdentifier("googleMapView")
                 }
                 .padding(.bottom, 10)
                 .padding(.top, 10)

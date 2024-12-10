@@ -6,7 +6,6 @@
 //
 
 import Foundation
-@testable import Eventorias
 
 class UserServiceMock: UserServiceProtocol {
     var shouldSucceed = true

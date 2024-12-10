@@ -6,7 +6,6 @@
 //
 
 import Foundation
-@testable import Eventorias
 
 class MockAddEventService: AddEventProtocol {    
     var addEventCalled = false

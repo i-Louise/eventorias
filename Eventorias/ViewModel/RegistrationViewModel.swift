@@ -14,8 +14,8 @@ class RegistrationViewModel: ObservableObject {
     private let imageUploader: ImageUploaderProtocol
     
     init(
-        authenticationService: AuthenticationServiceProtocol = AuthenticationService(),
-        imageUploader: ImageUploaderProtocol = ImageUploader()
+        authenticationService: AuthenticationServiceProtocol,
+        imageUploader: ImageUploaderProtocol
     ) {
         self.authenticationService = authenticationService
         self.imageUploader = imageUploader

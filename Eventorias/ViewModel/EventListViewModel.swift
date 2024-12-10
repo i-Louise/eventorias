@@ -16,15 +16,29 @@ class EventListViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var selectedCategory: String? = nil
     private let eventService: EventServiceProtocol
+    private let addEventService: AddEventProtocol
+    private let imageUploader: ImageUploaderProtocol
     
-    init(eventService: EventServiceProtocol = EventService()) {
+    init(eventService: EventServiceProtocol, addEventService: AddEventProtocol, imageUploader: ImageUploaderProtocol) {
         self.eventService = eventService
+        self.addEventService = addEventService
+        self.imageUploader = imageUploader
+    }
+    
+    var createEventViewModel: CreateEventViewModel {
+        return CreateEventViewModel(
+            addService: addEventService,
+            imageUploader: imageUploader,
+            onCreationSucceed: {
+                print("fetch events done")
+            }
+        )
     }
     
     func onActionFetchingEvents(sortedByDate descending: Bool? = nil, category: String? = nil) {
         Task {
             do {
-               events = try await eventService.fetchEvents(sortedByDate: descending, category: category)
+                events = try await eventService.fetchEvents(sortedByDate: descending, category: category)
             } catch {
                 errorMessage = "An error has occured, please try again later"
             }
