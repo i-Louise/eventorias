@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct SignInView: View {
-    @State private var email: String = "test@gmail.com"
-    @State private var password: String = "test123"
+    @State private var email: String = ""
+    @State private var password: String = ""
     @State private var showPopover = false
     @State private var isLoading: Bool = false
     @State private var showAlert = false
