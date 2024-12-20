@@ -21,6 +21,7 @@
 		731F035C2CDF65DD00D72C42 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 731F035B2CDF65DD00D72C42 /* FirebaseAuth */; };
 		731F035E2CDF65DD00D72C42 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 731F035D2CDF65DD00D72C42 /* FirebaseDatabase */; };
 		731F03622CDF6B4800D72C42 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 731F03612CDF6B4800D72C42 /* SignInView.swift */; };
+		7337B0FC2D14DAFB00F9AC5E /* ProgressViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7337B0FB2D14DAFB00F9AC5E /* ProgressViewCustom.swift */; };
 		7379B0D72CED64870020B6E1 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379B0D62CED64870020B6E1 /* EventDetailView.swift */; };
 		7379B0D92CEE94730020B6E1 /* GoogleMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7379B0D82CEE94730020B6E1 /* GoogleMapView.swift */; };
 		738D17042CFD1370000C5881 /* GooglePlacesSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 738D17032CFD1370000C5881 /* GooglePlacesSwift */; };
@@ -110,6 +111,8 @@
 		731F03342CDEEAC300D72C42 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		731F03572CDF5F1600D72C42 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		731F03612CDF6B4800D72C42 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		7337B0FA2D11696F00F9AC5E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		7337B0FB2D14DAFB00F9AC5E /* ProgressViewCustom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewCustom.swift; sourceTree = "<group>"; };
 		73617AFF2D0343A600CAA055 /* EventoriasUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EventoriasUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7379B0D62CED64870020B6E1 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		7379B0D82CEE94730020B6E1 /* GoogleMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapView.swift; sourceTree = "<group>"; };
@@ -225,6 +228,7 @@
 				738D17092CFDDFAA000C5881 /* EventItemView.swift */,
 				73D1C5892CE12A1900A87D65 /* PasswordEntryFieldView.swift */,
 				73FFE2CB2CF906460091B931 /* ImagePickerView.swift */,
+				7337B0FB2D14DAFB00F9AC5E /* ProgressViewCustom.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -248,6 +252,7 @@
 		731F032C2CDEEAC100D72C42 /* Eventorias */ = {
 			isa = PBXGroup;
 			children = (
+				7337B0FA2D11696F00F9AC5E /* Info.plist */,
 				73D1C59E2CE25CC300A87D65 /* ImageUploader.swift */,
 				730D742C2D011E0200E57B6B /* ImageUploaderProtocol.swift */,
 				738D17252CFE7C89000C5881 /* GoogleMaps */,
@@ -552,6 +557,7 @@
 				73FFE2BB2CEFF7010091B931 /* CreateEventView.swift in Sources */,
 				731F032E2CDEEAC100D72C42 /* EventoriasApp.swift in Sources */,
 				73FFE2792CEFA98E0091B931 /* CreateEventViewModel.swift in Sources */,
+				7337B0FC2D14DAFB00F9AC5E /* ProgressViewCustom.swift in Sources */,
 				730D742D2D011E0200E57B6B /* ImageUploaderProtocol.swift in Sources */,
 				73FFE2C72CF8B4690091B931 /* EventModel.swift in Sources */,
 				73FFE2C52CF3D57A0091B931 /* UserResponseModel.swift in Sources */,
@@ -646,7 +652,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -703,7 +709,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -723,12 +729,15 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Eventorias/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Eventorias/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses the camera. ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -752,12 +761,15 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Eventorias/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Eventorias/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses the camera. ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Dark;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -778,7 +790,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = louise.EventoriasTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -796,7 +808,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = louise.EventoriasTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -813,7 +825,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = louise.EventoriasUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -830,7 +842,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = louise.EventoriasUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

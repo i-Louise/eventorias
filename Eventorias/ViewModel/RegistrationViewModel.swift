@@ -9,6 +9,12 @@ import Foundation
 
 class RegistrationViewModel: ObservableObject {
     @Published var alertMessage: String? = nil
+    @Published var showingAlert = false
+    @Published var firstNameErrorMessage: String? = nil
+    @Published var lastNameErrorMessage: String? = nil
+    @Published var emailErrorMessage: String? = nil
+    @Published var passwordErrorMessage: String? = nil
+    @Published var confirmPasswordErrorMessage: String? = nil
     @Published var isLoading = false
     private var authenticationService: AuthenticationServiceProtocol
     private let imageUploader: ImageUploaderProtocol
@@ -28,26 +34,21 @@ class RegistrationViewModel: ObservableObject {
         password: String,
         confirmPassword: String,
         image: Data,
-        onLoading: @escaping (Bool) -> Void
+        onSuccess: @escaping () -> Void,
+        onFailure: @escaping (String) -> Void
     ) {
-        alertMessage = nil
-        onLoading(true)
-        
+        clearMessages()
+
         if firstName.isEmpty {
-            alertMessage = "Please enter your first name."
-            onLoading(false)
+            firstNameErrorMessage = "Please enter your first name."
         } else if lastName.isEmpty {
-            alertMessage = "Please enter your last name."
-            onLoading(false)
+            lastNameErrorMessage = "Please enter your last name."
         } else if !isEmailValid(email: email) {
-            alertMessage = "Incorrect email format."
-            onLoading(false)
+            emailErrorMessage = "Incorrect email format."
         } else if !isPasswordValid(password: password) {
-            alertMessage = "Password must be more than 6 characters, with at least one capital, numeric or special character."
-            onLoading(false)
+            passwordErrorMessage = "Password must be more than 6 characters, with at least one capital, numeric or special character."
         } else if password != confirmPassword {
-            alertMessage = "Passwords are not matching."
-            onLoading(false)
+            confirmPasswordErrorMessage = "Passwords are not matching."
         } else {
             signUp(
                 credentials: AuthCredentials(
@@ -57,16 +58,23 @@ class RegistrationViewModel: ObservableObject {
                     lastName: lastName
                 ),
                 image: image,
-                onLoading: onLoading
+                onSuccess: onSuccess,
+                onFailure: onFailure
             )
         }
     }
     
-    private func signUp(credentials: AuthCredentials, image: Data, onLoading: @escaping (Bool) -> Void) {
+    private func signUp(
+        credentials: AuthCredentials,
+        image: Data,
+        onSuccess: @escaping () -> Void,
+        onFailure: @escaping (String) -> Void
+    ) {
         imageUploader.uploadImage(path: "users/profilePictures/\(UUID().uuidString).jpg", image: image) { imageUrl, error in
             if let error = error {
                         print("Image upload failed: \(error.localizedDescription)")
                         self.alertMessage = "Image upload failed"
+                        self.isLoading = false
                         return
                     }
             let newUser = UserRequestModel(authCredentials: credentials, profilePictureUrl: imageUrl ?? "imageUrl")
@@ -74,12 +82,14 @@ class RegistrationViewModel: ObservableObject {
                 await self.authenticationService.registration(
                     user: newUser,
                     onSuccess: {
-                        onLoading(false)
+                        self.isLoading = false
+                        onSuccess()
                     },
                     onFailure: { error in
-                        print("Error registering user: \(error)")
                         self.alertMessage = "An error occured, while registering."
-                        onLoading(false)
+                        self.showingAlert = true
+                        self.isLoading = false
+                        onFailure(self.alertMessage ?? "")
                     }
                 )
             }
@@ -94,5 +104,13 @@ class RegistrationViewModel: ObservableObject {
     private func isPasswordValid(password: String) -> Bool {
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^.*(?=.{6,})(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*\\d)|(?=.*[!#$%&? ]).*$")
         return passwordTest.evaluate(with: password)
+    }
+    
+    private func clearMessages() {
+        firstNameErrorMessage = nil
+        lastNameErrorMessage = nil
+        emailErrorMessage = nil
+        passwordErrorMessage = nil
+        confirmPasswordErrorMessage = nil
     }
 }

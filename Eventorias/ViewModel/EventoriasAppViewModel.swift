@@ -31,8 +31,8 @@ class EventoriasAppViewModel: ObservableObject {
         self.userService = userService
     }
     
-    var authenticationViewModel: AuthenticationViewModel {
-        AuthenticationViewModel(
+    var authenticationViewModel: SignInViewModel {
+        SignInViewModel(
             authenticationService: authenticationService,
             imageUploader: imageUploader
         ) {

@@ -12,9 +12,10 @@ import FirebaseFirestore
 
 class EventListViewModel: ObservableObject {
     @Published var events: [EventModel] = []
-    @Published var errorMessage: String?
+    @Published var errorMessage: String? = nil
     @Published var searchText: String = ""
     @Published var selectedCategory: String? = nil
+    @Published var isLoading: Bool = false
     private let eventService: EventServiceProtocol
     private let addEventService: AddEventProtocol
     private let imageUploader: ImageUploaderProtocol
@@ -36,11 +37,19 @@ class EventListViewModel: ObservableObject {
     }
     
     func onActionFetchingEvents(sortedByDate descending: Bool? = nil, category: String? = nil) {
+        isLoading = true
         Task {
             do {
-                events = try await eventService.fetchEvents(sortedByDate: descending, category: category)
+                let fetchedEvents = try await eventService.fetchEvents(sortedByDate: descending, category: category)
+                DispatchQueue.main.async {
+                    self.events = fetchedEvents
+                    self.isLoading = false
+                }
             } catch {
-                errorMessage = "An error has occured, please try again later"
+                DispatchQueue.main.async {
+                    self.errorMessage = "An error has occurred, please try again later"
+                    self.isLoading = false
+                }
             }
         }
     }

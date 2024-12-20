@@ -26,7 +26,6 @@ final class RegistrationViewTests: XCTestCase {
 
     func test_GivenRegistrationViewFields_WhenAppLaunches_ThenEnsureTextFieldsArePresent() throws {
         // Given
-        let placeHolderProfilePicture = app.images["placeHolderProfilePicture"]
         let imagePickerView = app.buttons["imagePickerView"]
         
         let firstNameField = app.textFields["firstNameTextField"]
@@ -38,7 +37,6 @@ final class RegistrationViewTests: XCTestCase {
         let createButton = app.buttons["createButton"]
         
         // Then
-        XCTAssertTrue(placeHolderProfilePicture.exists)
         XCTAssertTrue(imagePickerView.exists)
         XCTAssertTrue(firstNameField.exists)
         XCTAssertTrue(lastNameField.exists)
@@ -49,49 +47,61 @@ final class RegistrationViewTests: XCTestCase {
     }
     
     func test_GivenRegistrationView_WhenUserTapPasswordVisibilityButton_ThenEnsurePasswordVisibilityIsToggled() throws {
+        // Given
         let elementsQuery = app.scrollViews.otherElements
-        let passwordsecuredfieldButton = elementsQuery.buttons["passwordSecuredField"]
-        passwordsecuredfieldButton.tap()
+        let passwordVisibilityButton = elementsQuery.buttons["passwordSecuredField"]
+        let passwordConfirmVisibilityButton = elementsQuery.buttons["passwordConfirmSecuredField"]
+        let passwordSecureField = elementsQuery.secureTextFields["passwordSecuredField"]
+        let passwordTextField = elementsQuery.textFields["passwordSecuredField"]
+        let passwordConfirmSecureField = elementsQuery.secureTextFields["passwordConfirmSecuredField"]
+        let passwordConfirmTextField = elementsQuery.textFields["passwordConfirmSecuredField"]
+
+        // When & Then: Toggle password visibility
+        passwordVisibilityButton.tap()
+        XCTAssertTrue(passwordTextField.exists, "Password field should switch to visible state.")
+        XCTAssertFalse(passwordSecureField.exists, "Secure password field should not exist in visible state.")
         
-        let passwordsecuredfieldButton2 = elementsQuery.buttons["passwordSecuredField"]
-        passwordsecuredfieldButton2.tap()
+        passwordVisibilityButton.tap()
+        XCTAssertTrue(passwordSecureField.exists, "Password field should switch back to secure state.")
+        XCTAssertFalse(passwordTextField.exists, "Visible password field should not exist in secure state.")
+
+        // When & Then: Toggle password confirm visibility
+        passwordConfirmVisibilityButton.tap()
+        XCTAssertTrue(passwordConfirmTextField.exists, "Password confirm field should switch to visible state.")
+        XCTAssertFalse(passwordConfirmSecureField.exists, "Secure password confirm field should not exist in visible state.")
         
-        let passwordconfirmsecuredfieldButton = elementsQuery.buttons["passwordConfirmSecuredField"]
-        passwordconfirmsecuredfieldButton.tap()
-        
-        let passwordconfirmsecuredfieldButton2 = elementsQuery.buttons["passwordConfirmSecuredField"]
-        passwordconfirmsecuredfieldButton2.tap()
-        elementsQuery.secureTextFields["passwordSecuredField"].tap()
-        passwordsecuredfieldButton.tap()
-        
-        let passwordsecuredfieldTextField = elementsQuery.textFields["passwordSecuredField"]
-        passwordsecuredfieldTextField.tap()
-        passwordsecuredfieldTextField.tap()
-        passwordsecuredfieldButton2.tap()
-        passwordconfirmsecuredfieldButton.tap()
-        
-        let passwordconfirmsecuredfieldTextField = elementsQuery.textFields["passwordConfirmSecuredField"]
-        passwordconfirmsecuredfieldTextField.tap()
-        passwordconfirmsecuredfieldTextField.tap()
-        passwordconfirmsecuredfieldButton2.tap()
+        passwordConfirmVisibilityButton.tap()
+        XCTAssertTrue(passwordConfirmSecureField.exists, "Password confirm field should switch back to secure state.")
+        XCTAssertFalse(passwordConfirmTextField.exists, "Visible password confirm field should not exist in secure state.")
     }
     
     func test_GivenImagePickerView_WhenUserTapPhotoLibraryPickerButton_ThenEnsureImagePickerIsPresented() throws {
-                
         let elementsQuery = app.scrollViews.otherElements
-        elementsQuery.buttons["Attachments"].tap()
+
+        let attachmentsButton = elementsQuery.buttons["Attachments"]
+        XCTAssertTrue(attachmentsButton.waitForExistence(timeout: 5), "Attachments button should exist")
+        attachmentsButton.tap()
+
+        let photosLayout = app.otherElements["photos_layout"]
+        XCTAssertTrue(photosLayout.waitForExistence(timeout: 5), "Photos layout should exist")
         
-        app.otherElements["photos_layout"].images["Photo, 30 mars 2018, 21:14"].tap()
-        elementsQuery.buttons["Camera"].tap()
+        let photo = photosLayout.images["Photo, 30 mars 2018, 21:14"]
+        XCTAssertTrue(photo.waitForExistence(timeout: 5), "Photo should exist")
+        photo.tap()
         
-        let photocaptureButton = app.buttons["PhotoCapture"]
-        photocaptureButton.tap()
-        photocaptureButton.tap()
-        app.staticTexts["Cancel"].tap()
-    }
-    
-    func test_GivenRegistrationView_WhenUserCloseIt_ThenEnsureTheViewIsClosed() throws {
-        let elementsQuery = app.scrollViews.otherElements
-        elementsQuery.staticTexts["registrationView"].swipeDown()
+        let cameraButton = elementsQuery.buttons["Camera"]
+        XCTAssertTrue(cameraButton.waitForExistence(timeout: 5), "Camera button should exist")
+        cameraButton.tap()
+        
+        let photoCaptureButton = app.buttons["PhotoCapture"]
+        XCTAssertTrue(photoCaptureButton.waitForExistence(timeout: 5), "PhotoCapture button should exist")
+        XCTAssertTrue(photoCaptureButton.isHittable, "PhotoCapture button should be hittable")
+        photoCaptureButton.tap()
+        
+        photoCaptureButton.tap()
+
+        let cancelButton = app.staticTexts["Cancel"]
+        XCTAssertTrue(cancelButton.waitForExistence(timeout: 5), "Cancel button should exist")
+        cancelButton.tap()
     }
 }

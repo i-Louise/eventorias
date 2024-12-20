@@ -47,9 +47,15 @@ struct CreateEventView: View {
             }
             .padding()
             .background(Color.background)
-            .onAppear {
-                viewModel.onCreationSucceed = { dismiss() }
-            }
+            .alert(isPresented: $viewModel.showingAlert) {
+                Alert(
+                    title: Text("An Error occured"),
+                    message: Text(viewModel.alertMessage ?? ""),
+                    dismissButton: .default(Text("OK"))
+                )
+            }.overlay(
+                ProgressViewCustom(isLoading: viewModel.isLoading)
+            )
         }
         .navigationTitle("Creation of an event")
     }
@@ -101,7 +107,7 @@ extension CreateEventView {
     }
     
     private var imageUploadSection: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(spacing: 10) {
             Text("Upload a picture")
                 .padding()
             ImagePickerView(showCameraSheet: $showCameraSheet, showGallerySheet: $showGallerySheet, image: $image)
@@ -128,7 +134,11 @@ extension CreateEventView {
                 // TODO: image could not be compressed, show a generic error to the user
                 return
             }
-            viewModel.onCreationAction(address: address, category: category, date: dateTime, description: description, image: imageData, title: title)
+            viewModel.onCreationAction(address: address, category: category, date: dateTime, description: description, image: imageData, title: title, onSuccess: {
+                dismiss() }
+                , onFailure: { alertMessage in
+                self.viewModel.alertMessage = alertMessage
+            })
         } label: {
             Text("Validate")
         }

@@ -12,7 +12,8 @@ struct SignInView: View {
     @State private var password: String = "test123"
     @State private var showPopover = false
     @State private var isLoading: Bool = false
-    @ObservedObject var viewModel: AuthenticationViewModel
+    @State private var showAlert = false
+    @ObservedObject var viewModel: SignInViewModel
     
     var body: some View {
         ZStack {
@@ -33,10 +34,7 @@ struct SignInView: View {
                     action: {
                         viewModel.onLoginAction(
                             email: email,
-                            password: password,
-                            isLoading: { isLoading in
-                                self.isLoading = isLoading
-                            }
+                            password: password
                         )
                     },
                     image: "envelope",
@@ -55,5 +53,15 @@ struct SignInView: View {
             }
             .padding(.horizontal, 40)
         }
+        .alert(isPresented: $viewModel.showingAlert) {
+            Alert(
+                title: Text("An Error occured"),
+                message: Text(viewModel.alertMessage ?? ""),
+                dismissButton: .default(Text("OK"))
+            )
+        }
+        .overlay(
+            ProgressViewCustom(isLoading: viewModel.isLoading)
+        )
     }
 }

@@ -29,7 +29,7 @@ final class AddEventTests: XCTestCase {
     
     func test_GivenAnEmptyTitle_WhenOnCreationActionIsCalled_ReturnsAlertMessage() {
         // Given & When
-        viewModel.onCreationAction(address: "123 rue des arts", category: .art, date: Date(), description: "Art event", image: Data(), title: "")
+        viewModel.onCreationAction(address: "123 rue des arts", category: .art, date: Date(), description: "Art event", image: Data(), title: "", onSuccess: {}, onFailure: {_ in })
         
         // Then
         XCTAssertEqual(viewModel.alertMessage, "Please write a title for your event")
@@ -38,7 +38,7 @@ final class AddEventTests: XCTestCase {
     
     func test_GivenAnEmptyAddress_WhenOnCreationActionIsCalled_ReturnsAlertMessage() {
         // Given & When
-        viewModel.onCreationAction(address: "", category: .art, date: Date(), description: "Art event", image: Data(), title: "Night in the museum")
+        viewModel.onCreationAction(address: "", category: .art, date: Date(), description: "Art event", image: Data(), title: "Night in the museum", onSuccess: {}, onFailure: {_ in })
         
         // Then
         XCTAssertEqual(viewModel.alertMessage, "Address not recognized")
@@ -48,16 +48,15 @@ final class AddEventTests: XCTestCase {
     func test_GivenValidInputs_WhenOnCreationActionIsCalled_ThenCallsAddEventService() {
         // Given & When
         let expectation = XCTestExpectation(description: "Add event call expectation")
-
-        viewModel.onCreationAction(address: "123 rue des arts", category: .art, date: Date(), description: "Art event", image: Data(), title: "Night in the museum")
         
-        // Then
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        viewModel.onCreationAction(address: "123 rue des arts", category: .art, date: Date(), description: "Art event", image: Data(), title: "Night in the museum", onSuccess: {
             XCTAssertTrue(self.mockImageUploader.imageUploaded)
             XCTAssertTrue(self.mockAddEventService.addEventCalled)
             XCTAssertNil(self.viewModel.alertMessage)
             expectation.fulfill()
-        }
+        }, onFailure: {_ in })
+        
+        // Then
         wait(for: [expectation], timeout: 2.0)
     }
     
@@ -66,33 +65,40 @@ final class AddEventTests: XCTestCase {
         let expectation = XCTestExpectation(description: "Add event failure expectation")
         
         mockAddEventService.shouldSucceedAddEvent = false
-        viewModel.onCreationAction(address: "123 rue des arts", category: .art, date: Date(), description: "Art event", image: Data(), title: "Night in the museum")
-        
-        // Then
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        viewModel.onCreationAction(address: "123 rue des arts", category: .art, date: Date(), description: "Art event", image: Data(), title: "Night in the museum", onSuccess: {},
+        onFailure: { errorMessage in
+            // Then
             XCTAssertTrue(self.mockAddEventService.addEventCalled)
-            XCTAssertEqual(self.viewModel.alertMessage, "An error occur while creating your event")
+            XCTAssertEqual(errorMessage, "An error occur while creating your event")
             expectation.fulfill()
         }
+    )
         wait(for: [expectation], timeout: 2.0)
     }
     
     func test_GivenValidInputs_WhenOnCreationIsCalled_AndAnErrorOccuredDuringImageUpload_ThenReturnsAlertMessage() {
-        
         // Given
-        let expectation = XCTestExpectation(description: "Add event failure expectation")
-        
+        let expectation = XCTestExpectation(description: "Image upload failure expectation")
         mockAddEventService.shouldSucceedAddEvent = true
         mockImageUploader.shouldFail = true
-        
+
         // When
-        viewModel.onCreationAction(address: "123 rue des arts", category: .art, date: Date(), description: "Art event", image: Data(), title: "Night in the museum")
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            XCTAssertEqual(self.viewModel.alertMessage, "Image upload failed")
-            expectation.fulfill()
-        }
-        
+        viewModel.onCreationAction(
+            address: "123 rue des arts",
+            category: .art,
+            date: Date(),
+            description: "Art event",
+            image: Data(),
+            title: "Night in the museum",
+            onSuccess: {
+                XCTFail("onSuccess should not be called when image upload fails.")
+            },
+            onFailure: { _ in
+                // Then
+                XCTAssertEqual(self.viewModel.alertMessage, "Image upload failed", "Alert message should match the error message returned by onFailure.")
+                expectation.fulfill()
+            }
+        )
         wait(for: [expectation], timeout: 2.0)
     }
 }

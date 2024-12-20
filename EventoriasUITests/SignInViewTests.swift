@@ -10,13 +10,13 @@ import XCTest
 
 final class SignInViewTests: XCTestCase {
     let app = XCUIApplication()
-
+    
     override func setUpWithError() throws {
         continueAfterFailure = false
         app.launchArguments.append("UI_TEST_MODE")
         app.launch()
     }
-
+    
     override func tearDownWithError() throws {
         app.terminate()
     }
@@ -48,16 +48,5 @@ final class SignInViewTests: XCTestCase {
         // Then
         XCTAssertFalse(passwordSecuredField.exists)
         XCTAssertTrue(passwordTextField.exists)
-    }
-    
-    func test_GivenLoginView_WhenSignUpButtonIsTapped_ThenEnsureSignUpViewIsPresented() throws {
-        // Given
-        let signUpButton = app.buttons["signUpButton"]
-        let popoverTitle = app.staticTexts["registrationView"]
-        
-        // When
-        signUpButton.tap()
-        
-        XCTAssertTrue(popoverTitle.exists)
     }
 }

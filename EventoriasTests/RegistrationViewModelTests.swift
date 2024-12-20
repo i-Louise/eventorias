@@ -28,135 +28,89 @@ final class RegistrationViewModelTests: XCTestCase {
     }
     
     func testOnSignUpAction_MissingFirstName() {
-        // Given
-        let expectation = XCTestExpectation(description: "onLoading should be called and alertMessage should be set for missing first name")
-        var isLoadingCalled = false
-
-        // When
+        // Given & When
         viewModel.onSignUpAction(
             firstName: "",
             lastName: "Doe",
             email: "test@example.com",
             password: "Password1!",
             confirmPassword: "Password1!",
-            image: Data()
-        ) { isLoading in
-            isLoadingCalled = isLoading
-            expectation.fulfill()
-        }
-
+            image: Data(),
+            onSuccess: {},
+            onFailure: {_ in
+            })
+        
         // Then
-        XCTAssertNotNil(viewModel.alertMessage, "alertMessage should be set when the first name is missing")
-        XCTAssertEqual(viewModel.alertMessage, "Please enter your first name.")
-        XCTAssertFalse(isLoadingCalled, "onLoading should be called with false after validation fails")
-
-        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(viewModel.firstNameErrorMessage, "Please enter your first name.")
     }
+    
     func testOnSignUpAction_MissingLastName() {
-        // Given
-        let expectation = XCTestExpectation(description: "onLoading should be called and alertMessage should be set for missing last name")
-        var isLoadingCalled = false
-
-        // When
+        // Given & When
         viewModel.onSignUpAction(
             firstName: "John",
             lastName: "",
             email: "test@example.com",
             password: "Password1!",
             confirmPassword: "Password1!",
-            image: Data()
-        ) { isLoading in
-            isLoadingCalled = isLoading
-            expectation.fulfill()
-        }
+            image: Data(),
+            onSuccess: {},
+            onFailure: {_ in }
+        )
 
         // Then
-        XCTAssertNotNil(viewModel.alertMessage)
-        XCTAssertEqual(viewModel.alertMessage, "Please enter your last name.")
-        XCTAssertFalse(isLoadingCalled, "onLoading should be called with false after validation fails")
-
-        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(viewModel.lastNameErrorMessage, "Please enter your last name.")
     }
     
     func testOnSignUpAction_PasswordIncorrect() {
-        // Given
-        let expectation = XCTestExpectation(description: "onLoading should be called and alertMessage should be set for not setting a correct password")
-        var isLoadingCalled = false
-
-        // When
+        // Given & When
         viewModel.onSignUpAction(
             firstName: "John",
             lastName: "Doe",
             email: "test@example.com",
             password: "incorrectPassword",
             confirmPassword: "incorrectPassword",
-            image: Data()
-        ) { isLoading in
-            isLoadingCalled = isLoading
-            expectation.fulfill()
-        }
+            image: Data(),
+            onSuccess: {},
+            onFailure: {_ in })
 
         // Then
-        XCTAssertNotNil(viewModel.alertMessage)
-        XCTAssertEqual(viewModel.alertMessage, "Password must be more than 6 characters, with at least one capital, numeric or special character.")
-        XCTAssertFalse(isLoadingCalled, "onLoading should be called with false after validation fails")
-
-        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(viewModel.passwordErrorMessage, "Password must be more than 6 characters, with at least one capital, numeric or special character.")
     }
     
     func testOnSignUpAction_InvalidEmail() {
-        // Given
-        let expectation = XCTestExpectation(description: "onLoading should be called and alertMessage should be set for invalid email")
-        var isLoadingCalled = false
-
-        // When
+        // Given & When
         viewModel.onSignUpAction(
             firstName: "John",
             lastName: "Doe",
             email: "invalid-email",
             password: "Password1!",
             confirmPassword: "Password1!",
-            image: Data()
-        ) { isLoading in
-            isLoadingCalled = isLoading
-            expectation.fulfill()
-        }
+            image: Data(),
+            onSuccess: {},
+            onFailure: {_ in })
 
         // Then
-        XCTAssertNotNil(viewModel.alertMessage, "alertMessage should be set for invalid email")
-        XCTAssertEqual(viewModel.alertMessage, "Incorrect email format.")
-        XCTAssertFalse(isLoadingCalled, "onLoading should be called with false after validation fails")
-
-        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(viewModel.emailErrorMessage, "Incorrect email format.")
     }
     func testOnSignUpAction_PasswordsDoNotMatch() {
-        // Given
-        let expectation = XCTestExpectation(description: "onLoading should be called and alertMessage should be set for password mismatch")
-        var isLoadingCalled = false
-
-        // When
+        // Given & When
         viewModel.onSignUpAction(
             firstName: "John",
             lastName: "Doe",
             email: "test@example.com",
             password: "Password1!",
             confirmPassword: "DifferentPassword1!",
-            image: Data()
-        ) { isLoading in
-            isLoadingCalled = isLoading
-            expectation.fulfill()
-        }
+            image: Data(),
+            onSuccess: {},
+            onFailure: {_ in })
 
         // Then
-        XCTAssertNotNil(viewModel.alertMessage, "alertMessage should be set when passwords do not match")
-        XCTAssertEqual(viewModel.alertMessage, "Passwords are not matching.")
-        XCTAssertFalse(isLoadingCalled, "onLoading should be called with false after validation fails")
-
-        wait(for: [expectation], timeout: 1.0)
+        XCTAssertEqual(viewModel.confirmPasswordErrorMessage, "Passwords are not matching.")
     }
+    
     func testOnSignUpAction_ValidInput() {
         // Given
-        var isLoadingCalled = false
+        let expectation = XCTestExpectation(description: "onSuccess is called")
 
         // When
         viewModel.onSignUpAction(
@@ -165,33 +119,54 @@ final class RegistrationViewModelTests: XCTestCase {
             email: "test@example.com",
             password: "Password1!",
             confirmPassword: "Password1!",
-            image: Data()
-        ) { isLoading in
-            isLoadingCalled = isLoading
-        }
-
+            image: Data(),
+            onSuccess: {
+                expectation.fulfill()
+            },
+            onFailure: { _ in
+                XCTFail("onFailure should not be called for valid inputs.")
+            }
+        )
+        
         // Then
-        XCTAssertTrue(isLoadingCalled, "onLoading should be called with true while processing")
+        wait(for: [expectation], timeout: 1.0)
+        XCTAssertFalse(viewModel.isLoading, "isLoading should be false after successful sign-up.")
+        XCTAssertNil(viewModel.firstNameErrorMessage, "No error message should be set for the first name.")
+        XCTAssertNil(viewModel.lastNameErrorMessage, "No error message should be set for the last name.")
+        XCTAssertNil(viewModel.emailErrorMessage, "No error message should be set for the email.")
+        XCTAssertNil(viewModel.passwordErrorMessage, "No error message should be set for the password.")
+        XCTAssertNil(viewModel.confirmPasswordErrorMessage, "No error message should be set for the password confirmation.")
     }
-    func test_GivenValidInput_WhenSignUpActionIsCalled_ThenEnsureRegistrationIsCalled() {
-        let expectation = XCTestExpectation()
+    
+    func test_GivenValidInput_WhenSignUpActionIsCalled_ThenEnsureServicesAreCalled() {
+        // Given
+        let expectation = XCTestExpectation(description: "Services are called on success")
 
+        // When
         viewModel.onSignUpAction(
             firstName: "John",
             lastName: "Doe",
             email: "test@example.com",
             password: "Password1!",
             confirmPassword: "Password1!",
-            image: Data()
-        ) {_ in }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            XCTAssertTrue(self.mockImageUploader.imageUploaded)
-            XCTAssertTrue(self.mockService.registrationCalled)
+            image: Data(),
+            onSuccess: {
+                expectation.fulfill()
+            },
+            onFailure: { _ in
+                XCTFail("onFailure should not be called for valid inputs.")
+            }
+        )
+
+        // Then
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            XCTAssertTrue(self.mockImageUploader.imageUploaded, "ImageUploader should be called with valid input.")
+            XCTAssertTrue(self.mockService.registrationCalled, "Registration service should be called with valid input.")
             expectation.fulfill()
         }
-        wait(for: [expectation], timeout: 2.0)
+        wait(for: [expectation], timeout: 1.0)
     }
+    
     func test_GivenValidInput_WhenSignUpActionIsCalled_AndItFails_ThenReturnsAnErrorMessage() {
         let expectation = XCTestExpectation()
         mockService.shouldSucceedRegistration = false
@@ -202,8 +177,15 @@ final class RegistrationViewModelTests: XCTestCase {
             email: "test@example.com",
             password: "Password1!",
             confirmPassword: "Password1!",
-            image: Data()
-        ) {_ in }
+            image: Data(),
+            onSuccess: {
+                XCTFail()
+            },
+            onFailure: { alertMessage in
+                XCTAssertEqual(alertMessage, "An error occured, while registering.")
+                expectation.fulfill()
+            }
+        )
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             XCTAssertTrue(self.mockImageUploader.imageUploaded)
@@ -213,6 +195,7 @@ final class RegistrationViewModelTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 2.0)
     }
+    
     func test_GivenValidInput_WhenSignUpActionIsCalled_AndImageUploadFails_ThenReturnsAnErrorMessage() {
         let expectation = XCTestExpectation()
         mockImageUploader.shouldFail = true
@@ -223,8 +206,9 @@ final class RegistrationViewModelTests: XCTestCase {
             email: "test@example.com",
             password: "Password1!",
             confirmPassword: "Password1!",
-            image: Data()
-        ) {_ in }
+            image: Data(),
+            onSuccess: {},
+            onFailure: {_ in })
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             XCTAssertFalse(self.mockImageUploader.imageUploaded)

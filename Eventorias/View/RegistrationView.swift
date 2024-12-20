@@ -15,7 +15,6 @@ struct RegistrationView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
-    @State private var isLoading: Bool = false
     @State private var image: UIImage?
     @State private var showCameraSheet = false
     @State private var showGallerySheet = false
@@ -33,7 +32,7 @@ struct RegistrationView: View {
                         .font(.largeTitle)
                         .fontWeight(.semibold)
                         .foregroundColor(.customRed)
-                        .accessibilityIdentifier("registrationView")
+                        .accessibilityIdentifier("registrationTitle")
                     Text("Create a new account")
                         .font(.headline)
                         .foregroundColor(.white)
@@ -62,15 +61,16 @@ struct RegistrationView: View {
                     ImagePickerView(showCameraSheet: $showCameraSheet, showGallerySheet: $showGallerySheet, image: $image)
                         .accessibilityIdentifier("imagePickerView")
                 }
-                EntryFieldView(placeHolder: "First Name", field: $firstName, imageName: "person.fill")
+                
+                EntryFieldView(placeHolder: "First Name", field: $firstName, errorMessage: viewModel.firstNameErrorMessage, imageName: "person.fill")
                     .accessibilityIdentifier("firstNameTextField")
-                EntryFieldView(placeHolder: "Last Name", field: $lastName, imageName: "person.fill")
+                EntryFieldView(placeHolder: "Last Name", field: $lastName, errorMessage: viewModel.lastNameErrorMessage, imageName: "person.fill")
                     .accessibilityIdentifier("lastNameTextField")
-                EntryFieldView(placeHolder: "Mail address", field: $email, imageName: "mail.fill")
+                EntryFieldView(placeHolder: "Mail address", field: $email, errorMessage: viewModel.emailErrorMessage, imageName: "mail.fill")
                     .accessibilityIdentifier("mailAddressTextField")
-                PasswordEntryFieldView(password: $password, placeHolder: "Password")
+                PasswordEntryFieldView(password: $password, placeHolder: "Password", errorMessage: viewModel.passwordErrorMessage)
                     .accessibilityIdentifier("passwordSecuredField")
-                PasswordEntryFieldView(password: $confirmPassword, placeHolder: "Confirm password")
+                PasswordEntryFieldView(password: $confirmPassword, placeHolder: "Confirm password", errorMessage: viewModel.confirmPasswordErrorMessage)
                     .accessibilityIdentifier("passwordConfirmSecuredField")
                 Button {
                     guard let image else {
@@ -90,9 +90,11 @@ struct RegistrationView: View {
                         password: password,
                         confirmPassword: confirmPassword,
                         image: imageData,
-                        onLoading: { isLoading in
-                            self.isLoading = isLoading
+                        onSuccess: {
                             dismiss()
+                        },
+                        onFailure: { alertMessage in
+                            self.viewModel.alertMessage = alertMessage
                         }
                     )
                 } label: {
@@ -107,6 +109,15 @@ struct RegistrationView: View {
             }
             .padding(.horizontal, 40)
         }
+        .alert(isPresented: $viewModel.showingAlert) {
+            Alert(
+                title: Text("An Error occured"),
+                message: Text(viewModel.alertMessage ?? ""),
+                dismissButton: .default(Text("OK"))
+            )
+        }.overlay(
+            ProgressViewCustom(isLoading: viewModel.isLoading)
+        )
     }
     
     private func mapUiImageToData(image: UIImage) -> Data? {

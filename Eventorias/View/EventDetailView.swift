@@ -108,17 +108,3 @@ struct EventDetailView: View {
         return formatter.string(from: date)
     }
 }
-
-//#Preview {
-//    EventDetailView(
-//        viewModel: EventDetailViewModel(),
-//        event: Event(
-//            title: "Art Exhibition",
-//            description: "Join us for an exclusive Art Exhibition showcasing the works of the talented artist Emily Johnson. This exhibition will feature a captivating collection of her contemporary and classical pieces, offering a unique insight into her creative journey. Whether you're an art enthusiast or a casual visitor, you'll have the chance to explore a diverse range of artworks.",
-//            dateTime: Date.now,
-//            address: "123 Rue de l'Art, Quartier des Galeries, Paris, 75003, France",
-//            pictureUrl: "https://firebasestorage.googleapis.com/v0/b/eventorias-2ad80.firebasestorage.app/o/tokyo-japan-september-20-2018-600nw-1483381934.webp?alt=media&token=7e5be224-5208-4f65-9b81-6edc7cd78939",
-//            category: Event.Category.Art
-//        )
-//    )
-//}

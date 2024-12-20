@@ -22,23 +22,28 @@ struct EventListView: View {
     
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .bottomTrailing) {
-                eventsList
-                    .accessibilityIdentifier("eventList")
-                    .toolbar {
-                        ToolbarItem(placement: .automatic) {
+            if let _ = viewModel.errorMessage {
+                ErrorView(viewModel: viewModel)
+            } else {
+                ZStack {
+                    VStack(spacing: 10) {
+                        HStack {
                             filterMenu
-                        }
-                        ToolbarItem(placement: .automatic) {
                             categoryMenu
                         }
+                        eventsList
                     }
                     .onAppear {
                         viewModel.onActionFetchingEvents(sortedByDate: true, category: selectedCategory.rawValue)
                     }
-                createEventButton
+                    createEventButton
+                    if viewModel.isLoading && viewModel.events.isEmpty {
+                        ProgressView()
+                            .frame(width: 500, height: 500)
+                    }
+                }
+                .searchable(text: $userSearch)
             }
-            .searchable(text: $userSearch)
         }
     }
     
@@ -57,37 +62,47 @@ struct EventListView: View {
         }
         .accessibilityIdentifier("eventList")
         .listRowSpacing(8.0)
-        .background(Color.background)
         .scrollContentBackground(.hidden)
     }
     
     private var filterMenu: some View {
-        Menu("Sort by: \(selectedFilterOption.rawValue)") {
+        Menu {
             Button("Oldest") {
                 selectedFilterOption = .olderDate
                 viewModel.onActionFetchingEvents(sortedByDate: false, category: selectedCategory.rawValue)
             }
-            .accessibilityIdentifier("oldestFilterButton")
             Button("Newest") {
                 selectedFilterOption = .newestDate
                 viewModel.onActionFetchingEvents(sortedByDate: true, category: selectedCategory.rawValue)
             }
-            .accessibilityIdentifier("newestFilterButton")
+        } label: {
+            Label("Sorting", systemImage: "arrow.up.arrow.down")
         }
         .accessibilityIdentifier("filterMenu")
+        .font(.subheadline)
+        .padding(8)
+        .background(Color.customGrey)
+        .foregroundStyle(.white)
+        .clipShape(Capsule())
     }
     
     private var categoryMenu: some View {
-        Menu("Category \(selectedCategory.rawValue)") {
+        Menu {
             ForEach(EventCategory.allCases, id: \.self) { category in
                 Button("\(category.rawValue)") {
                     selectedCategory = category
                     viewModel.onActionFetchingEvents(category: category == .all ? nil : category.rawValue)
                 }
-                .accessibilityIdentifier("\(category.rawValue)")
             }
+        } label: {
+            Label("Category: \(selectedCategory.rawValue)", systemImage: "line.3.horizontal.decrease.circle.fill")
         }
         .accessibilityIdentifier("categoryButton")
+        .font(.subheadline)
+        .padding(8)
+        .background(Color.customGrey)
+        .foregroundStyle(.white)
+        .clipShape(Capsule())
     }
     
     private var createEventButton: some View {
@@ -122,6 +137,37 @@ struct EventListView: View {
         } else {
             return viewModel.events.filter { event in
                 event.title.localizedCaseInsensitiveContains(userSearch)
+            }
+        }
+    }
+    
+    struct ErrorView: View {
+        var viewModel: EventListViewModel
+        
+        var body: some View {
+            VStack(alignment: .center) {
+                Text("!")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .frame(width: 60, height: 60)
+                    .background(.gray)
+                    .clipShape(Circle())
+                    .padding()
+                Text("Error")
+                    .font(.title2)
+                Text("An error has occured, \n please try again later")
+                .padding(2)
+                Button {
+                    viewModel.onActionFetchingEvents()
+                } label: {
+                    Text("Try again")
+                }
+                .frame(width: 150)
+                .foregroundStyle(.white)
+                .fontWeight(.bold)
+                .padding()
+                .background(Color.customRed)
+                .cornerRadius(5)
             }
         }
     }

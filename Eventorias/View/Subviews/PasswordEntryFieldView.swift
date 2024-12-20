@@ -11,6 +11,7 @@ struct PasswordEntryFieldView: View {
     @Binding var password: String
     @State private var hidePassword = true
     var placeHolder: String
+    var errorMessage: String? = nil
     
     var body: some View {
         HStack {
@@ -35,10 +36,13 @@ struct PasswordEntryFieldView: View {
         .background(.customGrey)
         .cornerRadius(8)
         .disableAutocorrection(true)
+        
+        if let errorMessage = errorMessage {
+            Text(errorMessage)
+                .fixedSize(horizontal: false, vertical: true)
+                .font(.caption)
+                .foregroundColor(.red)
+        }
     }
 }
 
-#Preview {
-    @Previewable @State var password: String = ""
-    PasswordEntryFieldView(password: $password, placeHolder: "")
-}

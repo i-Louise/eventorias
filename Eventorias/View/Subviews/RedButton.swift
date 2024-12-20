@@ -15,15 +15,8 @@ struct RedButton: View {
     
     var body: some View {
         Button(action: action, label: {
-            if isLoading {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
-                    .frame(maxWidth: .infinity)
-                    .accessibilityIdentifier("isLoading")
-            } else {
-                Image(systemName: image)
-                Text(title)
-            }
+            Image(systemName: image)
+            Text(title)
         })
         .frame(maxWidth: .infinity)
         .fontWeight(.bold)

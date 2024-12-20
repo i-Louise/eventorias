@@ -10,7 +10,7 @@ import XCTest
 
 final class AuthenticationViewModelTests: XCTestCase {
     
-    var viewModel: AuthenticationViewModel!
+    var viewModel: SignInViewModel!
     var mockService: MockAuthenticationService!
     private var mockImageUploader: MockImageUploader!
     
@@ -18,7 +18,7 @@ final class AuthenticationViewModelTests: XCTestCase {
         mockService = MockAuthenticationService()
         mockImageUploader = MockImageUploader()
         mockImageUploader.shouldFail = false
-        viewModel = AuthenticationViewModel(
+        viewModel = SignInViewModel(
             authenticationService: mockService,
             imageUploader: mockImageUploader
         ) {
@@ -39,7 +39,7 @@ final class AuthenticationViewModelTests: XCTestCase {
         let password = "password"
         
         //When
-        viewModel.onLoginAction(email: invalidEmail, password: password) { isLoading in }
+        viewModel.onLoginAction(email: invalidEmail, password: password)
         
         XCTAssertEqual(viewModel.alertMessage, "Incorrect email format, please try again.")
     }
@@ -49,7 +49,7 @@ final class AuthenticationViewModelTests: XCTestCase {
         let invalidPassword = ""
         
         // When
-        viewModel.onLoginAction(email: validMail, password: invalidPassword) { isLoading in }
+        viewModel.onLoginAction(email: validMail, password: invalidPassword)
         
         // Then
         XCTAssertEqual(viewModel.alertMessage, "Please enter your password.")
@@ -63,7 +63,7 @@ final class AuthenticationViewModelTests: XCTestCase {
         let password = "password123"
         mockService.shouldSucceedLogin = true
         
-        viewModel.onLoginAction(email: email, password: password) { isLoading in }
+        viewModel.onLoginAction(email: email, password: password)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             XCTAssertNil(self.viewModel.alertMessage)
@@ -81,10 +81,10 @@ final class AuthenticationViewModelTests: XCTestCase {
         let password = "password123"
         mockService.shouldSucceedLogin = false
         
-        viewModel.onLoginAction(email: email, password: password) { isLoading in }
+        viewModel.onLoginAction(email: email, password: password)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            XCTAssertEqual(self.viewModel.alertMessage, "An error occur. Please try again.")
+            XCTAssertEqual(self.viewModel.alertMessage, "Please check your credentials and try again.")
             XCTAssertTrue(self.mockService.loginCalled)
             expectation.fulfill()
         }

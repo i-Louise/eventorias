@@ -7,10 +7,12 @@
 
 import Foundation
 
-class AuthenticationViewModel: ObservableObject {
+class SignInViewModel: ObservableObject {
     @Published var alertMessage: String? = nil
+    @Published var showingAlert = false
     private let authenticationService: AuthenticationServiceProtocol
     private let imageUploader: ImageUploaderProtocol
+    @Published var isLoading = false
     let onLoginSucceed: (() -> ())
     
     init(
@@ -32,14 +34,16 @@ class AuthenticationViewModel: ObservableObject {
     
     func onLoginAction(
         email: String,
-        password: String,
-        isLoading: @escaping (Bool) -> Void
+        password: String
     ) {
         alertMessage = nil
+        isLoading = true
         
         if !isEmailValid(email: email) {
+            isLoading = false
             alertMessage = "Incorrect email format, please try again."
         } else if password.isEmpty {
+            isLoading = false
             alertMessage = "Please enter your password."
         } else {
             login(email: email, password: password)
@@ -57,10 +61,17 @@ class AuthenticationViewModel: ObservableObject {
                 email: email,
                 password: password,
                 onSuccess: {
-                    self.onLoginSucceed()
+                    DispatchQueue.main.async {
+                        self.onLoginSucceed()
+                        self.isLoading = false
+                    }
                 },
                 onFailure: { error in
-                    self.alertMessage = "An error occur. Please try again."
+                    DispatchQueue.main.async {
+                        self.isLoading = false
+                        self.alertMessage = "Please check your credentials and try again."
+                        self.showingAlert = true
+                    }
                     print(error)
                 }
             )

@@ -12,12 +12,12 @@ import GoogleMaps
 import GooglePlaces
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-    let apiKey = "AIzaSyBR3QC4KWiC1WXUis2sRqYRgPvFSoGFrCM"
-    
+    let apiKey = Bundle.main.object(forInfoDictionaryKey: "ApiKey") as? String 
+
     func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        GMSServices.provideAPIKey(apiKey)
-        GMSPlacesClient.provideAPIKey(apiKey)
+        GMSServices.provideAPIKey(apiKey ?? "")
+        GMSPlacesClient.provideAPIKey(apiKey ?? "")
         return true
     }
 }
@@ -156,7 +156,6 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Profile", systemImage: "person")
                 }
-                .accessibilityIdentifier("userProfileTab")
         }
         .accentColor(.customRed)
     }
